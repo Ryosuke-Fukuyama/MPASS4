@@ -8,7 +8,7 @@
 ```
 $ git clone
 $ cd rails_app
-$ bundle install
+$ bundle
 $ rails db:create db:migrate
 $ rails db:seed
 $ rails s
