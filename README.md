@@ -22,7 +22,7 @@ $ yarn dev
 https://docs.google.com/spreadsheets/d/1WWDc_jzAH1NAefa9Tkv03tdus7J6q9wp8pRohpaYddE/edit?usp=sharing
 
 ## ER図
-<img src="doc/Entity Relationship Diagram.png" alt="ER図" width='650px'>
+<img src="doc/E-R_diagram.png" alt="ER図" width='650px'>
 
 ## 画面遷移図
-<img src="doc/Sitemap.png" alt="画面遷移図" width='650px'>
+<img src="doc/S-F_diagram.png" alt="画面遷移図" width='650px'>
