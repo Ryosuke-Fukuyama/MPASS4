@@ -18,14 +18,8 @@ $ yarn install
 $ yarn dev
 ```
 
-## カタログ設計
-https://docs.google.com/spreadsheets/d/1yrvNVz2DJwZVSdH5rgZQOb-NjcIYiwF3FosHNRnCfcg/edit?usp=sharing
-
-## テーブル定義書
-https://docs.google.com/spreadsheets/d/1yrvNVz2DJwZVSdH5rgZQOb-NjcIYiwF3FosHNRnCfcg/edit?usp=sharing
-
-## ワイヤーフレーム
-https://docs.google.com/spreadsheets/d/1yrvNVz2DJwZVSdH5rgZQOb-NjcIYiwF3FosHNRnCfcg/edit?usp=sharing
+## カタログ設計/テーブル定義書/ワイヤーフレーム
+https://docs.google.com/spreadsheets/d/1WWDc_jzAH1NAefa9Tkv03tdus7J6q9wp8pRohpaYddE/edit?usp=sharing
 
 ## ER図
 <img src="doc/Entity Relationship Diagram.png" alt="ER図" width='650px'>
