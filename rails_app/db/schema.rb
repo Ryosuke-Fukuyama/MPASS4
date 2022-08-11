@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_10_101000) do
+ActiveRecord::Schema.define(version: 2022_08_11_051345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "hospitals", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "tel", null: false
+    t.string "address", null: false
+    t.string "access", null: false
+    t.text "image"
+    t.text "introduction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "patients", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -40,4 +52,24 @@ ActiveRecord::Schema.define(version: 2022_08_10_101000) do
     t.index ["unlock_token"], name: "index_patients_on_unlock_token", unique: true
   end
 
+  create_table "staffs", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.boolean "admin", default: false
+    t.bigint "hospital_id"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hospital_id"], name: "index_staffs_on_hospital_id"
+    t.index ["name"], name: "index_staffs_on_name", unique: true
+  end
+
+  add_foreign_key "staffs", "hospitals"
 end

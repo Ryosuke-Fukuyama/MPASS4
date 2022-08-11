@@ -7,4 +7,8 @@ Rails.application.routes.draw do
     registrations: 'patients/registrations',
     # omniauth_callbacks: 'patients/omniauth_callbacks'
   }
+
+  devise_for :staffs
+
+  resources :hospitals
 end

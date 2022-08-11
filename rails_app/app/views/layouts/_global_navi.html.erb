@@ -35,13 +35,6 @@
         <%= link_to t('view.sign_out'), destroy_staff_session_path, method: :delete, id: "global-navi_staff-sign-out" %>
       </li>
     <% end %>
-  <% elsif master_signed_in? %>
-    <li>
-      <%= link_to t('view.hospital_label') + t('view.index'), hospital_labels_path, id: "global-navi_hospitallabel-index" %>
-    </li>
-    <li>
-      <%= link_to t('view.sign_out'), destroy_staff_session_path, method: :delete, id: "global-navi_staff-sign-out" %>
-    </li>
   <% else %>
     <li>
       <%= link_to t("view.sign_in"), new_patient_session_path, id: "global-navi_sign-in" %>
