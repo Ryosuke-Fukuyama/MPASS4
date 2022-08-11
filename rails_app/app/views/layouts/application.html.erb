@@ -10,6 +10,21 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <%#= render "layouts/global_navi" %>
+      </nav>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
+    <footer>
+      <nav>
+        <div>
+          <p>DIVE INTO CODE WEF2103</p>
+        </div>
+      </nav>
+    </footer>
   </body>
 </html>
