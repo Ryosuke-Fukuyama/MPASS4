@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     # omniauth_callbacks: 'patients/omniauth_callbacks'
   }
 
-  devise_for :staffs
+  devise_for :staffs, controllers: {
+    sessions: 'staffs/sessions'
+  }
 
   resources :hospitals
 end

@@ -5,7 +5,7 @@ class CreateHospitals < ActiveRecord::Migration[6.0]
       t.string :email,   null: false
       t.string :tel,     null: false
       t.string :address, null: false
-      t.string :access,  null: false
+      t.string :access
       t.text :image
       t.text :introduction
 

@@ -1,6 +1,6 @@
 <h2><%= t('.sign_in') %></h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_with(model: resource, scope: resource_name, url: session_path(resource_name), local: true) do |f| %>
   <div class="field">
     <%= f.label :login %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
@@ -16,4 +16,4 @@
   </div>
 <% end %>
 
-<%= render "staffs/shared/links" %>
+

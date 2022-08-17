@@ -3,30 +3,21 @@ class Patient < ApplicationRecord
 #   has_many :sns_credentials, dependent: :destroy
 #   has_many :favorite_hospitals, dependent: :destroy
 
+  include EmailValidates
+  include PasswordValidates
+  include TelValidates
+  include AddressValidates
+
+  validates :name, presence: true,
+                   length: { in: 2..20, allow_blank: true }
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
          :rememberable,
-         :validatable,
          :lockable,
          :confirmable
-        #  :timeoutable, :trackable
         #  :omniauthable, omniauth_providers: [:google_oauth2]
-
-  validates :name,    presence: true,
-                      length: { in: 2..20, allow_blank: true }
-  validates :email,   presence: true,
-                      uniqueness: true,
-                      length: { maximum: 255 }
-  validates :encrypted_password, on: :create,
-                      presence: true
-                     #  format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,20}\z/ }
-  validates :tel,     numericality: { only_integer: true },
-                      allow_blank: true
-                     #  format: { with: /\A\d{10,11}\z/ }
-  validates :address, length: { maximum: 255 }
-
-  before_validation :email_downcase
 
   # scope :search_patient, -> (hospital_id) do
   #   relevanted_interviews(hospital_id)
@@ -77,10 +68,4 @@ class Patient < ApplicationRecord
   #   end
   #   patient
   # end
-
-  def email_downcase
-    return if email.blank?
-
-    self.email = email.downcase!
-  end
 end

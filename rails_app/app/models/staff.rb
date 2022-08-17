@@ -1,22 +1,21 @@
 class Staff < ApplicationRecord
   belongs_to  :hospital
 
+  include PasswordValidates
+
+  validates :name, presence: true,
+                   uniqueness: true,
+                   length: { in: 1..20, allow_blank: true }
+
+  # before_destroy :admin_not_delete
+  # before_update :self_admin_not
+
   devise :database_authenticatable,
          :validatable,
          :lockable,
          :timeoutable,
          :trackable,
          authentication_keys: [:name]
-
-
-  validates :name,               presence: true,
-                                 length: { in: 1..20, allow_blank: true }
-  validates :encrypted_password, on: :create,
-                                 presence: true
-                                # format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,20}\z/ }
-
-  # before_destroy :admin_not_delete
-  # before_update :self_admin_not
 
   private
   # def admin_not_delete
@@ -30,6 +29,10 @@ class Staff < ApplicationRecord
   # end
 
   def email_required?
+    false
+  end
+
+  def _changed?
     false
   end
 

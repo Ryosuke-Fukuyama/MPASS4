@@ -9,7 +9,8 @@ module RailsApp
     config.load_defaults 6.0
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
-    # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     # config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
     config.generators do |g|
       g.assets false
