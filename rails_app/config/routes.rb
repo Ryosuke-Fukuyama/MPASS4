@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     registrations: 'patients/registrations',
     # omniauth_callbacks: 'patients/omniauth_callbacks'
   }
+  resources :patients, only: %i[index show update destroy]
 
   devise_for :staffs, controllers: {
     sessions: 'staffs/sessions'

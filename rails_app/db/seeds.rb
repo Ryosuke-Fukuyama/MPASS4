@@ -6,17 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Patient.create!(name: "sample_user",
-#                 email: "sample@mail.com",
-#                 password: "passw0r-D",
-#                 confirmed_at: Time.now
-#                )
+Patient.create!(name: "sample_user",
+                email: "sample@mail.com",
+                password: "passw0r-D",
+                confirmed_at: Time.now
+               )
 
-# Hospital.create!(name:    "テスト病院",
-#                  email:   Faker::Internet.unique.email,
-#                  tel:     sprintf('%10d', rand(9999999999)),
-#                  address: Gimei.address.kanji,
-# )
+Hospital.create!(name:    "テスト病院",
+                 email:   Faker::Internet.unique.email,
+                 tel:     sprintf('%10d', rand(9999999999)),
+                 address: Gimei.address.kanji,
+)
 
 Staff.create!(name:        "sample_staff",
               password:    "passw0r-D",

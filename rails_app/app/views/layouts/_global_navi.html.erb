@@ -14,14 +14,14 @@
         <%= link_to t('view.my_page'), patient_path(current_patient.id), id: "global-navi_patient-show" %>
       </li>
       <li>
-        <%= link_to t('view.favorite'), favorite_hospitals_path, id: "global-navi_favorite-index" %>
+        <%#= link_to t('view.favorite'), favorite_hospitals_path, id: "global-navi_favorite-index" %>
       </li>
       <li>
         <%= link_to t('view.sign_out'), destroy_patient_session_path, method: :delete, id: "global-navi_sign-out" %>
       </li>
     <% else %>
       <li>
-        <%= link_to t('view.waiting'), hospital_health_interviews_path(@hospital.id), id: "global-navi_in-house-healthinterview-index" %>
+        <%#= link_to t('view.waiting'), hospital_health_interviews_path(@hospital.id), id: "global-navi_in-house-healthinterview-index" %>
       </li>
       <% if current_staff.admin? %>
         <li>

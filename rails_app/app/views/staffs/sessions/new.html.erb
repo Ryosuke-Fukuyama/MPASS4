@@ -2,13 +2,13 @@
 
 <%= form_with(model: resource, scope: resource_name, url: session_path(resource_name), local: true) do |f| %>
   <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, placeholder: "", autofocus: true, autocomplete: "name" %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, placeholder: "", autocomplete: "current-password" %>
   </div>
 
   <div class="actions">
