@@ -30,6 +30,8 @@ gem 'devise-i18n'
 # gem 'omniauth-rails_csrf_protection'
 gem "recaptcha", require: "recaptcha/rails"
 
+gem 'ransack'
+
 # gem 'geocoder'
 # gem 'gon'
 

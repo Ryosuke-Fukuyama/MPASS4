@@ -1,0 +1,43 @@
+<h3><%= t('view.hospital') + t('view.index') %></h3>
+
+<%= search_form_for @q, url: search_hospitals_path, html: { method: :post } do |f| %>
+  <%= f.label :name_cont, t('view.hospital') + t('view.name') %>
+  <%= f.search_field :name_cont, placeholder: "" %>
+
+  <%= f.label :hospital_labels_id_eq, t('view.hospital_label') %>
+  <%= f.select :hospital_labels_id_eq, @hospital_labels.map{ |label| [label.name, label.id] }, include_blank: t('view.select') %>
+
+  <%= f.submit t('view.search') %>
+<% end %>
+
+<%#= link_to t('view.maps'), maps_hospitals_path %>
+<br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('view.hospital') + t('view.name') %></th>
+      <th><%= t('view.access') %></th>
+      <th><%= t('view.hospital_label') %></th>
+      <th colspan="3"></th>
+    <tr/>
+  </thead>
+  <tbody>
+    <% @hospitals.each do |hospital| %>
+      <tr>
+        <td id=<%= "hospital-index_item-name-#{hospital.id}" %>><%= hospital.name %></td>
+        <td id=<%= "hospital-index_item-access-#{hospital.id}" %>><%= hospital.access %></td>
+        <td>
+          <% hospital.hospital_labels.each do |label| %>
+            <div id=<%= "hospital-index_item-#{hospital.id}-label-#{label.id}" %>>
+              <%= label.name %>
+            </div>
+          <% end %>
+        </td>
+        <td><%= link_to t('view.show'), hospital_path(hospital.id), id: "hospital-index_#{hospital.id}-show" %>/</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @hospitals %>

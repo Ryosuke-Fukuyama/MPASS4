@@ -1,0 +1,51 @@
+<h3><%= t('view.hospitals') + t('view.edit') %></h3>
+
+<%= form_with(model: @hospital, local: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :access %>
+    <%= f.text_field :access %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction %>
+    <%= f.text_field :introduction %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tel %>
+    <%= f.text_field :tel %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+
+  <%= f.submit %>
+
+<% end %>
+
+ <%= link_to :back, hospitals_path %>

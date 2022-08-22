@@ -1,0 +1,77 @@
+<h3><%= t('view.hospitals') + t('view.new') %></h3>
+
+<%= form_with(model: @hospital, local: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :access %>
+    <%= f.text_field :access %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction %>
+    <%= f.text_field :introduction %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tel %>
+    <%= f.text_field :tel %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+
+  <%= f.label t('admin_staff') %>
+  <div class="field">
+    <%= f.fields_for :staff do |s| %>
+
+      <div class="field">
+        <%= s.label :name %><br />
+        <%= s.text_field :name, autofocus: true, placeholder: t('view.placeholder.staff_name'), autocomplete: "name", size: 16 %>
+      </div>
+
+      <div class="field">
+        <%= s.label t('view.please_new') %>
+        <% if @minimum_password_length %>
+        <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <% end %><br />
+        <%= s.password_field :password, autocomplete: "new-password", placeholder: t('view.placeholder.password'),size: 24 %>
+      </div>
+
+      <div class="field">
+        <%= s.label :password_confirmation %><br />
+        <%= s.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('view.placeholder.password_confirmation'), size: 24 %>
+      </div>
+
+      <%= s.hidden_field :admin, "true"  %>
+
+      <br>
+    <% end %>
+  <% /div %>
+
+  <%= f.submit id: "submit" %>
+
+<% end %>

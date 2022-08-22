@@ -1,11 +1,11 @@
 class Hospital < ApplicationRecord
   has_many :staffs, dependent: :destroy
+  has_many :hospital_labelings, dependent: :destroy
+  has_many :hospital_labels, through: :hospital_labelings
   # has_many :health_interviews, dependent: :destroy
-  # has_many :hospital_labelings, dependent: :destroy
-  # has_many :hospital_labels, through: :hospital_labelings
   # has_many :favorite_hospitals, dependent: :destroy
-  # accepts_nested_attributes_for :staffs
   # mount_uploader :image, ImageUploader
+  # accepts_nested_attributes_for :staffs
 
   include EmailValidates
   include TelValidates

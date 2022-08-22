@@ -1,0 +1,36 @@
+<h3><%= t('view.hospital') + t('view.show') %></h3>
+
+<button type="button" class="btn btn-outline-primary">
+  <%= link_to t('view.waiting'), hospital_health_interviews_path(@hospital) %>
+</button>
+
+<% if patient_signed_in? %>
+  <% if @favorite_hospital.present? %>
+    <%= link_to t('view.favorite') + t('view.cancel'), favorite_hospital_path(id: @favorite_hospital.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to t('view.favorite') + t('view.addition'), favorite_hospitals_path(hospital_id: @hospital.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+<br><br>
+
+<%= image_tag @hospital.image.url %>
+
+<table>
+  <p><big><%= @hospital.name %></big></p>
+  <p><%= t('view.address') + "：" + @hospital.address %></p>
+  <p><%= t('view.access') + "：" + @hospital.access %></p>
+  <p><%= t('view.introduction') + "：" + @hospital.introduction %></p>
+  <p><%= t('view.tel') + "：" + @hospital.tel %></p>
+  <p><%= t('view.email') + "：" + @hospital.email %></p>
+</table>
+<br>
+
+<%= link_to t('view.back'), hospitals_path %><br />
+<%= link_to t('view.staff') + t('view.only'), new_staff_session_path %>
+
+<% if staff_signed_in? && current_staff.admin? && current_staff.hospital_id == @hospital.id %>
+  <p><%= link_to :edit, edit_hospital_path(@hospital) %></p>
+  <p><%= link_to t('view.destroy'), hospital_path(@hospital),
+    method: :delete, data: { confirm: t('confirm.delete') } %></p>
+<% end %>
+

@@ -1,14 +1,22 @@
 class HospitalsController < ApplicationController
-  # before_action :set_hospital_labels, only: %i[index new edit create update]
+  before_action :set_hospital_labels, only: %i[index search new edit create update]
   # before_action :admin_required, only: %i[edit update]
   # before_action :master_required, only: %i[new create]
 
   def index
-    @q = Hospital.ransack(params[:q])
-    @hospitals = Hospital.all
-    @hospitals = @q.result.includes(:hospital_labels) if @q.present?
-    @hospitals = @hospitals.order(name: :asc).page(params[:page]).per(8)
+    @q = ransack_params
+    @hospitals =  @q ? @q.result : Hospital.all
+    @hospitals = @hospitals.includes(:hospital_labels).order(name: :asc).page(params[:page]).per(8)
   end
+
+  def search
+    index
+    render :index
+  end
+
+  # def maps
+  #   gon.hosupitals = Hospital.all
+  # end
 
   def show
     @hospital = Hospital.find(params[:id])
@@ -44,16 +52,7 @@ class HospitalsController < ApplicationController
     redirect_to hospitals_path, notice: t('notice.destroyed')
   end
 
-  # def maps
-  #   gon.hosupitals = Hospital.all
-  # end
-
   private
-
-    # def set_hospital_labels
-    #   @hospital_labels = HospitalLabel.all
-    # end
-
     def hospital_params
       params.require(:hospital).permit(
         :id,
@@ -64,8 +63,16 @@ class HospitalsController < ApplicationController
         :access,
         :introduction,
         :image,
-        # hospital_label_ids: [],
-        staffs_attributes: {sraff: []}
+        hospital_label_ids: [],
+        # staffs_attributes: {sraff: []}
       )
+    end
+
+    def ransack_params
+      Hospital.ransack(params[:q])
+    end
+
+    def set_hospital_labels
+      @hospital_labels = HospitalLabel.all
     end
 end

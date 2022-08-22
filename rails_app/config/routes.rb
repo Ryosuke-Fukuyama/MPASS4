@@ -13,5 +13,10 @@ Rails.application.routes.draw do
     sessions: 'staffs/sessions'
   }
 
-  resources :hospitals
+  resources :hospitals do
+    collection do
+      match 'search' => 'hospitals#search', via: [:get, :post], as: :search
+    end
+  end
+  resources :hospital_labels, except: [:show]
 end
