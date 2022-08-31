@@ -4,7 +4,7 @@ class Staff < ApplicationRecord
   include PasswordValidates
 
   validates :name, presence: true,
-                   uniqueness: true,
+                  #  uniqueness: true, # 同病院内での制限をつけたい
                    length: { in: 1..20, allow_blank: true }
 
   # before_destroy :admin_not_delete

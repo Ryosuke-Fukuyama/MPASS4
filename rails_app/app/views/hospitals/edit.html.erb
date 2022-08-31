@@ -44,6 +44,13 @@
     <%= f.hidden_field :image_cache %>
   </div>
 
+  <div class="field">
+    <% @hospital_labels.all.each do |label| %>
+      <%= f.check_box :label_ids, { multiple: true, checked: @hospital.label_ids.include?(label.id), disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
+      <label><%= label.name %></label>
+    <% end %>
+  <% end %>
+
   <%= f.submit %>
 
 <% end %>

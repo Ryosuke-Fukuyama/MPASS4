@@ -1,7 +1,7 @@
 class Patient < ApplicationRecord
+  has_many :favorite_hospitals, dependent: :destroy
 #   has_many :health_interviews, dependent: :destroy
 #   has_many :sns_credentials, dependent: :destroy
-#   has_many :favorite_hospitals, dependent: :destroy
 
   include EmailValidates
   include PasswordValidates

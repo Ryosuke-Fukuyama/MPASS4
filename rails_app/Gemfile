@@ -10,7 +10,9 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
+gem 'yaaf'
 gem 'enum_help'
+gem 'ransack'
 gem 'kaminari'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'ed25519', '>= 1.2', '< 2.0'
@@ -20,9 +22,6 @@ gem 'kaminari'
 gem 'dotenv-rails'
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'faker'
-gem 'gimei'
-
 gem 'devise'
 gem 'devise-i18n'
 # gem 'omniauth'
@@ -30,12 +29,13 @@ gem 'devise-i18n'
 # gem 'omniauth-rails_csrf_protection'
 gem "recaptcha", require: "recaptcha/rails"
 
-gem 'ransack'
-
 # gem 'geocoder'
 # gem 'gon'
 
 # gem 'payjp'
+
+gem 'faker'
+gem 'gimei'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

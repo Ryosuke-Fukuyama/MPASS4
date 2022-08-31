@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_21_131238) do
+ActiveRecord::Schema.define(version: 2022_08_22_041728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorite_hospitals", force: :cascade do |t|
+    t.bigint "patient_id"
+    t.bigint "hospital_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hospital_id"], name: "index_favorite_hospitals_on_hospital_id"
+    t.index ["patient_id"], name: "index_favorite_hospitals_on_patient_id"
+  end
 
   create_table "hospital_labelings", force: :cascade do |t|
     t.bigint "hospital_id"
@@ -86,6 +95,8 @@ ActiveRecord::Schema.define(version: 2022_08_21_131238) do
     t.index ["name"], name: "index_staffs_on_name", unique: true
   end
 
+  add_foreign_key "favorite_hospitals", "hospitals"
+  add_foreign_key "favorite_hospitals", "patients"
   add_foreign_key "hospital_labelings", "hospital_labels"
   add_foreign_key "hospital_labelings", "hospitals"
   add_foreign_key "staffs", "hospitals"
