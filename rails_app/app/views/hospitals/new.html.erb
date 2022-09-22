@@ -1,0 +1,86 @@
+<h3>
+  <%= t('view.hospitals') + t('view.new') %>
+</h3>
+
+<%= form_with(model: @hospital, local: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :name, t('view.hospital') + t('view.name') %>
+    <%= f.text_field :name, placeholder: t('view.must'), autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, t('view.email') %>
+    <%= f.email_field :email, placeholder: t('view.must'), autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tel, t('view.tel') %>
+    <%= f.text_field :tel, placeholder: t('view.must'), autocomplete: "tel" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, t('view.address') %>
+    <%= f.text_field :address, placeholder: t('view.must'), autocomplete: "address" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :access %>
+    <%= f.text_field :access, placeholder: "", autocomplete: "access" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction %>
+    <%= f.text_field :introduction, placeholder: "", autocomplete: "introduction" %>
+  </div>
+
+  <%
+=begin
+%>
+  <div class="field">
+    <%= f.label :image %>
+    <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
+    <%= f.file_field :image, autocomplete: "image" %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <%
+=end
+%>
+
+  <div class="field">
+    <p><%= f.label :hospital_label %></p>
+    <% @hospital_labels.all.each do |label| %>
+      <%= f.check_box :hospital_label_ids,
+        { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
+      <label><%= label.name %></label>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <h4><%= t('admin_staff') %></h4>
+    <%= f.fields_for :staffs do |s| %>
+
+      <div class="field">
+        <%=s.label :name, t('view.name') %>
+        <%=s.text_field :name, placeholder: t('view.must'), autocomplete: "name" %>
+      </div>
+
+      <div class="field">
+        <%=s.label :password, t('view.password') %>
+        <% if @minimum_password_length %>
+          <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <% end %>
+        <%=s.password_field :password, placeholder: t('view.must'), autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%=s.label :password_confirmation, t('view.password_confirmation') %>
+        <%=s.password_field :password_confirmation, placeholder: t('view.must'), autocomplete: "new-password" %>
+      </div>
+
+      <%=s.hidden_field :admin, value: true %>
+    <% end %>
+  </div>
+
+  <%= f.submit :submit %>
+<% end %>

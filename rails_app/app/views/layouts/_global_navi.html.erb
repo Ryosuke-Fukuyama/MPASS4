@@ -1,7 +1,7 @@
 <ol>
   <li class="big-font">
     MPASS
-  </li>
+  </li>#
   <li>
     <%= link_to 'Top', root_path, id: "global-navi_top" %>
   </li>
@@ -14,7 +14,7 @@
         <%= link_to t('view.my_page'), patient_path(current_patient.id), id: "global-navi_patient-show" %>
       </li>
       <li>
-        <%#= link_to t('view.favorite'), favorite_hospitals_path, id: "global-navi_favorite-index" %>
+        <%= link_to t('view.favorite'), favorite_hospitals_path, id: "global-navi_favorite-index" %>
       </li>
       <li>
         <%= link_to t('view.sign_out'), destroy_patient_session_path, method: :delete, id: "global-navi_sign-out" %>
