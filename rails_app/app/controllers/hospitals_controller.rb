@@ -1,11 +1,11 @@
 class HospitalsController < ApplicationController
   before_action :set_hospital_parms, only: %i[show edit update destroy]
   before_action :set_hospital_labels, only: %i[index search new edit create update]
-  # before_action :admin_required, only: %i[edit update]
+  before_action :admin_required, only: %i[edit update]
   # before_action :master_required, only: %i[new create]
 
   def index
-    @q = ransack_params
+    @q = Hospital.ransack(params[:q])
     @hospitals =  @q ? @q.result : Hospital.all
     @hospitals = @hospitals.includes(:hospital_labels).order(name: :asc).page(params[:page]).per(8)
   end
@@ -20,34 +20,20 @@ class HospitalsController < ApplicationController
   # end
 
   def new
-    @form = HospitalForm.new
+    @hospital = Hospital.new
+    @hospital.staffs.build
   end
 
   def create
-    @form = HospitalForm.new(hospital_params)
-    binding.irb
-    if @form.save
-    # if @staff.present?
-    #   if @hospital.save
-    #     id = @hospital.id
-    #     # binding.irb
-    #     @staff = Staff.new(staff_params)
-    #     # @staff.hospital_id = id
-    #     if @staff.save
-          redirect_to hospitals_path, notice: t('notice.both_saved')
-    #     else
-    #       redirect_to new_hospital_staff_path(@form.hospital), notice: t('notice.hospital_saved')
-    #     end
-    #   else
-    #     render :new
-    #   end
+    @hospital = Hospital.new(hospital_params)
+    if @hospital.save
+      redirect_to hospitals_path, notice: t('notice.saved')
     else
       render :new
     end
   end
 
   def show
-    @hospital = Hospital.find(params[:id])
     @favorite_hospital = current_patient.favorite_hospitals.find_by(hospital_id: @hospital.id) if patient_signed_in?
   end
 
@@ -68,12 +54,8 @@ class HospitalsController < ApplicationController
   end
 
   private
-    def ransack_params
-      Hospital.ransack(params[:q])
-    end
-
     def hospital_params
-      params.fetch(:hospital, {}).permit(
+      params.require(:hospital).permit(
         :id,
         :name,
         :email,

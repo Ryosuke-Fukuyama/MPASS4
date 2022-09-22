@@ -145,12 +145,10 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
     minitest (5.16.2)
     msgpack (1.5.4)
     nio4r (2.5.8)
-    nokogiri (1.13.8)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.22.1)
@@ -311,9 +309,6 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yaaf (2.2.0)
-      activemodel (>= 5.2)
-      activerecord (>= 5.2)
     yard (0.9.28)
       webrick (~> 1.7.0)
     zeitwerk (2.6.0)
@@ -358,7 +353,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  yaaf
 
 RUBY VERSION
    ruby 2.6.5p114

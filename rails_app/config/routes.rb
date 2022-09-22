@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'staffs/index'
+  get 'staffs/new'
+  get 'staffs/create'
+  get 'staffs/edit'
+  get 'staffs/update'
+  get 'staffs/destroy'
+  get 'staffs/_form'
   root 'tops#index'
 
   resources :patients, only: %i[index show destroy]
@@ -17,6 +24,7 @@ Rails.application.routes.draw do
   end
   devise_for :staffs, controllers: {
     sessions: 'staffs/sessions',
+    # registrations: 'staffs/registrations'
   }
 
   resources :hospital_labels, except: [:show]

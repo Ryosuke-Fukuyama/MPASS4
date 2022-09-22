@@ -2,84 +2,85 @@
   <%= t('view.hospitals') + t('view.new') %>
 </h3>
 
-<%= form_with(model: @form, local: true) do |hospital_form| %>
+<%= form_with(model: @hospital, local: true) do |f| %>
 
   <div class="field">
-    <%= hospital_form.label :name, t('view.hospital') + t('view.name') %>
-    <%= hospital_form.text_field :name, placeholder: t('view.must'), autofocus: true, autocomplete: "name" %>
+    <%= f.label :name, t('view.hospital') + t('view.name') %>
+    <%= f.text_field :name, placeholder: t('view.must'), autofocus: true, autocomplete: "name" %>
   </div>
 
   <div class="field">
-    <%= hospital_form.label :email, t('view.email') %>
-    <%= hospital_form.email_field :email, placeholder: t('view.must'), autocomplete: "email" %>
+    <%= f.label :email, t('view.email') %>
+    <%= f.email_field :email, placeholder: t('view.must'), autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= hospital_form.label :tel, t('view.tel') %>
-    <%= hospital_form.text_field :tel, placeholder: t('view.must'), autocomplete: "tel" %>
+    <%= f.label :tel, t('view.tel') %>
+    <%= f.text_field :tel, placeholder: t('view.must'), autocomplete: "tel" %>
   </div>
 
   <div class="field">
-    <%= hospital_form.label :address, t('view.address') %>
-    <%= hospital_form.text_field :address, placeholder: t('view.must'), autocomplete: "address" %>
+    <%= f.label :address, t('view.address') %>
+    <%= f.text_field :address, placeholder: t('view.must'), autocomplete: "address" %>
   </div>
 
   <div class="field">
-    <%= hospital_form.label :access %>
-    <%= hospital_form.text_field :access, placeholder: "", autocomplete: "access" %>
+    <%= f.label :access %>
+    <%= f.text_field :access, placeholder: "", autocomplete: "access" %>
   </div>
 
   <div class="field">
-    <%= hospital_form.label :introduction %>
-    <%= hospital_form.text_field :introduction, placeholder: "", autocomplete: "introduction" %>
+    <%= f.label :introduction %>
+    <%= f.text_field :introduction, placeholder: "", autocomplete: "introduction" %>
   </div>
 
   <%
 =begin
 %>
   <div class="field">
-    <%= hospital_form.label :image %>
+    <%= f.label :image %>
     <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
-    <%= hospital_form.file_field :image, autocomplete: "image" %>
-    <%= hospital_form.hidden_field :image_cache %>
+    <%= f.file_field :image, autocomplete: "image" %>
+    <%= f.hidden_field :image_cache %>
   </div>
   <%
 =end
 %>
 
   <div class="field">
-    <p><%= hospital_form.label :hospital_label %></p>
+    <p><%= f.label :hospital_label %></p>
     <% @hospital_labels.all.each do |label| %>
-      <%= hospital_form.check_box :hospital_label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
+      <%= f.check_box :hospital_label_ids,
+        { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
       <label><%= label.name %></label>
     <% end %>
   </div>
 
   <div class="field">
-    <h4><%= t('admin_staff') + t('view.must') %></h4>
-    <%= hospital_form.fields_for :staff do |staff_form| %>
+    <h4><%= t('admin_staff') %></h4>
+    <%= f.fields_for :staffs do |s| %>
 
       <div class="field">
-        <%=staff_form.label :name, t('view.name') %>
-        <%=staff_form.text_field :name, placeholder: "", autocomplete: "name" %>
+        <%=s.label :name, t('view.name') %>
+        <%=s.text_field :name, placeholder: t('view.must'), autocomplete: "name" %>
       </div>
 
       <div class="field">
-        <%=staff_form.label :password, t('view.password') %>
+        <%=s.label :password, t('view.password') %>
         <% if @minimum_password_length %>
           <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
         <% end %>
-        <%=staff_form.password_field :password, placeholder: "", autocomplete: "new-password" %>
+        <%=s.password_field :password, placeholder: t('view.must'), autocomplete: "new-password" %>
       </div>
 
       <div class="field">
-        <%=staff_form.label :password_confirmation, t('view.password_confirmation') %>
-        <%=staff_form.password_field :password_confirmation, placeholder: "", autocomplete: "new-password" %>
+        <%=s.label :password_confirmation, t('view.password_confirmation') %>
+        <%=s.password_field :password_confirmation, placeholder: t('view.must'), autocomplete: "new-password" %>
       </div>
 
-      <%=staff_form.hidden_field :admin, value: true %>
+      <%=s.hidden_field :admin, value: true %>
     <% end %>
   </div>
 
-  <%= hospital_form.submit :submit %>
+  <%= f.submit :submit %>
 <% end %>
