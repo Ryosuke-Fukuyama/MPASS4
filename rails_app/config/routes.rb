@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  get 'staffs/index'
-  get 'staffs/new'
-  get 'staffs/create'
-  get 'staffs/edit'
-  get 'staffs/update'
-  get 'staffs/destroy'
-  get 'staffs/_form'
   root 'tops#index'
 
   resources :patients, only: %i[index show destroy]
@@ -20,7 +13,9 @@ Rails.application.routes.draw do
     collection do
       match 'search' => 'hospitals#search', via: [:get, :post], as: :search
     end
-    resources :staffs, except: [:show]
+    member do
+      resources :staffs, except: [:show]
+    end
   end
   devise_for :staffs, controllers: {
     sessions: 'staffs/sessions',
