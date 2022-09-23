@@ -1,5 +1,5 @@
 class HospitalsController < ApplicationController
-  before_action :set_hospital_parms, only: %i[show edit update destroy]
+  before_action :set_hospital_parms, only: %i[show]
   before_action :set_hospital_labels, only: %i[index search new edit create update]
   before_action :admin_required, only: %i[edit update]
   # before_action :master_required, only: %i[new create]
@@ -40,9 +40,9 @@ class HospitalsController < ApplicationController
   def edit; end
 
   def update
-    @hospital.hospital_labeling.delete_all unless params[:hospital][:hospital_label_ids]
+    @hospital.hospital_labelings.delete_all unless params[:hospital][:hospital_label_ids]
     if @hospital.update(hospital_params)
-      redirect_to hospital_path(@form.hospital), notice: t('notice.updated')
+      redirect_to hospital_path(@hospital), notice: t('notice.updated')
     else
       render :edit
     end

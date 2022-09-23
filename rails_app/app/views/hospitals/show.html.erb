@@ -1,7 +1,7 @@
 <h3><%= t('view.hospital') + t('view.show') %></h3>
 
 <button type="button" class="btn btn-outline-primary">
-  <%= link_to t('view.waiting'), hospital_health_interviews_path(@hospital) %>
+  <%#= link_to t('view.waiting'), hospital_health_interviews_path(@hospital) %>
 </button>
 
 <% if patient_signed_in? %>
@@ -13,24 +13,54 @@
 <% end %>
 <br><br>
 
-<%= image_tag @hospital.image.url %>
+<%#= image_tag @hospital.image.url %>
 
+<h2><%= @hospital.name %></h2>
 <table>
-  <p><big><%= @hospital.name %></big></p>
-  <p><%= t('view.address') + "：" + @hospital.address %></p>
-  <p><%= t('view.access') + "：" + @hospital.access %></p>
-  <p><%= t('view.introduction') + "：" + @hospital.introduction %></p>
-  <p><%= t('view.tel') + "：" + @hospital.tel %></p>
-  <p><%= t('view.email') + "：" + @hospital.email %></p>
+  <tr>
+    <th><%= t('view.address') %></th>
+    <td><%= @hospital.address %></td>
+  </tr>
+  <tr>
+    <th><%= t('view.access') %></th>
+    <td><%= @hospital.access %></td>
+  </tr>
+  <tr>
+    <th><%= t('view.introduction') %></th>
+    <td><%= @hospital.introduction %></td>
+  </tr>
+  <tr>
+    <th><%= t('view.tel') %></th>
+    <td><%= @hospital.tel %></td>
+  <tr>
+    <th><%= t('view.email') %></th>
+    <td><%= @hospital.email %></td>
+  </tr>
+  <tr>
+    <th><%= t('view.hospital_label') %></th>
+    <% @hospital.hospital_labels.each do |label| %>
+      <td id=<%= "label-name" %>><%= label.name %></td>
+    <% end %>
+  </tr>
 </table>
 <br>
 
-<%= link_to t('view.back'), hospitals_path %><br />
-<%= link_to t('view.staff') + t('view.only'), new_staff_session_path %>
+<%= button_to t('view.back'), {controller: 'hospitals', action: 'index'}, {method: :get} %>
+
+<% if !(patient_signed_in? || staff_signed_in?)  %>
+  <%= link_to t('view.staff') + t('view.only'), new_staff_session_path, id: "staff-sign_in" %>
+<% end %>
 
 <% if staff_signed_in? && current_staff.admin? && current_staff.hospital_id == @hospital.id %>
-  <p><%= link_to :edit, edit_hospital_path(@hospital) %></p>
-  <p><%= link_to t('view.destroy'), hospital_path(@hospital),
-    method: :delete, data: { confirm: t('confirm.delete') } %></p>
+  <p>
+    <%= link_to t('view.patient') + t('view.index'), patients_path, id: "patient-index"  %>
+  </p>
+  <p>
+    <%= link_to t('view.staff') + t('view.index'), staffs_path(@hospital), id: "staff-index" %>
+    <%= link_to t('view.edit'), edit_hospital_path(@hospital), id: "hospital-edit" %>
+    <%= link_to t('view.destroy'), hospital_path(@hospital), method: :delete, data: { confirm: t('confirm.delete') }, id: "hospital-destroy" %>
+  </p>
 <% end %>
+
+
 
