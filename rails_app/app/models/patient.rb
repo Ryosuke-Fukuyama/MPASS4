@@ -7,7 +7,6 @@ class Patient < ApplicationRecord
   include PasswordValidates
   include TelValidates
   include AddressValidates
-
   validates :name, presence: true,
                    length: { in: 2..20, allow_blank: true }
 
@@ -15,8 +14,8 @@ class Patient < ApplicationRecord
          :registerable,
          :recoverable,
          :rememberable,
-         :lockable,
-         :confirmable
+         :confirmable,
+         :lockable
         #  :omniauthable, omniauth_providers: [:google_oauth2]
 
   # scope :search_patient, -> (hospital_id) do

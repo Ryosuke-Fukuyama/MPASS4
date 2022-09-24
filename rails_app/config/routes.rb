@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :masters
   root 'tops#index'
 
   resources :patients, only: %i[index show destroy]

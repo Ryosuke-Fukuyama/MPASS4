@@ -34,20 +34,24 @@
 #     HospitalLabel.create!(name: name)
 # end
 
+# name =         Gimei.last.kanji
+# email =        Faker::Internet.unique.email
+# tel =          Faker::PhoneNumber.unique.cell_phone
+# address =      Gimei.address.kanji
 # access =       "〇〇駅 徒歩◆◆分"
 # introduction = "http://sample-url"
 # image =        "" # open("./public/images/sample.jpg")
 # [
-#   ["サンプルクリニック", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, [1]],
-#   ["#{Gimei.last.kanji}医院", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, [1]],
-#   ["#{Gimei.last.kanji}眼科", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, [6]],
-#   ["#{Gimei.last.kanji}耳鼻科", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, [7]],
-#   ["#{Gimei.last.kanji}小児科", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, [1, 8]],
-#   ["#{Gimei.last.kanji}歯科", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, [9]],
-#   ["#{Gimei.last.kanji}歯科クリニック", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, [9]],
-#   ["#{Gimei.last.kanji}接骨院", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, []],
-#   ["#{Gimei.last.kanji}休日診療所", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "#{Gimei.address.kanji}", access, introduction, image, []],
-#   ["DIC総合病院", "#{Faker::Internet.unique.email}", "#{sprintf('%10d', rand(9999999999))}", "東京都渋谷区円山町28番4号大場ビルA館", access, introduction, image, [1, 2, 3, 4, 5]]
+#   ["サンプルクリニック", email, tel, address, access, introduction, image, [1]],
+#   ["#{name}医院", email, tel, address, access, introduction, image, [1]],
+#   ["#{name}眼科", email, tel, address, access, introduction, image, [6]],
+#   ["#{name}耳鼻科", email, tel, address, access, introduction, image, [7]],
+#   ["#{name}小児科", email, tel, address, access, introduction, image, [1, 8]],
+#   ["#{name}歯科", email, tel, address, access, introduction, image, [9]],
+#   ["#{name}歯科クリニック", email, tel, address, access, introduction, image, [9]],
+#   ["#{name}接骨院", email, tel, address, access, introduction, image, []],
+#   ["#{name}休日診療所", email, tel, address, access, introduction, image, []],
+#   ["DIC総合病院", email, tel, addressaccess, introduction, image, [1, 2, 3, 4, 5]]
 # ].each do |name, email, tel, address, access, introduction, image, hospital_label_ids|
 #   Hospital.create!({
 #     name: name,
@@ -61,13 +65,13 @@
 #   })
 # end
 
-# 10.times do |n|
-#   Staff.create!(
-#     name:        Gimei.unique.name.kanji,
-#     password:    "passw0r-D",
-#     hospital_id: 1
-#   )
-# end
+10.times do |n|
+  Staff.create!(
+    name:        Gimei.unique.name.kanji,
+    password:    "passw0r-D",
+    hospital_id: 1
+  )
+end
 
 # Patient.eager_load(:health_interviews).all.each do |p|
 #   age =            "#{1 + rand(100)}"
