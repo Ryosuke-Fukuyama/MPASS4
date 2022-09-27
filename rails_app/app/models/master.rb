@@ -9,7 +9,7 @@ class Master < ApplicationRecord
   devise :database_authenticatable,
          :registerable,
          :recoverable,
-         :rememberable,
+        #  :rememberable,
          :confirmable,
          :lockable,
          :timeoutable,
