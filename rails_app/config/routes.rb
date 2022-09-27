@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :masters
   root 'tops#index'
 
   resources :patients, only: %i[index show destroy]
@@ -25,4 +24,6 @@ Rails.application.routes.draw do
 
   resources :hospital_labels, except: [:show]
   resources :favorite_hospitals, only: %i[index create destroy]
+
+  devise_for :masters
 end

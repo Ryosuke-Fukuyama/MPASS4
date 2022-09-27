@@ -14,7 +14,19 @@ class Master < ApplicationRecord
          :lockable,
          :timeoutable,
          :trackable,
-         authentication_keys: [:name]
+         authentication_keys: [:name, :email]
 
+  private
 
+  def email_required?
+    false
+  end
+
+  def _changed?
+    false
+  end
+
+  def will_save_change_to_email?
+    false
+  end
 end

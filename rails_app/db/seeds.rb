@@ -65,13 +65,13 @@
 #   })
 # end
 
-10.times do |n|
-  Staff.create!(
-    name:        Gimei.unique.name.kanji,
-    password:    "passw0r-D",
-    hospital_id: 1
-  )
-end
+# 10.times do |n|
+#   Staff.create!(
+#     name:        Gimei.unique.name.kanji,
+#     password:    "passw0r-D",
+#     hospital_id: 1
+#   )
+# end
 
 # Patient.eager_load(:health_interviews).all.each do |p|
 #   age =            "#{1 + rand(100)}"
@@ -94,4 +94,9 @@ end
 #   GuideLabel.create!(health_interview_id: h_i.id)
 # end
 
-# Master.create!(password: "password0")
+Master.create!(
+  name:         "デモマスター",
+  email:        "demo_master@mail.com",
+  password:     "passw0r-D",
+  confirmed_at: Time.now
+)
