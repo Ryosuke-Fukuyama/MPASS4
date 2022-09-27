@@ -39,18 +39,18 @@ class StaffsController < ApplicationController
 
   private
 
-    def set_staff
-      @staff = Staff.find(params[:id])
-    end
+  def set_staff
+    @staff = Staff.find(params[:id])
+  end
 
-    def staff_params
-      params.require(:staff).permit(
-        :name,
-        :password,
-        :password_confirmation,
-        :admin,
-        # :hospital_id
-      )
-    end
+  def staff_params
+    params.require(:staff).permit(
+      :name,
+      :password,
+      :password_confirmation,
+      :admin,
+      # :hospital_id
+    )
+  end
 end
 

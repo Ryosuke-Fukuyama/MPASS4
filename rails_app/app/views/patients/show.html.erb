@@ -1,100 +1,106 @@
-# <h3 class="name_and_number_border"><%= @patient.name + t('view.honorific') + t('view.my_page') %></h3>
+<h3><%#= @patient.name + t('view.honorific') + t('view.my_page') %></h3>
 
-# <% if @patient.health_interviews.present? %>
-#   <% unless
-#     @last_interview.guide_label.done? &&
-#     @last_interview.guide_label.noshow? &&
-#     @last_interview.guide_label.complete?
-#   %>
-#     <div class="d-flex flex-column justify-content-center align-items-center">
-#       <div class="mt-3 name_and_number_border">
-#         <%= @last_interview.hospital.name %>
+<%
+=begin
+%>
+<% if @patient.health_interviews.present? %>
+  <% unless
+    @last_interview.guide_label.done? &&
+    @last_interview.guide_label.noshow? &&
+    @last_interview.guide_label.complete?
+  %>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <div class="mt-3 name_and_number_border">
+        <%= @last_interview.hospital.name %>
 
-#         <h1> <%= t('view.your_number_is') + @last_interview.id.to_s %></h1>
-#         <% p @index = [] %>
-#         <% p patient_id = nil %>
-#         <% while patient_id == current_patient.id do %>
-#           <% @health_interviews.each.with_index do |h_i, i| %>
-#             <% p @index << i %>
-#             <% p h_i.patient_id %>
-#           <% end %>
-#         <% end %>
-#         <%= t('view.waiting_befor') + @index.last.to_s + t('view.people') %>
-#       </div>
-#     </div>
-#   <% end %>
+        <h1> <%= t('view.your_number_is') + @last_interview.id.to_s %></h1>
+        <% p @index = [] %>
+        <% p patient_id = nil %>
+        <% while patient_id == current_patient.id do %>
+          <% @health_interviews.each.with_index do |h_i, i| %>
+            <% p @index << i %>
+            <% p h_i.patient_id %>
+          <% end %>
+        <% end %>
+        <%= t('view.waiting_befor') + @index.last.to_s + t('view.people') %>
+      </div>
+    </div>
+  <% end %>
 
-#   <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-#     <% if @last_interview.guide_label.initial? %>
-#       <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left introduce_comment_area p-2">
-#         <%= simple_format(t('view.message.initial')) %>
-#       </div>
-#     <% end %>
+  <div class="d-flex flex-column justify-content-center align-items-center mt-4">
+    <% if @last_interview.guide_label.initial? %>
+      <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left introduce_comment_area p-2">
+        <%= simple_format(t('view.message.initial')) %>
+      </div>
+    <% end %>
 
-#     <% if @last_interview.guide_label.calling? %>
-#       <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-#         <%= simple_format(t('view.message.calling')) %>
-#       </div>
-#     <% end %>
+    <% if @last_interview.guide_label.calling? %>
+      <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
+        <%= simple_format(t('view.message.calling')) %>
+      </div>
+    <% end %>
 
-#     <% if @last_interview.guide_label.pending? %>
-#       <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-#         <%= simple_format(t('view.message.pending')) %>
-#       </div>
-#     <% end %>
+    <% if @last_interview.guide_label.pending? %>
+      <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
+        <%= simple_format(t('view.message.pending')) %>
+      </div>
+    <% end %>
 
-#     <% if @last_interview.guide_label.noshow? %>
-#       <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-#         <%= simple_format(t('view.message.noshow')) %>
-#       </div>
-#     <% end %>
-#     <% if @last_interview.guide_label.done? %>
-#       <% if @last_interview.price.present? %>
-#         <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-#           <%= simple_format(t('view.message.payment')) %>
-#         </div>
-#         <div>
-#           <p>¥<%= @last_interview.price %></p>
-#           <%= form_tag(action: :pay, method: :post) do %>
-#             <script type="text/javascript"
-#               src="https://checkout.pay.jp"
-#               class="payjp-button"
-#               data-key=ENV['PAYJP_OPEN_KEY']>
-#             </script>
-#           <% end %>
-#           <h4>テスト用データ</h4>
-#           <tr>
-#             <th>カード番号:</th>
-#             <td>4242424242424242</td>
-#           </tr>
-#           <tr>
-#             <th>有効期限:</th>
-#             <td>12/30</td>
-#           </tr>
-#           <tr>
-#             <th>CVC:</th>
-#             <td>123</td>
-#           </tr>
-#           <tr>
-#             <th>カード名義:</th>
-#             <td>YUI ARAGAKI</td>
-#           </tr>
-#         </div>
-#       <% else %>
-#         <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-#           <%= simple_format(t('view.message.done')) %>
-#         </div>
-#       <% end %>
-#     <% end %>
+    <% if @last_interview.guide_label.noshow? %>
+      <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
+        <%= simple_format(t('view.message.noshow')) %>
+      </div>
+    <% end %>
+    <% if @last_interview.guide_label.done? %>
+      <% if @last_interview.price.present? %>
+        <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
+          <%= simple_format(t('view.message.payment')) %>
+        </div>
+        <div>
+          <p>¥<%= @last_interview.price %></p>
+          <%= form_tag(action: :pay, method: :post) do %>
+            <script type="text/javascript"
+              src="https://checkout.pay.jp"
+              class="payjp-button"
+              data-key=ENV['PAYJP_OPEN_KEY']>
+            </script>
+          <% end %>
+          <h4>テスト用データ</h4>
+          <tr>
+            <th>カード番号:</th>
+            <td>4242424242424242</td>
+          </tr>
+          <tr>
+            <th>有効期限:</th>
+            <td>12/30</td>
+          </tr>
+          <tr>
+            <th>CVC:</th>
+            <td>123</td>
+          </tr>
+          <tr>
+            <th>カード名義:</th>
+            <td>YUI ARAGAKI</td>
+          </tr>
+        </div>
+      <% else %>
+        <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
+          <%= simple_format(t('view.message.done')) %>
+        </div>
+      <% end %>
+    <% end %>
 
-#     <% if @last_interview.guide_label.complete? %>
-#       <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-#         <%= simple_format(t('view.message.complete')) %>
-#       </div>
-#     <% end %>
-#   </div>
-# <% end %><br>
+    <% if @last_interview.guide_label.complete? %>
+      <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
+        <%= simple_format(t('view.message.complete')) %>
+      </div>
+    <% end %>
+  </div>
+<% end %><br>
+<%
+=end
+%>
 
-# <div class="btn btn-primary patient_show_edit_profile_button">
-#   <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient), class: "text-white" %>
-# </div>
+<div class="btn btn-primary patient_show_edit_profile_button">
+  <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient), class: "text-white" %>
+</div>
