@@ -47,7 +47,7 @@
 
 <%= button_to t('view.back'), {controller: 'hospitals', action: 'index'}, {method: :get} %>
 
-<% if !(patient_signed_in? || staff_signed_in?)  %>
+<% if !(patient_signed_in? || staff_signed_in? || master_signed_in?)  %>
   <%= link_to t('view.staff') + t('view.only'), new_staff_session_path, id: "staff-sign_in" %>
 <% end %>
 
@@ -57,6 +57,8 @@
   </p>
   <p>
     <%= link_to t('view.staff') + t('view.index'), staffs_path(@hospital), id: "staff-index" %>
+  <% end %>
+  <% if (staff_signed_in? && current_staff.admin? && current_staff.hospital_id == @hospital.id) || master_signed_in? %>
     <%= link_to t('view.edit'), edit_hospital_path(@hospital), id: "hospital-edit" %>
     <%= link_to t('view.destroy'), hospital_path(@hospital), method: :delete, data: { confirm: t('confirm.delete') }, id: "hospital-destroy" %>
   </p>

@@ -8,7 +8,7 @@
   <li>
     <%= link_to t('view.hospital') + t('view.index'), hospitals_path, id: "global-navi_hospital-index" %>
   </li>
-  <% if patient_signed_in? || staff_signed_in? %>
+  <% if patient_signed_in? || staff_signed_in? || master_signed_in? %>
     <% if patient_signed_in? %>
       <li>
         <%= link_to t('view.my_page'), patient_path(current_patient.id), id: "global-navi_patient-show" %>
@@ -17,14 +17,21 @@
         <%= link_to t('view.favorite'), favorite_hospitals_path, id: "global-navi_favorite-index" %>
       </li>
       <li>
-        <%= link_to t('view.sign_out'), destroy_patient_session_path, method: :delete, id: "global-navi_sign-out" %>
+        <%= link_to t('view.sign_out'), destroy_patient_session_path, method: :delete, id: "global-navi_patiant-sign-out" %>
       </li>
-    <% else %>
+    <% elsif staff_signed_in? %>
       <li>
         <%#= link_to t('view.waiting'), hospital_health_interviews_path(@hospital.id), id: "global-navi_in-house-healthinterview-index" %>
       </li>
       <li>
         <%= link_to t('view.sign_out'), destroy_staff_session_path, method: :delete, id: "global-navi_staff-sign-out" %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to t('view.hospital') + t('view.new'), new_hospital_path, id: "global-navi_new-hospital" %>
+      </li>
+      <li>
+        <%= link_to t('view.sign_out'), destroy_master_session_path, method: :delete, id: "global-navi_master-sign-out" %>
       </li>
     <% end %>
   <% else %>
