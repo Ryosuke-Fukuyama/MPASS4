@@ -90,7 +90,7 @@
 #   )
 # end
 
-# HealthInterview.eager_load(:guide_label).all.each do |h_i|
+# HealthInterview.eager_load(:guide_status).all.each do |h_i|
 #   GuideLabel.create!(health_interview_id: h_i.id)
 # end
 
