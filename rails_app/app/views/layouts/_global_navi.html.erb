@@ -1,7 +1,7 @@
 <ol>
   <li class="big-font">
     MPASS
-  </li>#
+  </li>
   <li>
     <%= link_to 'Top', root_path, id: "global-navi_top" %>
   </li>
@@ -21,7 +21,7 @@
       </li>
     <% elsif staff_signed_in? %>
       <li>
-        <%#= link_to t('view.waiting'), hospital_health_interviews_path(@hospital.id), id: "global-navi_in-house-healthinterview-index" %>
+        <%= link_to t('view.waiting'), hospital_health_interviews_path(@hospital.id), id: "global-navi_in-house-healthinterview-index" %>
       </li>
       <li>
         <%= link_to t('view.sign_out'), destroy_staff_session_path, method: :delete, id: "global-navi_staff-sign-out" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_23_144039) do
+ActiveRecord::Schema.define(version: 2022_10_11_071046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,29 @@ ActiveRecord::Schema.define(version: 2022_09_23_144039) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["hospital_id"], name: "index_favorite_hospitals_on_hospital_id"
     t.index ["patient_id"], name: "index_favorite_hospitals_on_patient_id"
+  end
+
+  create_table "guide_statuses", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
+    t.bigint "health_interview_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["health_interview_id"], name: "index_guide_statuses_on_health_interview_id"
+  end
+
+  create_table "health_interviews", force: :cascade do |t|
+    t.integer "age"
+    t.integer "gender"
+    t.text "symptomatology"
+    t.text "condition"
+    t.text "comment"
+    t.integer "price"
+    t.bigint "patient_id", null: false
+    t.bigint "hospital_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hospital_id"], name: "index_health_interviews_on_hospital_id"
+    t.index ["patient_id"], name: "index_health_interviews_on_patient_id"
   end
 
   create_table "hospital_labelings", force: :cascade do |t|
@@ -124,6 +147,9 @@ ActiveRecord::Schema.define(version: 2022_09_23_144039) do
 
   add_foreign_key "favorite_hospitals", "hospitals"
   add_foreign_key "favorite_hospitals", "patients"
+  add_foreign_key "guide_statuses", "health_interviews"
+  add_foreign_key "health_interviews", "hospitals"
+  add_foreign_key "health_interviews", "patients"
   add_foreign_key "hospital_labelings", "hospital_labels"
   add_foreign_key "hospital_labelings", "hospitals"
   add_foreign_key "staffs", "hospitals"
