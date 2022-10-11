@@ -1,8 +1,5 @@
 <h3><%= @patient.name + t('view.honorific') + t('view.my_page') %></h3>
 
-<%
-=begin
-%>
 <% if @patient.health_interviews.present? %>
   <% unless
     @last_interview.guide_status.done? &&
@@ -52,6 +49,9 @@
       </div>
     <% end %>
     <% if @last_interview.guide_status.done? %>
+<%
+=begin
+%>
       <% if @last_interview.price.present? %>
         <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
           <%= simple_format(t('view.message.payment')) %>
@@ -89,7 +89,9 @@
         </div>
       <% end %>
     <% end %>
-
+<%
+=end
+%>
     <% if @last_interview.guide_status.complete? %>
       <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
         <%= simple_format(t('view.message.complete')) %>
@@ -97,9 +99,6 @@
     <% end %>
   </div>
 <% end %><br>
-<%
-=end
-%>
 
 <div class="btn btn-primary patient_show_edit_profile_button">
   <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient), class: "text-white" %>
