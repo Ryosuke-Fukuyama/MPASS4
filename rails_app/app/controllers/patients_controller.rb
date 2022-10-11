@@ -17,15 +17,6 @@ class PatientsController < ApplicationController
     # @last_interview = @patient.health_interviews.last
   end
 
-  # def update
-  #   @patient = current_patient
-  #   if @patient.update(patient_params)
-  #     redirect_to patient_path, notice: t('notice.updated')
-  #   else
-  #     render 'edit'
-  #   end
-  # end
-
   def destroy
     @patient.destroy
     redirect_to patients_path, notice: t('notice.destroyed')
