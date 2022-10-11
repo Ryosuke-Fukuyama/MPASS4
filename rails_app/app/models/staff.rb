@@ -1,10 +1,10 @@
 class Staff < ApplicationRecord
   belongs_to  :hospital
 
-  include PasswordValidates
   validates :name, presence: true,
                   #  uniqueness: { scope: hospital_id }, # 同病院内での制限をつけたい
                    length: { in: 1..20, allow_blank: true }
+  include PasswordValidates
 
   devise :database_authenticatable,
          :lockable,
