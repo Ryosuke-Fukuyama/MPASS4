@@ -1,15 +1,15 @@
 class Master < ApplicationRecord
 
-  include EmailValidates
-  include PasswordValidates
   validates :name, presence: true,
                    uniqueness: true,
                    length: { in: 1..20, allow_blank: true }
+  include EmailValidates
+  include PasswordValidates
 
   devise :database_authenticatable,
          :registerable,
          :recoverable,
-         :rememberable,
+        #  :rememberable,
          :confirmable,
          :lockable,
          :timeoutable,

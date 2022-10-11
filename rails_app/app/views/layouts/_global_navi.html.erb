@@ -17,7 +17,7 @@
         <%= link_to t('view.favorite'), favorite_hospitals_path, id: "global-navi_favorite-index" %>
       </li>
       <li>
-        <%= link_to t('view.sign_out'), destroy_patient_session_path, method: :delete, id: "global-navi_patiant-sign-out" %>
+        <%= link_to t('view.sign_out'), destroy_patient_session_path, method: :delete, id: "global-navi_patient-sign-out" %>
       </li>
     <% elsif staff_signed_in? %>
       <li>

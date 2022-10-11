@@ -1,0 +1,11 @@
+<% if !Favorite.exists?(patient_id: current_patient.id, hospital_id: hospital.id) %>
+  <%= link_to hospital_favorites_path(hospital.id), method: :post, remote: true, class:"favorite-btn" do %>
+    <i class="fas fa-star star-icon1"></i>
+  <% end %>
+  <span class="star-count1"><%= hospital.favorites.count %></span>
+<% else %>
+  <%= link_to hospital_favorite_path(hospital_id: hospital.id, id: hospital.favorites[0].id), method: :delete, remote: true, class:"favorite-btn" do %>
+    <i class="fas fa-star star-icon2"></i>
+  <% end %>
+  <span class="star-count2"><%= hospital.favorites.count %></span>
+<% end %>

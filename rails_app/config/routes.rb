@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'tops#index'
 
-  resources :patients, only: %i[index show destroy]
+  devise_for :staffs, controllers: {
+    sessions: 'staffs/sessions',
+    # registrations: 'staffs/registrations'
+  }
+  devise_for :masters
   devise_for :patients, controllers: {
     sessions: 'patients/sessions',
     passwords: 'patients/passwords',
@@ -17,13 +21,7 @@ Rails.application.routes.draw do
       resources :staffs, except: [:show]
     end
   end
-  devise_for :staffs, controllers: {
-    sessions: 'staffs/sessions',
-    # registrations: 'staffs/registrations'
-  }
-
   resources :hospital_labels, except: [:show]
   resources :favorite_hospitals, only: %i[index create destroy]
-
-  devise_for :masters
+  resources :patients, only: %i[index show destroy]
 end

@@ -1,0 +1,16 @@
+<h3><%= t('view.favorite') + t('view.hospital') + t('view.index') %></h3>
+
+<table>
+  <thead>
+    <tr>
+    <tr/>
+  </thead>
+  <tbody>
+    <% @favorite_hospitals.each do |favorite| %>
+      <tr>
+        <td><%= link_to favorite.hospital.name, hospital_path(favorite.hospital.id) %></td>
+        <td><%#= link_to t('view.waiting'), hospital_health_interviews_path(favorite.hospital.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

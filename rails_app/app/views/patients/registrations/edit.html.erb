@@ -13,6 +13,16 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :tel %><br />
+    <%= f.text_field :tel, placeholder: t('view.must'), autocomplete: "tel" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, placeholder: t('view.must'), autocomplete: "address" %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
@@ -38,6 +48,6 @@
 
 <h3><%= t('.cancel_my_account') %></h3>
 
-<p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
+<%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %><br />
 
 <%= link_to t('devise.shared.links.back'), :back %>

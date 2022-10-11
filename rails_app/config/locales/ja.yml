@@ -1,0 +1,339 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+  date:
+    abbr_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
+    abbr_month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 日曜日
+    - 月曜日
+    - 火曜日
+    - 水曜日
+    - 木曜日
+    - 金曜日
+    - 土曜日
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+    month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 約1時間
+        other: 約%{count}時間
+      about_x_months:
+        one: 約1ヶ月
+        other: 約%{count}ヶ月
+      about_x_years:
+        one: 約1年
+        other: 約%{count}年
+      almost_x_years:
+        one: 1年弱
+        other: "%{count}年弱"
+      half_a_minute: 30秒前後
+      less_than_x_seconds:
+        one: 1秒以内
+        other: "%{count}秒未満"
+      less_than_x_minutes:
+        one: 1分以内
+        other: "%{count}分未満"
+      over_x_years:
+        one: 1年以上
+        other: "%{count}年以上"
+      x_seconds:
+        one: 1秒
+        other: "%{count}秒"
+      x_minutes:
+        one: 1分
+        other: "%{count}分"
+      x_days:
+        one: 1日
+        other: "%{count}日"
+      x_months:
+        one: 1ヶ月
+        other: "%{count}ヶ月"
+      x_years:
+        one: 1年
+        other: "%{count}年"
+    prompts:
+      second: 秒
+      minute: 分
+      hour: 時
+      day: 日
+      month: 月
+      year: 年
+  notice:
+    saved: 登録しました！
+    updated: 更新しました！
+    destroyed: 削除しました！
+    already: 既に申し込み済みです。(※同時に複数の病院の受付はできません。)
+    newinterview: 受付を完了しました!
+    off_favorite: お気に入りから削除しました！
+    on_favorite: お気に入りに追加しました！
+    guest_patient: ゲストユーザーとしてログインしました.
+    guest_staff: ゲストスタッフとしてログインしました。
+    guest_admin_staff: ゲスト管理スタッフとしてログインしました。
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: を受諾してください
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      model_invalid: 'バリデーションに失敗しました: %{errors}'
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      other_than: は%{count}以外の値にしてください
+      present: は入力しないでください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください
+    template:
+      body: 次の項目を確認してください
+      header:
+        one: "%{model}にエラーが発生しました"
+        other: "%{model}に%{count}個のエラーが発生しました"
+  recaptcha:
+    errors:
+      verification_failed: reCAPTCHA認証に失敗しました。
+      recaptcha_unreachable: 検証エラー。再試行してください。
+  helpers:
+    select:
+      prompt: 選択してください
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 更新する
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n%u"
+        precision: 0
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: 円
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: 十億
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n%u"
+        units:
+          byte: バイト
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: "、"
+      two_words_connector: "、"
+      words_connector: "、"
+  time:
+    am: 午前
+    formats:
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      long: "%Y/%m/%d %H:%M"
+      short: "%m/%d %H:%M"
+    pm: 午後
+
+  enums:              #enum型に対する日本語定義であることを明示するために記述
+    guide_label:           #モデル名を指定
+      status:           #カラム名を指定
+        initial: 初期
+        calling: 呼出
+        done: 済み
+        pending: 保留
+        noshow: 無断キャンセル
+        complete: 完了
+    health_interview:
+      gender:
+        man: 男性
+        woman: 女性
+
+  view:
+    waiting: オンライン待合室
+    hospital: 病院
+    hospital_label: 診療科
+    favorite: お気に入り
+    my_page: マイページ
+    sign_out: ログアウト
+    sign_in: ログイン
+    sign_up: 新規アカウント
+    honorific: 様の
+    your_number_is: 整理券番号は
+    waiting_befor: 現在の順番は
+    people: 人目です
+    healthinterviews: 予約
+    staff: スタッフ
+    only: 専用
+    patient: 患者
+    account: アカウント
+    name: 名
+    size: 来院回数
+    status: ステータス
+    admin: 管理権限
+    top: トップページ
+    tutorial: 使い方
+    index: 一覧
+    hide: 非表示
+    show: 詳細
+    history: 来院履歴
+    edit: 編集
+    create: 作成
+    destroy: 削除
+    back: 戻る
+    new: 新規
+    create: 作成
+    addition: 追加する
+    cancel: 取り消す
+    reception: 受付はこちら
+    new_healthinterview: 問診票
+    first: (初診用)
+    second: (再診用)
+    apply: 申し込む
+    search: 検索する
+    select: 選択する
+    initial: 初期
+    calling: お呼出中
+    done: 済み
+    pending: 保留中
+    noshow: 無断キャンセル
+    complete: 完了
+    age: 年齢
+    gender: 性別
+    please_new: パスワード（新しいものを設定してください)
+    maps: 最寄り検索
+    address: 住所
+    access: アクセス
+    introduction: 情報
+    tel: 電話番号
+    email: メールアドレス
+    guest_patient: ゲストユーザー
+    guest_staff: ゲストスタッフ
+    guest_admin_staff: ゲスト管理スタッフ
+    placeholder:
+      patient_name: フルネーム(漢字)
+      staff_name: 名前
+      email: xxxx@example.co.jp
+      password: 半角英数(6文字以上)
+      password_confirmation: 同じものを入力してください
+      name_or_email: お名前かメールアドレス
+      tel: 半角数字(ハイフンなし)
+      address: 〇〇市〇〇 xx-xx-xx 建物名 〇〇〇
+      mandatory: ※入力してください
+      integer: 半角数字
+      part: 部分一致
+      symptomatology: 症状や、発症時期等
+      condition: 持病や、服用中のお薬等
+      comment: 気になる点等医師に伝えたいことがございましたら、お気軽にご記入ください。
+    message:
+      initial: |
+            お申し込み頂きありがとうございます。ご案内状況をご確認の上お越しください。
+            今月初めてのご来院の場合は保険証をお忘れなきようお持ちください。
+            ご案内時にご不在の場合、次の方をご案内させて頂きます。
+      calling: |
+            こちらの画面をご提示の上、診察室へお入り下さい。
+      pending: |
+            お呼び出しさせて頂きましたが確認が取れなかった為、保留扱いとさせて頂いております。
+            ご来院されましたらお近くのスタッフまでお声掛け下さい。
+            ※混雑状況によってはお申し込みを取り消しとさせて頂く場合がございます。予めご了承下さい。
+      noshow: |
+           お呼び出しから一定時間内に確認が取れませんでしたのでキャンセルとさせて頂きます。
+           無断キャンセルが続きますとサービスがご利用頂けなくなる場合がございます。
+      payment: |
+            本日のお会計は下記の通りになります。
+            ご確認の上、お支払いお願い致します。
+      done: |
+         ご不便をお掛けして申し訳ありません。
+         お会計は現在精算中でございます。もう暫くお待ちくださいませ。
+      complete: |
+             お支払いが確認できました。お大事にしてください。
+
+  confirm:
+    delete: 削除しますか？
+  message:
+    verification_failed: reCAPTCHA認証に失敗しました
