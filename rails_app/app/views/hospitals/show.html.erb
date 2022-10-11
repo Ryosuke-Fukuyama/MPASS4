@@ -1,7 +1,7 @@
 <h3><%= t('view.hospital') + t('view.show') %></h3>
 
 <button type="button" class="btn btn-outline-primary">
-  <%#= link_to t('view.waiting'), hospital_health_interviews_path(@hospital) %>
+  <%= link_to t('view.waiting'), health_interviews_path(@hospital) %>
 </button>
 
 <% if patient_signed_in? %>
@@ -38,9 +38,11 @@
   </tr>
   <tr>
     <th><%= t('view.hospital_label') %></th>
-    <% @hospital.hospital_labels.each do |label| %>
-      <td id=<%= "label-name" %>><%= label.name %></td>
-    <% end %>
+    <td>
+      <% @hospital.hospital_labels.each do |label| %>
+        <%= label.name %>
+      <% end %>
+    </td>
   </tr>
 </table>
 <br>

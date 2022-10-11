@@ -2,9 +2,8 @@ module TelValidates
   extend ActiveSupport::Concern
 
   included do
-    validates :tel, numericality: { only_integer: true },
-                    length: { in: 10..11, allow_blank: true },
-                    if: :tel?
+    validates :tel, length: { in: 10..11, allow_blank: true }
+                    # numericality: { only_integer: true }
 
     # # "NoMethodError: undefined method `size' for nil:NilClass"
     # after_validation {

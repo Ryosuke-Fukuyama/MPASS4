@@ -1,2 +1,41 @@
-<h1>HealthInterviews#new</h1>
-<p>Find me in app/views/health_interviews/new.html.erb</p>
+<%= form_with(model: [@hospital, @health_interview], local: true) do |f| %>
+
+  <% unless @history.present? %>
+  <h3><%= t('view.new_healthinterview') + t('view.first') %></h3>
+
+    <div class="field">
+      <%= f.label t('view.age') %>
+      <%= f.text_field :age, placeholder: t('view.placeholder.integer'), size: 3 %>
+    </div>
+
+    <div class="field">
+      <%= f.label t('view.gender') %>
+      <%= f.collection_radio_buttons :gender, HealthInterview.genders_i18n, :first , :last %>
+    </div>
+
+    <div class="field">
+      <%= f.text_area :symptomatology, size: "30x10", placeholder: t('view.placeholder.symptomatology') %>
+    </div>
+
+    <div class="field">
+      <%= f.text_area :condition, size: "30x10", placeholder: t('view.placeholder.condition') %>
+    </div>
+
+  <% else %>
+  <h3><%= t('view.new_healthinterview') + t('view.second') %></h3>
+
+    <div class="field">
+      <%= f.text_area :comment, size: "30x10", placeholder: t('view.placeholder.comment') %>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :guide_status do |s| %>
+    <%= s.hidden_field :status, value: "initial"  %>
+  <% end %>
+
+  <div class="field">
+    <%= f.submit t('view.apply')%>
+  </div>
+<% end %>
+
+<%= link_to t('view.back'), :back %>

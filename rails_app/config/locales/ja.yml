@@ -221,7 +221,7 @@ ja:
     pm: 午後
 
   enums:              #enum型に対する日本語定義であることを明示するために記述
-    guide_label:           #モデル名を指定
+    guide_status:           #モデル名を指定
       status:           #カラム名を指定
         initial: 初期
         calling: 呼出

@@ -9,7 +9,7 @@
     <% @favorite_hospitals.each do |favorite| %>
       <tr>
         <td><%= link_to favorite.hospital.name, hospital_path(favorite.hospital.id) %></td>
-        <td><%#= link_to t('view.waiting'), hospital_health_interviews_path(favorite.hospital.id) %></td>
+        <td><%= link_to t('view.waiting'), hospital_health_interviews_path(favorite.hospital.id) %></td>
       </tr>
     <% end %>
   </tbody>

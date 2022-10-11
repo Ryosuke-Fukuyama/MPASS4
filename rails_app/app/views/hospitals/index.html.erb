@@ -18,7 +18,7 @@
     <tr>
       <th><%= t('view.hospital') + t('view.name') %></th>
       <th><%= t('view.access') %></th>
-      <th colspan=2><%= t('view.hospital_label') %></th>
+      <th><%= t('view.hospital_label') %></th>
     <tr/>
   </thead>
   <tbody>
@@ -26,11 +26,11 @@
       <tr>
         <td id=<%= "hospital-index_item-name-#{hospital.id}" %>><%= link_to hospital.name, hospital_path(hospital.id) %></td>
         <td id=<%= "hospital-index_item-access-#{hospital.id}" %>><%= hospital.access %></td>
-        <% hospital.hospital_labels.each do |label| %>
-          <td id=<%= "hospital-index_item-#{hospital.id}-label-#{label.id}" %>>
+        <td id=<%= "hospital-index_item-#{hospital.id}-label-name" %>>
+          <% hospital.hospital_labels.each do |label| %>
             <%= label.name %>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -2,25 +2,24 @@ class HealthInterviewsController < ApplicationController
   before_action :patient_required, only: [:new]
   before_action :staff_required, only: %i[show edit]
   before_action :set_health_interview_parms, only: %i[show edit update destroy]
-  # before_action :set_guide_status, only: %i[]
 
   def index
-    # render 'index', formats: 'json', handlers: 'jbuilder'
-    @health_interviews = HealthInterview
-                          .search_today
-                          .where(hospital_id: @hospital)
-                          .eager_load(:guide_status)
-                          .order(created_at: :asc)
-    @health_interviews_0 = @health_interviews.search_initial if @health_interviews.search_initial.present?
-    @health_interviews_1 = @health_interviews.search_calling if @health_interviews.search_calling.present?
-    @health_interviews_3 = @health_interviews.search_pending if @health_interviews.search_pending.present?
+    @hospital = Hospital.find(params[:id])
+    if HealthInterview.where(hospital_id: @hospital.id).search_today.present?
+      @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital.id)
+      @health_interviews = @health_interviews.includes(:guide_status).order(created_at: :asc)
+
+      # @health_interviews_0 = @health_interviews.search_initial if @health_interviews.search_initial.present?
+      # @health_interviews_1 = @health_interviews.search_calling if @health_interviews.search_calling.present?
+      # @health_interviews_3 = @health_interviews.search_pending if @health_interviews.search_pending.present?
+    end
 
     if patient_signed_in? && current_patient.health_interviews.present?
       @reserved = current_patient.health_interviews
       @last_status = @reserved.last.guide_status
     end
 
-    # @statuses = GuideLabel.statuses.keys
+    # @statuses = GuideStatus.statuses.keys
     # respond_to do |format|
     #   format.json {render json: { statuses: @statuses }}
     # end
@@ -74,7 +73,6 @@ class HealthInterviewsController < ApplicationController
     # else
     #   render file: "select-update-api/front/pages/index", json: { registration: 'ERROR!!!', @property}, status: 500
     # end
-  end
 
     @email = @health_interview.patient.email
     NotificationMailer.soon_mail(@health_interview, @email).deliver_later if @health_interview.notification?

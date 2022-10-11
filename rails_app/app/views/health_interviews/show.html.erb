@@ -1,2 +1,51 @@
-<h1>HealthInterviews#show</h1>
-<p>Find me in app/views/health_interviews/show.html.erb</p>
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <h3><%= @health_interview.patient.name + t('view.history') %></h3>
+  <li><%= t('view.email') + @health_interview.patient.email %></li>
+  <% if @health_interview.patient.tel.present? %>
+    <li><%= t('view.tel') + @health_interview.patient.tel %></li>
+  <% else %>
+    <li><%= t('view.tel') + t('view.none') %></li>
+  <% end %>
+
+  <div class="outpatient_history">
+    <ul>
+      <h4><%= t('view.gender') %></h4>
+      <%= @first_interview.gender %>
+
+      <h4><%= t('view.age') %></h4>
+      <%= @first_interview.age %>
+
+      <h4><%= t('view.condition') %></h4>
+      <%= @first_interview.condition %>
+
+      <h4><%= t('view.symptomatology') %></h4>
+      <%= @first_interview.symptomatology %>
+
+      <% if @first_interview.guide_status.done? %>
+        <tr>
+          <td><%= t('view.price') %></td>
+          <td>¥<%= @first_interview.price %></td>
+          <td><%= link_to :edit, edit_hospital_health_interview_path(@hospital, @first_interview.id) %></td>
+        </tr>
+      <% end %>
+
+      <% @history.each do |h_i| %>
+        <li>
+          <%= h_i.created_at.strftime('%Y/%m/%d') %></li>
+          <% if h_i.comment.present? %>
+            <%= h_i.comment  %>
+          <% end %>
+          <% if h_i.guide_status.done? %>
+            <tr>
+              <td><%= t('view.price') %></td>
+              <td>¥<%= h_i.price %></td>
+              <td><%= link_to :edit, edit_hospital_health_interview_path(@hospital, h_i.id) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<%= link_to t('view.back'), :back %>

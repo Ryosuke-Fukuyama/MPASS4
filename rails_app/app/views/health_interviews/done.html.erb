@@ -1,0 +1,21 @@
+<h1><%= Date.current.strftime('%Y/%m/%d') + t('view.hide') + t('view.index') %></h1>
+
+<ul>
+  <div class="donelist">
+    <th><%= t('view.done') %></th>
+    <% if @health_interviews_2.present? %>
+      <% @health_interviews_2.each do |h_i| %>
+        <%= render partial: 'each_list', locals: { h_i: h_i } %>
+      <% end %>
+    <% end %>
+  </div>
+  <hr>
+  <div class="noshowlist">
+    <th><%= t('view.noshow') %></th>
+    <% if @health_interviews_4.present? %>
+      <% @health_interviews_4.each.with_index do |h_i| %>
+        <%= render partial: 'each_list', locals: { h_i: h_i } %>
+      <% end %>
+    <% end %>
+  </div>
+</ul>
