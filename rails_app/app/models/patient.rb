@@ -3,12 +3,12 @@ class Patient < ApplicationRecord
 #   has_many :health_interviews, dependent: :destroy
 #   has_many :sns_credentials, dependent: :destroy
 
+  validates :name, presence: true,
+                   length: { in: 2..20, allow_blank: true }
   include EmailValidates
   include PasswordValidates
   include TelValidates
   include AddressValidates
-  validates :name, presence: true,
-                   length: { in: 2..20, allow_blank: true }
 
   devise :database_authenticatable,
          :registerable,
@@ -16,6 +16,7 @@ class Patient < ApplicationRecord
          :rememberable,
          :confirmable,
          :lockable
+        #  authentication_keys: []
         #  :omniauthable, omniauth_providers: [:google_oauth2]
 
   # scope :search_patient, -> (hospital_id) do
@@ -29,17 +30,6 @@ class Patient < ApplicationRecord
   #   patient_ids = relevanted_interviews.pluck(:patient_id)
   #   where(id: patient_ids)
   # }
-
-  attr_accessor :login
-
-  # def self.find_first_by_auth_conditions(warden_conditions)
-  #   conditions = warden_conditions.dup
-  #   if login = conditions.delete(:login)
-  #     where(conditions).where(['name = :value OR lower(email) = lower(:value)', { value: login }]).first
-  #   else
-  #     where(conditions).first
-  #   end
-  # end
 
   # def self.find_create_for_google(auth)
   #   patient = Patient.where(email: auth.info.email)

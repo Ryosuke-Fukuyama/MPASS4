@@ -94,9 +94,30 @@
 #   GuideLabel.create!(health_interview_id: h_i.id)
 # end
 
-Master.create!(
-  name:         "デモマスター",
-  email:        "demo_master@mail.com",
-  password:     "passw0r-D",
-  confirmed_at: Time.now
-)
+# # Rspec用
+# Master.create!(
+#   name:         "デモマスター",
+#   email:        "demo_master@mail.com",
+#   password:     "passw0r-D",
+#   confirmed_at: Time.now
+# )
+
+# Patient.create!(
+#   name:         "デモ患者",
+#   email:        "demo_patient@mail.com",
+#   password:     "passw0r-D",
+#   confirmed_at: Time.now
+# )
+
+# Staff.create!(
+#   name:         "デモスタッフ",
+#   password:     "passw0r-D",
+#   admin:        "false"
+# )
+
+# Staff.create!(
+#   name:         "デモアドミン",
+#   email:        "demo_staff@mail.com",
+#   password:     "passw0r-D",
+#   admin:        "true"
+# )
