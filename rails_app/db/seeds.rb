@@ -102,12 +102,12 @@
 #   confirmed_at: Time.now
 # )
 
-# Patient.create!(
-#   name:         "デモ患者",
-#   email:        "demo_patient@mail.com",
-#   password:     "passw0r-D",
-#   confirmed_at: Time.now
-# )
+Patient.create!(
+  name:         "デモ患者",
+  email:        "demo_patient@mail.com",
+  password:     "passw0r-D",
+  confirmed_at: Time.now
+)
 
 # Staff.create!(
 #   name:         "デモスタッフ",

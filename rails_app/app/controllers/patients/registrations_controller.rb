@@ -61,6 +61,10 @@ class Patients::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  def after_update_path_for(resource)
+    patient_path(resource)
+  end
+
   # private
 
   #   def check_captcha
