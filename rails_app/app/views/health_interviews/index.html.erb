@@ -34,3 +34,6 @@
 <% if staff_signed_in? %>
   <%= link_to t('view.hide') + t('view.index'), done_hospital_health_interviews_path %>
 <% end %>
+
+<%= javascript_pack_tag 'hello_vue' %>
+<%= stylesheet_pack_tag 'hello_vue' %>
