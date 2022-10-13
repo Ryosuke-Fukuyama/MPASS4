@@ -11,6 +11,7 @@ module RailsApp
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.action_controller.include_all_helpers = false #ヘルパーの使用を限定する
     # config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
     config.generators do |g|
       g.assets false

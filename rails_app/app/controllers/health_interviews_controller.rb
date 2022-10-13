@@ -8,10 +8,13 @@ class HealthInterviewsController < ApplicationController
     if HealthInterview.where(hospital_id: @hospital.id).search_today.present?
       @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital.id)
       @health_interviews = @health_interviews.includes(:guide_status).order(created_at: :asc)
-
-      @health_interviews_0 = @health_interviews.search_initial if @health_interviews.search_initial.present?
-      @health_interviews_1 = @health_interviews.search_calling if @health_interviews.search_calling.present?
-      @health_interviews_3 = @health_interviews.search_pending if @health_interviews.search_pending.present?
+      if params[:classification] == initial?
+        @health_interviews = @health_interviews.search_initial if @health_interviews.search_initial.present?
+      elsif params[:classification] == calling?
+        @health_interviews = @health_interviews.search_calling if @health_interviews.search_calling.present?
+      elsif params[:classification] == pending?
+        @health_interviews = @health_interviews.search_pending if @health_interviews.search_pending.present?
+      end
     end
 
     if patient_signed_in? && current_patient.health_interviews.present?

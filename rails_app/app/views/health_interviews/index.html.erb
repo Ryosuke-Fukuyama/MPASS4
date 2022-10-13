@@ -10,12 +10,14 @@
       <th><%= t('view.calling') %></th>
       <% if @health_interviews_1.present? %>
         # render
+        <%= vue "path/to/list", {classification: initial} %>
       <% end %>
     </div>
     <hr>
     <div class="initiallist">
       <% if @health_interviews_0.present? %>
         # render
+        <%= vue "path/to/list", {classification: calling} %>
       <% end %>
     </div>
     <hr>
@@ -23,6 +25,7 @@
       <th><%= t('view.pending') %></th>
       <% if @health_interviews_3.present? %>
         # render
+        <%= vue "path/to/list", {classification: pending} %>
       <% end %>
     </div>
   </ul>
