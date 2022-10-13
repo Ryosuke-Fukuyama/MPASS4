@@ -5,37 +5,28 @@
 <% end %>
 <br><br>
 
-<%= form_with(model: @guide_status, method: :patch, format: 'json', id: 'health-interviews_index-form') do |f| %>
-  <div id="ajax_rendering">
-    <ul>
-      <div class="callinglist">
-        <th><%= t('view.calling') %></th>
-        <% if @health_interviews_1.present? %>
-          <% @health_interviews_1.each do |h_i| %>
-            <%= render partial: 'each_list', locals: { h_i: h_i, f: f } %>
-          <% end %>
-        <% end %>
-      </div>
-      <hr>
-      <div class="initiallist">
-        <% if @health_interviews_0.present? %>
-          <% @health_interviews_0.each do |h_i| %>
-            <%= render partial: 'each_list', locals: { h_i: h_i, f: f } %>
-          <% end %>
-        <% end %>
-      </div>
-      <hr>
-      <div class="pendinglist">
-        <th><%= t('view.pending') %></th>
-        <% if @health_interviews_3.present? %>
-          <% @health_interviews_3.each do |h_i| %>
-            <%= render partial: 'each_list', locals: { h_i: h_i, f: f } %>
-          <% end %>
-        <% end %>
-      </div>
-    </ul>
-  </div>
-<% end %>
+  <ul>
+    <div class="callinglist">
+      <th><%= t('view.calling') %></th>
+      <% if @health_interviews_1.present? %>
+        # render
+      <% end %>
+    </div>
+    <hr>
+    <div class="initiallist">
+      <% if @health_interviews_0.present? %>
+        # render
+      <% end %>
+    </div>
+    <hr>
+    <div class="pendinglist">
+      <th><%= t('view.pending') %></th>
+      <% if @health_interviews_3.present? %>
+        # render
+      <% end %>
+    </div>
+  </ul>
+
 
 <% if staff_signed_in? %>
   <%= link_to t('view.hide') + t('view.index'), done_hospital_health_interviews_path %>
