@@ -21,7 +21,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Modal from './components/Modal.vue'
+
 export default {
+  components:{
+    Modal
+  },
+
   data:() => {
     return {
       health_interviews: [],

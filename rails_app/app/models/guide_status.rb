@@ -11,5 +11,5 @@ class GuideStatus < ApplicationRecord
   }
   enum status: STATUSES
 
-  # validates :status, inclusion: { in: STATUSES.keys.concat(STATUSES.keys) }, exclusion: { in: [nil] }
+  validates :status, inclusion: { in: STATUSES.keys.concat(STATUSES.keys.map(&:to_s)) }, exclusion: { in: [nil] }
 end

@@ -10,14 +10,18 @@
       <th><%= t('view.calling') %></th>
       <% if @health_interviews_1.present? %>
         # render
-        <%= vue "path/to/list", {classification: initial} %>
+        <div id='app'>
+          <list, {classification: calling}></list>
+        </div>
       <% end %>
     </div>
     <hr>
     <div class="initiallist">
       <% if @health_interviews_0.present? %>
         # render
-        <%= vue "path/to/list", {classification: calling} %>
+        <div id='app'>
+          <list, {classification: initial}></list>
+        </div>
       <% end %>
     </div>
     <hr>
@@ -25,7 +29,9 @@
       <th><%= t('view.pending') %></th>
       <% if @health_interviews_3.present? %>
         # render
-        <%= vue "path/to/list", {classification: pending} %>
+        <div id='app'>
+          <list, {classification: pending}></list>
+        </div>
       <% end %>
     </div>
   </ul>
@@ -35,5 +41,5 @@
   <%= link_to t('view.hide') + t('view.index'), done_hospital_health_interviews_path %>
 <% end %>
 
-<%= javascript_pack_tag 'hello_vue' %>
-<%= stylesheet_pack_tag 'hello_vue' %>
+<%= javascript_pack_tag 'main_vue' %>
+<%= stylesheet_pack_tag 'main_vue' %>

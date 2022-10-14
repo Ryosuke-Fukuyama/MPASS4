@@ -1,20 +1,22 @@
 import Vue from 'vue'
-import App from '../App.vue'
+// import App from '../App.vue'
+import List from '../List.vue'
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   const app = new Vue({
-//     el: '#list',
-//     data: {
-//       :
-//     },
-//     components: { Modal }
-//   })
+// new Vue({
+//   el: '#app',
+//   render: h => h(List)
 // })
 
-new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new Vue({
+    el: '#app',
+    data: {
+      classification: classification
+    },
+    comments: {
+      List
+    }
+  })
 
 // /* eslint no-console: 0 */
 // import type {VNode, VueConstructor} from "vue";
