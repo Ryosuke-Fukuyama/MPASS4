@@ -1,22 +1,22 @@
 import Vue from 'vue'
-// import App from '../App.vue'
 import List from '../List.vue'
 
-// new Vue({
-//   el: '#app',
-//   render: h => h(List)
-// })
+// Vue.config.productionTip = false
 
-document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    el: '#app',
-    data: {
-      classification: classification
-    },
-    comments: {
-      List
-    }
-  })
+new Vue({
+  render: h => h(List, sort_status)
+}).$mount('#app')
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const app = new Vue({
+//     el: '#app',
+//     data: {
+//       sort_status
+//     },
+//     comments: {
+//       List
+//     }
+//   })
 
 // /* eslint no-console: 0 */
 // import type {VNode, VueConstructor} from "vue";

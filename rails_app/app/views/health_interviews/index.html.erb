@@ -5,36 +5,29 @@
 <% end %>
 <br><br>
 
+<div id='app'>
   <ul>
     <div class="callinglist">
-      <th><%= t('view.calling') %></th>
+      <p><%= t('view.calling') %></p>
       <% if @health_interviews_1.present? %>
-        # render
-        <div id='app'>
-          <list, {classification: calling}></list>
-        </div>
+        <list, {sort_status: calling}></list>
       <% end %>
     </div>
     <hr>
     <div class="initiallist">
       <% if @health_interviews_0.present? %>
-        # render
-        <div id='app'>
-          <list, {classification: initial}></list>
-        </div>
+        <list, {sort_status: initial}></list>
       <% end %>
     </div>
     <hr>
     <div class="pendinglist">
-      <th><%= t('view.pending') %></th>
+      <p><%= t('view.pending') %></p>
       <% if @health_interviews_3.present? %>
-        # render
-        <div id='app'>
-          <list, {classification: pending}></list>
-        </div>
+        <list, {sort_status: pending}></list>
       <% end %>
     </div>
   </ul>
+</div>
 
 
 <% if staff_signed_in? %>
@@ -42,4 +35,4 @@
 <% end %>
 
 <%= javascript_pack_tag 'main_vue' %>
-<%= stylesheet_pack_tag 'main_vue' %>
+<%#= stylesheet_pack_tag 'main_vue' %>

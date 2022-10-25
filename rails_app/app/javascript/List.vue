@@ -13,7 +13,7 @@
           <option value="5">完了</option>
         </select>
         <div  v-if="modalFlag && missId==health_interview.id">
-          <Modal @close-click="closeModal"></Modal>
+          <ErrorModal @close-click="closeModal"></ErrorModal>
         </div>
       </li>
     </ul>
@@ -22,11 +22,11 @@
 
 <script>
 import axios from 'axios'
-import Modal from './components/Modal.vue'
+import ErrorModal from './components/ErrorModal.vue'
 
 export default {
   components:{
-    Modal
+    ErrorModal
   },
 
   data:() => {
@@ -66,8 +66,8 @@ export default {
     async fetchContents() {
       debugger
       const hospital_id = this.hospital_id
-      const classification = this.classification
-      const res_index = await this.$axios.get(`/hospitals/${hospital_id}/health_interviews`, {classification: classification}).then((res) => {
+      const sort_status = this.sort_status
+      const res_index = await this.$axios.get(`/hospitals/${hospital_id}/health_interviews`, {sort_status: sort_status}).then((res) => {
         this.health_interviews = res.data.health_interviews
         this.selected = ""
       })
