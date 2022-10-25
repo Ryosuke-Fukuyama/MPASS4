@@ -75,11 +75,13 @@ class HealthInterviewsController < ApplicationController
   def edit; end
 
   def update
-    # if @health_interview.guide_status.update(status: label_params[:status])
-    #   render file: "select-update-api/front/pages/index", json: { registration: 'OK!' }, status: 200
-    # else
-    #   render file: "select-update-api/front/pages/index", json: { registration: 'ERROR!!!', @property}, status: 500
-    # end
+    status = @health_interview.guide_status.status
+    if status.update(status: label_params[:status])
+      # @health_interview.number.destroy if status.status == noshow || status.status == complete
+      render 'index', json: { registration: 'OK!' }, status: 200
+    else
+      render 'index', json: { registration: 'ERROR!!!' }, status: 500
+    end
 
     @email = @health_interview.patient.email
     NotificationMailer.soon_mail(@health_interview, @email).deliver_later if @health_interview.notification?

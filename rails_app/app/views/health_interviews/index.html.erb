@@ -10,20 +10,20 @@
     <div class="callinglist">
       <p><%= t('view.calling') %></p>
       <% if @health_interviews_1.present? %>
-        <list, {sort_status: calling}></list>
+        <NumList, {hospital_id: @hospital.id, sort_status: calling}></NumList>
       <% end %>
     </div>
     <hr>
     <div class="initiallist">
       <% if @health_interviews_0.present? %>
-        <list, {sort_status: initial}></list>
+        <NumList, {hospital_id: @hospital.id, sort_status: initial}></NumList>
       <% end %>
     </div>
     <hr>
     <div class="pendinglist">
       <p><%= t('view.pending') %></p>
       <% if @health_interviews_3.present? %>
-        <list, {sort_status: pending}></list>
+        <NumList, {hospital_id: @hospital.id, sort_status: pending}></NumList>
       <% end %>
     </div>
   </ul>
@@ -34,5 +34,5 @@
   <%= link_to t('view.hide') + t('view.index'), done_hospital_health_interviews_path %>
 <% end %>
 
-<%= javascript_pack_tag 'main_vue' %>
-<%#= stylesheet_pack_tag 'main_vue' %>
+<%= javascript_pack_tag 'health_interviews_index_controller' %>
+<%#= stylesheet_pack_tag 'health_interviews_index_controller' %>

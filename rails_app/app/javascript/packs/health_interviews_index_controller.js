@@ -1,22 +1,27 @@
-import Vue from 'vue'
-import List from '../List.vue'
+import Vue from 'vue/dist/vue/vue.esm.js'
+import NumList from '../components/NumList.vue'
 
 // Vue.config.productionTip = false
 
-new Vue({
-  render: h => h(List, sort_status)
-}).$mount('#app')
+// new Vue({
+//   // const sort_status = sort_status
+//   render: h => h(List, {hospital_id, sort_status})
+// }).$mount('#app')
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   const app = new Vue({
-//     el: '#app',
-//     data: {
-//       sort_status
-//     },
-//     comments: {
-//       List
-//     }
-//   })
+document.addEventListener('DOMContentLoaded', (hospital_id, sort_status) => {
+  const app1 = new Vue({
+    el: '#app',
+    comments: {
+      NumList
+    },
+    data:() => {
+      return {
+        hospital_id,
+        sort_status
+      }
+    }
+  })
+})
 
 // /* eslint no-console: 0 */
 // import type {VNode, VueConstructor} from "vue";

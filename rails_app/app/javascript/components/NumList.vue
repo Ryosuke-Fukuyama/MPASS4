@@ -5,6 +5,7 @@
         {{ health_interview.guide_status.id }}
         <select v-model.lazy="selected" @change="contentUpdate(health_interview.id, $event)">
           <option disabled value="">{{ health_interview.guide_status.status }}</option>
+          <!-- <option v-for="status in statuses"></option> -->
           <option value="0">初期</option>
           <option value="1">呼出</option>
           <option value="2">決済</option>
@@ -22,18 +23,20 @@
 
 <script>
 import axios from 'axios'
-import ErrorModal from './components/ErrorModal.vue'
+import ErrorModal from './ErrorModal.vue'
 
 export default {
   components:{
     ErrorModal
   },
 
+  props: ["sort_status"],
+
   data:() => {
     return {
       health_interviews: [],
       id: '',
-      // selected: '',
+      // statuses,
       modalFlag: false,
       missId: '',
     }
@@ -44,29 +47,23 @@ export default {
   },
 
   // computed: {
-  //   health_interviewList: function() {
-  //     return this.health_interviews.sort(function (a, b) {
-  //       if(a.created_at < b.created_at) return -1
-  //       if(a.created_at > b.created_at) return 1
-  //     return 0
-  //     })
-  //   },
-
-  //   params() {
-  //     return {
-  //       health_interview: {
-  //         content: this.content,
-  //         // id: this.id
-  //       }
-  //     }
-  //   }
+    // params() {
+    //   return {
+    //     health_interview: {
+    //       guide_status: {
+    //         status: this.status,
+    //         // id:   this.id
+    //       }
+    //     }
+    //   }
+    // }
   // },
 
   methods: {
     async fetchContents() {
       debugger
-      const hospital_id = this.hospital_id
-      const sort_status = this.sort_status
+      // const hospital_id = this.hospital_id
+      // const sort_status = this.sort_status
       const res_index = await this.$axios.get(`/hospitals/${hospital_id}/health_interviews`, {sort_status: sort_status}).then((res) => {
         this.health_interviews = res.data.health_interviews
         this.selected = ""
