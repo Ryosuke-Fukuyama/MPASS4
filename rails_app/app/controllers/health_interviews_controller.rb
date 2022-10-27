@@ -5,19 +5,19 @@ class HealthInterviewsController < ApplicationController
 
   def index
     @hospital = Hospital.find(params[:id])
-    if HealthInterview.where(hospital_id: @hospital.id).search_today.present?
-      @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital.id)
-      @health_interviews = @health_interviews.includes(:guide_status).order(created_at: :asc)
-      @health_interviews_0 = @health_interviews.search_initial if @health_interviews.search_initial.present?
-      @health_interviews_1 = @health_interviews.search_calling if @health_interviews.search_calling.present?
-      @health_interviews_3 = @health_interviews.search_pending if @health_interviews.search_pending.present?
+    @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital.id)
+    if @health_interviews.present?
+      @health_interviews = @health_interviews.eager_load(:guide_status).order(created_at: :asc)
+      @health_interviews_0 = @health_interviews.search_initial if @health_interviews.search_initial.any?
+      @health_interviews_1 = @health_interviews.search_calling if @health_interviews.search_calling.any?
+      @health_interviews_3 = @health_interviews.search_pending if @health_interviews.search_pending.any?
 
-      if params[:sort_status] == initial
-        @health_interviews = @health_interviews_0 if @health_interviews_0.present?
-      elsif params[:sort_status] == calling
-        @health_interviews = @health_interviews_1 if @health_interviews_1.present?
-      elsif params[:sort_status] == pending
-        @health_interviews = @health_interviews_3 if @health_interviews_3.present?
+      if params[:sort_status] == "initial"
+        @health_interviews = @health_interviews_0 if @health_interviews_0.any?
+      elsif params[:sort_status] == "calling"
+        @health_interviews = @health_interviews_1 if @health_interviews_1.any?
+      elsif params[:sort_status] == "pending"
+        @health_interviews = @health_interviews_3 if @health_interviews_3.any?
       end
     end
 

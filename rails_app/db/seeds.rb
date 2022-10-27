@@ -1,11 +1,3 @@
-# # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-
-# # Examples:
-
-# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-# #   Character.create(name: 'Luke', movie: movies.first)
-
 # 10.times do |n|
 #   name =         Gimei.name.kanji
 #   email =        Faker::Internet.unique.email
@@ -66,48 +58,51 @@
 #   )
 # end
 
-# Patient.eager_load(:health_interviews).all.each do |p|
-#   symptomatology = "(サンプル)３日前から発熱、倦怠感と吐き気"
-#   condition =      "(サンプル)持病等"
+Patient.eager_load(:health_interviews).all.each do |p|
+  symptomatology = "(サンプル)３日前から発熱、倦怠感と吐き気"
+  condition =      "(サンプル)持病等"
+  comment =        "(サンプル)"
 
-#   HealthInterview.create!(
-#     age:            "#{1 + rand(100)}",
-#     gender:         0,
-#     symptomatology: symptomatology,
-#     condition:      condition,
-#     patient_id:     p.id,
-#     hospital_id:    1
-#   )
-# end
+  HealthInterview.create!(
+    # age:            "#{1 + rand(100)}",
+    # gender:         0,
+    # symptomatology: symptomatology,
+    # condition:      condition,
+    patient_id:     p.id,
+    hospital_id:    1,
+    comment:        comment
+  )
+end
 
-# HealthInterview.eager_load(:guide_status).all.each do |h_i|
-#   GuideStatus.create!(health_interview_id: h_i.id)
-# end
+HealthInterview.eager_load(:guide_status).all.each do |h|
+  GuideStatus.create!(health_interview_id: h.id)
+end
 
 # # Rspec用
 # Master.create!(
-#   name:         "デモマスター",
+#   name:         "テストマスター",
 #   email:        "demo_master@mail.com",
 #   password:     "passw0r-D",
 #   confirmed_at: Time.now
 # )
 
 # Patient.create!(
-#   name:         "デモ患者",
+#   name:         "テスト患者",
 #   email:        "demo_patient@mail.com",
 #   password:     "passw0r-D",
 #   confirmed_at: Time.now
 # )
 
 # Staff.create!(
-#   name:         "デモスタッフ",
-#   password:     "passw0r-D",
-#   admin:        "false"
+#   name:        "テストスタッフ",
+#   password:    "passw0r-D",
+#   admin:       "false",
+#   hospital_id: 1
 # )
 
 # Staff.create!(
-#   name:         "デモアドミン",
-#   email:        "demo_staff@mail.com",
-#   password:     "passw0r-D",
-#   admin:        "true"
+#   name:        "テストアドミン",
+#   password:    "passw0r-D",
+#   admin:       "true",
+#   hospital_id: 1
 # )

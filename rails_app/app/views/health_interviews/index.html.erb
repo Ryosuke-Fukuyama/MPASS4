@@ -1,3 +1,4 @@
+<h3><%= @hospital.name %></h3>
 <h3><%= t('view.healthinterviews') + t('view.index') %></h3>
 
 <% if patient_signed_in? && (!@reserved.present? || (@last_status.done? || @last_status.noshow? || @last_status.complete?)) %>
@@ -5,25 +6,25 @@
 <% end %>
 <br><br>
 
-<div id='app'>
+<div id: ''>
   <ul>
     <div class="callinglist">
       <p><%= t('view.calling') %></p>
       <% if @health_interviews_1.present? %>
-        <NumList, {hospital_id: @hospital.id, sort_status: calling}></NumList>
+        <%= tag.div date: { hospital_id: @hospital.id, sort_status: "calling" }.to_json, id: "num-list" %>
       <% end %>
     </div>
     <hr>
     <div class="initiallist">
       <% if @health_interviews_0.present? %>
-        <NumList, {hospital_id: @hospital.id, sort_status: initial}></NumList>
+        <%= tag.div date: { hospital_id: @hospital.id, sort_status: "initial" }.to_json, id: "num-list" %>
       <% end %>
     </div>
     <hr>
     <div class="pendinglist">
       <p><%= t('view.pending') %></p>
       <% if @health_interviews_3.present? %>
-        <NumList, {hospital_id: @hospital.id, sort_status: pending}></NumList>
+        <%= tag.div date: { hospital_id: @hospital.id, sort_status: "pending" }.to_json, id: "num-list" %>
       <% end %>
     </div>
   </ul>

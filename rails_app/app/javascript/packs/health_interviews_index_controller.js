@@ -1,26 +1,18 @@
-import Vue from 'vue/dist/vue/vue.esm.js'
+import Vue from 'vue'
 import NumList from '../components/NumList.vue'
 
 // Vue.config.productionTip = false
+Vue.component('NumList', NumList)
 
-// new Vue({
-//   // const sort_status = sort_status
-//   render: h => h(List, {hospital_id, sort_status})
-// }).$mount('#app')
-
-document.addEventListener('DOMContentLoaded', (hospital_id, sort_status) => {
-  const app1 = new Vue({
-    el: '#app',
-    comments: {
-      NumList
-    },
-    data:() => {
-      return {
-        hospital_id,
-        sort_status
-      }
-    }
-  })
+document.addEventListener('DOMContentLoaded', () => {
+  const node = document.getElementById("num-list")
+  const props = JSON.parse(node.getAttribute("data"))
+  new Vue({
+    // el: '#num-list',
+    // render: h => h(App)
+    props
+  }).$mount()
+  document.body.appendChild(num-list.$el)
 })
 
 // /* eslint no-console: 0 */

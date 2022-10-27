@@ -30,10 +30,17 @@ export default {
     ErrorModal
   },
 
-  props: ["sort_status"],
+  props: ["hospital_id", "sort_status"],
+
+  created() {
+    let hospital_id = this.hospital_id
+    let sort_status = this.sort_status
+  },
 
   data:() => {
     return {
+      hospital_id,
+      sort_status,
       health_interviews: [],
       id: '',
       // statuses,
@@ -64,14 +71,14 @@ export default {
       debugger
       // const hospital_id = this.hospital_id
       // const sort_status = this.sort_status
-      const res_index = await this.$axios.get(`/hospitals/${hospital_id}/health_interviews`, {sort_status: sort_status}).then((res) => {
+      const res_index = await this.$axios.get(`/hospitals/${hospital_id}/health_interviews`, { sort_status: sort_status }).then((res) => {
         this.health_interviews = res.data.health_interviews
         this.selected = ""
       })
     },
 
     async contentUpdate(id, $event) {
-      const hospital_id = this.hospital_id
+      // const hospital_id = this.hospital_id
       const url = `/hospitals/${hospital_id}/health_interviews/${id}`
       const res_data = await this.$axios.get(url)
       const patch_data = res_data.data.health_interview
