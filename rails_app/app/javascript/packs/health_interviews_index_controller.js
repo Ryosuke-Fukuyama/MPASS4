@@ -1,19 +1,25 @@
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.esm.js'
+// import App from '../App.vue'
 import NumList from '../components/NumList.vue'
 
 // Vue.config.productionTip = false
-Vue.component('NumList', NumList)
+Vue.component('num-list', NumList)
 
-document.addEventListener('DOMContentLoaded', () => {
-  const node = document.getElementById("num-list")
-  const props = JSON.parse(node.getAttribute("data"))
+  // const node = document.getElementById("num-list")
+  // const props = JSON.parse(node.getAttribute("data"))
+
+// document.addEventListener('DOMContentLoaded', () => {
   new Vue({
-    // el: '#num-list',
+    el: '#app'
+    // props
     // render: h => h(App)
-    props
-  }).$mount()
-  document.body.appendChild(num-list.$el)
-})
+  })
+  // .$mount()
+  // document.body.appendChild(app.$el)
+// })
+
+
+
 
 // /* eslint no-console: 0 */
 // import type {VNode, VueConstructor} from "vue";
