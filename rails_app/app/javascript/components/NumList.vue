@@ -2,17 +2,17 @@
   <div>
     <li v-for="health_interview in health_interviews" :key="health_interview.id">
       {{ health_interview.guide_status.id }}
-      <select v-model.lazy="selected" @change="contentUpdate(health_interview.id, $event)">
+      <select v-model.lazy="selected" @change="contentUpdate(health_interview, $event)">
         <option disabled value="">{{ health_interview.guide_status.status }}</option>
         <!-- <option v-for="status in statuses"></option> -->
-        <option value="0">初期</option>
-        <option value="1">呼出</option>
+        <option value="initial">初期</option>
+        <option value="calling">呼出</option>
         <option value="2">決済</option>
-        <option value="3">保留</option>
+        <option value="pending">保留</option>
         <option value="4">無断キャンセル</option>
         <option value="5">完了</option>
       </select>
-      <div  v-if="modalFlag && missId==health_interview.id">
+      <div class="modal__button" v-if="modalFlag && missId==health_interview.id">
         <ErrorModal @close-click="closeModal"></ErrorModal>
       </div>
     </li>
@@ -73,25 +73,24 @@ export default {
 
   methods: {
     async fetchContents(hospital_id, sort_status) {
-      const res_index = await axios.get(`/hospitals/${hospital_id}/health_interviews.json`, { params: { sort_status: sort_status }}).then((res) => {
-        debugger
-        this.health_interviews = res.data.health_interviews
-        this.selected = ""
-      })
+      const res_index = await axios.get(`/hospitals/${hospital_id}/health_interviews.json`, { params: { sort_status: sort_status }})
+        .then((res) => {
+          this.health_interviews = res.data.health_interviews
+          this.selected = ""
+        })
     },
 
-    async contentUpdate(id, $event) {
-      debugger
-      // const hospital_id = HealthInterview.find(params[:id]).hospital.id
+    async contentUpdate(health_interview, $event) {
+      health_interview.guide_status.status = $event.target.value
+      const hospital_id = health_interview.hospital_id
+      const id = health_interview.id
       const url = `/hospitals/${hospital_id}/health_interviews/${id}`
-      const res_data = await axios.get(url)
-      const patch_data = res_data.data.health_interview
-      patch_data.guide_status.status = $event.target.value
-      axios.patch(url, patch_data)
+      axios.patch(url, health_interview)
         .then(res => {
           this.fetchContents()
         })
         .catch((err) => {
+          this.selected = ""
           const id = JSON.parse(err.config.data).id
           this.openModal(id)
         })
@@ -103,8 +102,16 @@ export default {
     },
     closeModal(){
       this.modalFlag = false
-      this.fetchContents()
+      const hospital_id = this.hospital_id
+      const sort_status = this.sort_status
+      this.fetchContents(hospital_id, sort_status)
     }
   }
 }
 </script>
+
+<style>
+  .modal__button {
+  display:inline-flex;
+  }
+</style>

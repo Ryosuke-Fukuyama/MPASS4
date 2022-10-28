@@ -36,7 +36,7 @@ class HealthInterviewsController < ApplicationController
     @health_interviews = HealthInterview
                           .search_today
                           .where(hospital_id: @hospital)
-                          .eager_load(:guide_status)
+                          .includes(:guide_status)
                           .order(created_at: :asc)
     @health_interviews_2 = @health_interviews.search_done if @health_interviews.search_done.present?
     @health_interviews_4 = @health_interviews.search_noshow if @health_interviews.search_noshow.present?
@@ -76,7 +76,8 @@ class HealthInterviewsController < ApplicationController
 
   def update
     status = @health_interview.guide_status.status
-    if status.update(status: label_params[:status])
+    binding.irb
+    if status.update(status: health_interview_params[:guide_status_attributes][:status])
       # @health_interview.number.destroy if status.status == noshow || status.status == complete
       render 'index', json: { registration: 'OK!' }, status: 200
     else
