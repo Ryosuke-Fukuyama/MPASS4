@@ -14,14 +14,10 @@ class HealthInterviewsController < ApplicationController
 
       if params[:sort_status] == "initial"
         @health_interviews = @health_interviews_0 if @health_interviews_0.any?
-        binding.irb
-        render json: @health_interviews
       elsif params[:sort_status] == "calling"
         @health_interviews = @health_interviews_1 if @health_interviews_1.any?
-        render json: @health_interviews
       elsif params[:sort_status] == "pending"
         @health_interviews = @health_interviews_3 if @health_interviews_3.any?
-        render json: @health_interviews
       end
     end
 

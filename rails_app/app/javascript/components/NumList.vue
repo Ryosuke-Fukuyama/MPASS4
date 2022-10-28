@@ -29,70 +29,60 @@ export default {
     ErrorModal
   },
 
-  props: ['hospital_id', 'sort_status'],
-  // {
-  //   hospital_id: {
-  //     // type: integer,
-  //     default: () => JSON.parse(document.getElementById("num-list").attributes[1].value).hospital_id
-  //   },
-  //   sort_status: {
-  //     type: String,
-  //     default: () => JSON.parse(document.getElementById("num-list").attributes[1].value).sort_status
-  //   }
-  // },
+  props: {
+    hospital_id: {
+      // type: ,
+      default: () => JSON.parse(document.getElementById("num-list").attributes[1].value).hospital_id
+    },
+    sort_status: {
+      type: String,
+      default: () => JSON.parse(document.getElementById("num-list").attributes[1].value).sort_status
+    }
+  },
 
   data:() => {
     return {
-      // hospital_id: '',
-      // sort_status: '',
+      // hospital_id: this.hospital_id,
+      // sort_status: this.sort_status,
       health_interviews: [],
-      id: '',
       // statuses,
+      id: '',
       modalFlag: false,
       missId: '',
     }
   },
 
-  // beforeCreate() {
-  // },
-
-  // created() {
-  //   let hospital_id = this.hospital_id
-  //   let sort_status = this.sort_status
-  // },
-
   mounted() {
-    this.fetchContents()
+    const hospital_id = this.hospital_id
+    const sort_status = this.sort_status
+    this.fetchContents(hospital_id, sort_status)
   },
 
   // computed: {
-    // params() {
-    //   return {
-    //     health_interview: {
-    //       guide_status: {
-    //         status: this.status,
-    //         // id:   this.id
-    //       }
-    //     }
-    //   }
-    // }
+  //   params() {
+  //     return {
+  //       health_interview: {
+  //         guide_status: {
+  //           status: this.status,
+  //           id:     this.id
+  //         }
+  //       }
+  //     }
+  //   }
   // },
 
   methods: {
-    async fetchContents() {
-      const node = document.getElementById("num-list")
-      const props = JSON.parse(node.attributes[1].value)
-      let hospital_id = props.hospital_id
-      let sort_status = props.sort_status
-      const res_index = await axios.get(`/hospitals/${hospital_id}/health_interviews`, { params: { sort_status: sort_status} }).then((res) => {
-        this.health_interviews = res.data
+    async fetchContents(hospital_id, sort_status) {
+      const res_index = await axios.get(`/hospitals/${hospital_id}/health_interviews.json`, { params: { sort_status: sort_status }}).then((res) => {
         debugger
+        this.health_interviews = res.data.health_interviews
         this.selected = ""
       })
     },
 
     async contentUpdate(id, $event) {
-      // const hospital_id = this.hospital_id
+      debugger
+      // const hospital_id = HealthInterview.find(params[:id]).hospital.id
       const url = `/hospitals/${hospital_id}/health_interviews/${id}`
       const res_data = await axios.get(url)
       const patch_data = res_data.data.health_interview
