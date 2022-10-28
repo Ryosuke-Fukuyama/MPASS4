@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import { csrfToken } from 'rails-ujs'
 import ErrorModal from './ErrorModal.vue'
 
 export default {
@@ -73,6 +74,7 @@ export default {
 
   methods: {
     async fetchContents(hospital_id, sort_status) {
+      debugger
       const res_index = await axios.get(`/hospitals/${hospital_id}/health_interviews.json`, { params: { sort_status: sort_status }})
         .then((res) => {
           this.health_interviews = res.data.health_interviews
@@ -85,6 +87,7 @@ export default {
       const hospital_id = health_interview.hospital_id
       const id = health_interview.id
       const url = `/hospitals/${hospital_id}/health_interviews/${id}`
+      axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
       axios.patch(url, health_interview)
         .then(res => {
           this.fetchContents()

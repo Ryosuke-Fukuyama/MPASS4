@@ -1,7 +1,7 @@
 class HealthInterviewsController < ApplicationController
   before_action :patient_required, only: [:new]
   before_action :staff_required, only: %i[show edit]
-  before_action :set_health_interview_parms, only: %i[show edit update destroy]
+  before_action :set_health_interview_params, only: %i[show edit update destroy]
 
   def index
     @hospital = Hospital.find(params[:id])
@@ -75,18 +75,18 @@ class HealthInterviewsController < ApplicationController
   def edit; end
 
   def update
-    status = @health_interview.guide_status.status
-    binding.irb
-    if status.update(status: health_interview_params[:guide_status_attributes][:status])
+    if @health_interview.guide_status.update(status: guide_status_params[:status])
       # @health_interview.number.destroy if status.status == noshow || status.status == complete
-      render 'index', json: { registration: 'OK!' }, status: 200
+      render 'index'
+      # , json: { registration: 'OK!' }, status: 200
     else
-      render 'index', json: { registration: 'ERROR!!!' }, status: 500
+      render 'index'
+      # , json: { registration: 'ERROR!!!' }, status: 500
     end
 
-    @email = @health_interview.patient.email
-    NotificationMailer.soon_mail(@health_interview, @email).deliver_later if @health_interview.notification?
-    NotificationMailer.bill_mail(@health_interview, @email).deliver if @health_interview.price.present?
+    # @email = @health_interview.patient.email
+    # NotificationMailer.soon_mail(@health_interview, @email).deliver_later if @health_interview.notification?
+    # NotificationMailer.bill_mail(@health_interview, @email).deliver if @health_interview.price.present?
   end
 
   def destroy
@@ -95,7 +95,7 @@ class HealthInterviewsController < ApplicationController
 
   private
 
-    def set_health_interview_parms
+    def set_health_interview_params
       @health_interview = HealthInterview.find(params[:id])
     end
 
@@ -108,7 +108,7 @@ class HealthInterviewsController < ApplicationController
         :comment,
         :price,
         :hospital_id,
-        :notification,
+        # :notification,
         guide_status_attributes: [
           :id,
           :status
@@ -116,7 +116,7 @@ class HealthInterviewsController < ApplicationController
       ).merge(patient_id: current_patient.id)
     end
 
-    # def guide_status_params
-    #   params.require(:guide_status).permit(:id, :status)
-    # end
+    def guide_status_params
+      params.require(:guide_status).permit(:id, :status)
+    end
 end
