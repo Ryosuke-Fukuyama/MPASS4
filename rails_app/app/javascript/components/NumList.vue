@@ -1,8 +1,9 @@
 <template>
   <div>
-    <li v-for="health_interview in health_interviews" :key="health_interview.id">
+    <li v-for="health_interview in healthInterviewsList" :key="health_interview.id">
       {{ health_interview.guide_status.id }}
-      <select v-model.lazy="selected" @change="contentUpdate(health_interview, $event)">
+      <!-- v-model.lazy="select-status"  -->
+      <select @change="selectStatus(health_interview, $event)">
         <option disabled value="">{{ health_interview.guide_status.status }}</option>
         <!-- <option v-for="status in statuses"></option> -->
         <option value="initial">初期</option>
@@ -12,102 +13,100 @@
         <option value="4">無断キャンセル</option>
         <option value="5">完了</option>
       </select>
-      <div class="modal__button" v-if="modalFlag && missId==health_interview.id">
-        <ErrorModal @close-click="closeModal"></ErrorModal>
+      <div class="modal__button" v-if="modal-flag && miss-id==health_interview.id">
+        <ErrorModal @close-click="closeClick()"></ErrorModal>
       </div>
     </li>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import { csrfToken } from 'rails-ujs'
+// import axios from 'axios'
+// import { csrfToken } from 'rails-ujs'
 import ErrorModal from './ErrorModal.vue'
 
 export default {
-  name: 'num-list',
   components:{
     ErrorModal
   },
 
   props: {
-    hospital_id: {
+    hospitalId: {
       // type: ,
-      default: () => JSON.parse(document.getElementById("num-list").attributes[1].value).hospital_id
+      required: true
     },
-    sort_status: {
+    sortStatus: {
       type: String,
-      default: () => JSON.parse(document.getElementById("num-list").attributes[1].value).sort_status
+      required: true
+    },
+    healthInterviews1: Array,
+    healthInterviews0: Array,
+    healthInterviews3: Array,
+    modalFlag: {
+      type: Boolean,
+      defaulte: false
+    },
+    missId: {
+      // type: ,
+      required: true
     }
   },
 
   data:() => {
     return {
-      // hospital_id: this.hospital_id,
-      // sort_status: this.sort_status,
-      health_interviews: [],
+      hospital_id: this.hospitalId,
+      sortStatus: this.sortStatus,
+      health_interviews_1: this.healthInterviews1,
+      health_interviews_0: this.healthInterviews0,
+      health_interviews_3: this.healthInterviews3,
+      modalFlag: this.modalFlag,
+      missId: this.missId,
       // statuses,
-      id: '',
-      modalFlag: false,
-      missId: '',
+      // id: '',
+      // selectStatus: '',
+      health_interview: '',
+      e: ''
     }
   },
 
-  mounted() {
-    const hospital_id = this.hospital_id
-    const sort_status = this.sort_status
-    this.fetchContents(hospital_id, sort_status)
-  },
-
-  // computed: {
-  //   params() {
-  //     return {
-  //       health_interview: {
-  //         guide_status: {
-  //           status: this.status,
-  //           id:     this.id
-  //         }
-  //       }
-  //     }
-  //   }
+  // mounted() {
+  //   const sort_status = this.sort_status
+  //   this.fetchContents(hospital_id, sort_status)
   // },
 
+  computed: {
+    healthInterviewsList: function() {
+      if(sortStatus === "calling") return this.healthInterviews1
+      if(sortStatus === "initial") return this.healthInterviews0
+    return this.healthInterviews3
+    }
+    // params() {
+    //   return {
+    //     health_interview: {
+    //       guide_status: {
+    //         status: this.status,
+    //         id:     this.id
+    //       }
+    //     }
+    //   }
+    // }
+  },
+
   methods: {
-    async fetchContents(hospital_id, sort_status) {
-      debugger
-      const res_index = await axios.get(`/hospitals/${hospital_id}/health_interviews.json`, { params: { sort_status: sort_status }})
-        .then((res) => {
-          this.health_interviews = res.data.health_interviews
-          this.selected = ""
-        })
+    // async fetchContents(hospital_id, sort_status) {
+    //   const res_index = await axios.get(`/hospitals/${hospital_id}/health_interviews.json`, { params: { sort_status: sort_status }})
+    //     .then((res) => {
+    //       this.health_interviews = res.data.health_interviews
+    //     })
+    // },
+
+    selectStatus(health_interview, e) {
+      this.$emit('select-status', { health_interview, e })
+      // this.value = { health_interview, e }
     },
 
-    async contentUpdate(health_interview, $event) {
-      health_interview.guide_status.status = $event.target.value
-      const hospital_id = health_interview.hospital_id
-      const id = health_interview.id
-      const url = `/hospitals/${hospital_id}/health_interviews/${id}`
-      axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
-      axios.patch(url, health_interview)
-        .then(res => {
-          this.fetchContents()
-        })
-        .catch((err) => {
-          this.selected = ""
-          const id = JSON.parse(err.config.data).id
-          this.openModal(id)
-        })
-    },
-
-    openModal(id) {
-      this.modalFlag = true
-      this.missId = id
-    },
-    closeModal(){
-      this.modalFlag = false
-      const hospital_id = this.hospital_id
-      const sort_status = this.sort_status
-      this.fetchContents(hospital_id, sort_status)
+    closeClick() {
+      this.$emit('close-click')
     }
   }
 }

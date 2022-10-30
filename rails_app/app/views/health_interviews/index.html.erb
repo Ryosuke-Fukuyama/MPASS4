@@ -6,39 +6,11 @@
 <% end %>
 <br><br>
 
-<div id='app'>
-  <ul>
-    <div class="callinglist">
-      <p><%= t('view.calling') %></p>
-      <% if @health_interviews_1.present? %>
-        <%= tag.div id: "num-list",  date: { hospital_id: @hospital.id, sort_status: "calling" }.to_json do %>
-          <%= tag.NumList %>
-        <% end %>
-      <% end %>
-    </div>
-    <hr>
-    <div class="initiallist">
-      <% if @health_interviews_0.present? %>
-        <%= tag.div id: "num-list", date: { hospital_id: @hospital.id, sort_status: "initial" }.to_json do %>
-          <num-list></num-list>
-        <% end %>
-      <% end %>
-    </div>
-    <hr>
-    <div class="pendinglist">
-      <p><%= t('view.pending') %></p>
-      <% if @health_interviews_3.present? %>
-        <%= tag.div id: "num-list", date: { hospital_id: @hospital.id, sort_status: "pending" }.to_json do %>
-          <%= tag.NumList %>
-        <% end %>
-      <% end %>
-    </div>
-  </ul>
-</div>
-
+<%= tag.div id: "list-set", data: { hospital_id: @hospital.id }.to_json %>
 
 <% if staff_signed_in? %>
-  <%#= link_to t('view.hide') + t('view.index'), done_hospital_health_interviews_path %>
+  <%#= link_to t('view.hide') + t('view.index'), done_hospital_health_interviews_path %><%# date属性の秘匿性要検討 %>
+
 <% end %>
 
 <%= javascript_pack_tag 'health_interviews_index_controller' %>
