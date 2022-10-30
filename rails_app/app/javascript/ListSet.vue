@@ -1,27 +1,27 @@
 <template>
   <ul>
     <div class="calling__list">
-      <p>"{{ message.calling }}"</p>
-      <div v-if="health_interviews_1 === true">
+      <p>{{ message.calling }}</p>
+      <div v-if="health_interviews_1.length === true">
+        <p>検証</p>
         <NumList
-          :hospital-id="hospital_id"
           :modal-flag="modalFlag"
           :miss-id="missId"
-          :sort-status="sortStatus.calling"
+          sort-status="calling"
           :health-interviews-1="health_interviews_1"
           @select-status="updateStatus"
-          @close-click="closeModal"
+          @inform-click="closeModal"
         ></NumList>
       </div>
     </div>
     <hr>
     <div class="initial__list">
-      <div v-if="health_interviews_0 === true">
+      <div v-if="health_interviews_0.length === true">
+        <p>検証</p>
         <NumList
-          :hospital-id="hospital_id"
           :modal-flag="modalFlag"
           :miss-id="missId"
-          :sort-status="sortStatus.initial"
+          :sort-status="initial"
           :health-interviews-0="health_interviews_0"
           @select-status="updateStatus"
           @close-click="closeModal"
@@ -30,13 +30,13 @@
     </div>
     <hr>
     <div class="pending__list">
-      <p>"{{ message.pending }}"</p>
-      <div v-if="health_interviews_3 === true">
+      <p>{{ message.pending }}</p>
+      <div v-if="health_interviews_3.length === true">
+        <p>検証</p>
         <NumList
-          :hospital-id="hospital_id"
           :modal-flag="modalFlag"
           :miss-id="missId"
-          :sort-status="sortStatus.pending"
+          :sort-status="pending"
           :health-interviews-3="health_interviews_3"
           @select-status="updateStatus"
           @close-click="closeModal"
@@ -54,6 +54,7 @@ import NumList from './components/NumList.vue'
 // Vue.component('NumList', NumList)
 
 export default {
+  name: 'ListSet',
   components:{
     NumList
   },
@@ -68,15 +69,11 @@ export default {
   data:() => {
     return {
       // transmissionDate: {
-      hospital_id: this.hospital_id,
-      modalFlag: "",
-      missId: "",
+        // hospital_id: this.hospital_id,
+        modalFlag: false,
+        missId: "",
       // },
-      sortStatus: {
-        calling: "calling",
-        initial: "initial",
-        pending: "pending"
-      },
+      sortStatus: "",
       health_interviews_1: [],
       health_interviews_0: [],
       health_interviews_3: [],
@@ -84,16 +81,20 @@ export default {
         calling: "お呼び出し中",
         pending: "保留中"
       },
-      selectStatus: ""
+      selectStatus: "",
+      id: ''
     }
   },
 
   // created() {
-  // beforeMount() {
+  // },
+
   mounted() {
-    debugger
-    this.fetchArray(hospital_id)
+    this.fetchArray(this.hospital_id)
   },
+
+  // computed: {
+  // },
 
   methods: {
     async fetchArray(hospital_id) {

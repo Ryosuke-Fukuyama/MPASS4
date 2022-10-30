@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'ErrorModal',
   data:() => {
     return {
       modalFlag: ''

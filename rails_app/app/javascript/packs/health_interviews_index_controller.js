@@ -2,15 +2,16 @@ import Vue from 'vue/dist/vue.esm.js'
 // import App from '../App.vue'
 import ListSet from '../ListSet.vue'
 
+// Vue.config.devtools = true
 // Vue.config.productionTip = false
 
 document.addEventListener('DOMContentLoaded', () => {
   const node = document.getElementById("list-set")
   const props = JSON.parse(node.getAttribute("data"))
-  const vm = new Vue({
+  new Vue({
+    el:  '#list-set',
     render: h => h(ListSet, { props })
-  }).$mount()
-  document.body.appendChild(list-set.$el)
+  })
 })
 
 

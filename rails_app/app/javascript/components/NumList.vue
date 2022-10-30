@@ -13,8 +13,8 @@
         <option value="4">無断キャンセル</option>
         <option value="5">完了</option>
       </select>
-      <div class="modal__button" v-if="modal-flag && miss-id==health_interview.id">
-        <ErrorModal @close-click="closeClick()"></ErrorModal>
+      <div class="modal__button" v-if="modalFlag && (missId === health_interview.id)">
+        <ErrorModal @close-click="informClick()"></ErrorModal>
       </div>
     </li>
   </div>
@@ -26,12 +26,21 @@
 import ErrorModal from './ErrorModal.vue'
 
 export default {
+  name: 'NumList',
   components:{
     ErrorModal
   },
 
   props: {
-    hospitalId: {
+    // hospitalId: {
+    //   // type: ,
+    //   required: true
+    // },
+    modalFlag: {
+      type: Boolean,
+      required: true
+    },
+    missId: {
       // type: ,
       required: true
     },
@@ -41,41 +50,31 @@ export default {
     },
     healthInterviews1: Array,
     healthInterviews0: Array,
-    healthInterviews3: Array,
-    modalFlag: {
-      type: Boolean,
-      defaulte: false
-    },
-    missId: {
-      // type: ,
-      required: true
-    }
+    healthInterviews3: Array
   },
 
   data:() => {
     return {
-      hospital_id: this.hospitalId,
-      sortStatus: this.sortStatus,
-      health_interviews_1: this.healthInterviews1,
-      health_interviews_0: this.healthInterviews0,
-      health_interviews_3: this.healthInterviews3,
+      // hospital_id: this.hospitalId,
       modalFlag: this.modalFlag,
       missId: this.missId,
+      sortStatus: this.sortStatus,
+      // health_interviews_1: this.healthInterviews1,
+      // health_interviews_0: this.healthInterviews0,
+      // health_interviews_3: this.healthInterviews3,
       // statuses,
-      // id: '',
-      // selectStatus: '',
-      health_interview: '',
-      e: ''
     }
   },
 
-  // mounted() {
+  mounted() {
+      debugger
   //   const sort_status = this.sort_status
   //   this.fetchContents(hospital_id, sort_status)
-  // },
+  },
 
   computed: {
     healthInterviewsList: function() {
+      debugger
       if(sortStatus === "calling") return this.healthInterviews1
       if(sortStatus === "initial") return this.healthInterviews0
     return this.healthInterviews3
@@ -102,11 +101,10 @@ export default {
 
     selectStatus(health_interview, e) {
       this.$emit('select-status', { health_interview, e })
-      // this.value = { health_interview, e }
     },
 
-    closeClick() {
-      this.$emit('close-click')
+    informClick() {
+      this.$emit('inform-click')
     }
   }
 }
