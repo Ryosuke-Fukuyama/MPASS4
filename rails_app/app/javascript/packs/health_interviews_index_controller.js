@@ -8,7 +8,7 @@ import ListSet from '../ListSet.vue'
 document.addEventListener('DOMContentLoaded', () => {
   const node = document.getElementById("list-set")
   const props = JSON.parse(node.getAttribute("data"))
-  new Vue({
+  const vm = new Vue({
     el:  '#list-set',
     render: h => h(ListSet, { props })
   })
