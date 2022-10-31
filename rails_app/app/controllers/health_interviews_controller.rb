@@ -10,26 +10,13 @@ class HealthInterviewsController < ApplicationController
       @health_interviews = @health_interviews.eager_load(:guide_status).order(created_at: :asc)
       @health_interviews_0 = @health_interviews.search_initial if @health_interviews.search_initial.any?
       @health_interviews_1 = @health_interviews.search_calling if @health_interviews.search_calling.any?
-      @health_interviews_3 = @health_interviews.search_pending if @health_interviews.search_pending.any?
-
-      # if params[:sort_status] == "initial"
-      #   @health_interviews = @health_interviews_0 if @health_interviews_0.any?
-      # elsif params[:sort_status] == "calling"
-      #   @health_interviews = @health_interviews_1 if @health_interviews_1.any?
-      # elsif params[:sort_status] == "pending"
-      #   @health_interviews = @health_interviews_3 if @health_interviews_3.any?
-      # end
+      @health_interviews_2 = @health_interviews.search_pending if @health_interviews.search_pending.any?
     end
 
     if patient_signed_in? && current_patient.health_interviews.present?
       @reserved = current_patient.health_interviews
       @last_status = @reserved.last.guide_status
     end
-
-    # @statuses = GuideStatus.statuses.keys
-    # respond_to do |format|
-    #   format.json {render json: { statuses: @statuses }}
-    # end
   end
 
   def done

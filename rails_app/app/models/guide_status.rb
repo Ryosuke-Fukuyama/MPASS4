@@ -1,12 +1,12 @@
 class GuideStatus < ApplicationRecord
-  belongs_to :health_interview
+  belongs_to :health_interview, optional: true
 
   STATUSES = {
     initial: 0,
     calling: 1,
-    done: 2,
-    pending: 3,
-    noshow: 4,
+    pending: 2,
+    noshow: 3,
+    payment: 4,
     complete: 5
   }
   enum status: STATUSES

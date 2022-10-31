@@ -27,9 +27,9 @@
     <hr>
     <div class="pending__list">
       <p>{{ message.pending }}</p>
-      <div v-if="health_interviews_3.length">
+      <div v-if="health_interviews_2.length">
         <NumList
-          :health-interviews="health_interviews_3"
+          :health-interviews="health_interviews_2"
           :modal-flag="modalFlag"
           :miss-id="missId"
           @select-status="updateStatus"
@@ -64,15 +64,13 @@ export default {
     return {
       health_interviews_1: [],
       health_interviews_0: [],
-      health_interviews_3: [],
-       // url: `/hospitals/${this.hospital_id}/health_interviews`,
+      health_interviews_2: [],
       modalFlag: false,
       missId: "",
       message: {
         calling: "お呼び出し中",
         pending: "保留中"
       },
-      selectStatus: "",
       id: ''
     }
   },
@@ -87,13 +85,12 @@ export default {
         .then((res) => {
           this.health_interviews_1 = res.data.health_interviews_1
           this.health_interviews_0 = res.data.health_interviews_0
-          this.health_interviews_3 = res.data.health_interviews_3
-          debugger
+          this.health_interviews_2 = res.data.health_interviews_2
+          // this.selected = ""
         })
     },
 
     updateStatus() {
-      debugger
       this.fetchArray()
     },
 
