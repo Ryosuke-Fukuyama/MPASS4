@@ -21,7 +21,7 @@
       <h4><%= t('view.symptomatology') %></h4>
       <%= @first_interview.symptomatology %>
 
-      <% if @first_interview.guide_status.done? %>
+      <% if @first_interview.guide_status.payment? %>
         <tr>
           <td><%= t('view.price') %></td>
           <td>¥<%= @first_interview.price %></td>
@@ -35,7 +35,7 @@
           <% if h_i.comment.present? %>
             <%= h_i.comment  %>
           <% end %>
-          <% if h_i.guide_status.done? %>
+          <% if h_i.guide_status.payment? %>
             <tr>
               <td><%= t('view.price') %></td>
               <td>¥<%= h_i.price %></td>

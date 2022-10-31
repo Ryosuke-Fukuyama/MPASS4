@@ -19,13 +19,13 @@ class HealthInterviewsController < ApplicationController
     end
   end
 
-  def done
+  def payment
     @health_interviews = HealthInterview
                           .search_today
                           .where(hospital_id: @hospital)
                           .includes(:guide_status)
                           .order(created_at: :asc)
-    @health_interviews_2 = @health_interviews.search_done if @health_interviews.search_done.present?
+    @health_interviews_2 = @health_interviews.search_payment if @health_interviews.search_payment.present?
     @health_interviews_4 = @health_interviews.search_noshow if @health_interviews.search_noshow.present?
   end
 

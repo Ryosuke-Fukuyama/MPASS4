@@ -8,7 +8,6 @@
         <option value="pending">保留</option>
         <option value="3">無断キャンセル</option>
         <option value="4">決済</option>
-        <option value="5">完了</option>
       </select>
       <div class="modal__button" v-if="modalFlag && (missId === health_interview.id)">
         <ErrorModal @close-click="informClick()"></ErrorModal>

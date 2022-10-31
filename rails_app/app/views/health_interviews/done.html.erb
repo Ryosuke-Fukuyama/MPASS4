@@ -1,8 +1,8 @@
 <h1><%= Date.current.strftime('%Y/%m/%d') + t('view.hide') + t('view.index') %></h1>
 
 <ul>
-  <div class="donelist">
-    <th><%= t('view.done') %></th>
+  <div class="paymentlist">
+    <th><%= t('view.payment') %></th>
     <% if @health_interviews_2.present? %>
       <% @health_interviews_2.each do |h_i| %>
         <%= render partial: 'each_list', locals: { h_i: h_i } %>

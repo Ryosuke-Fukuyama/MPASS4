@@ -86,7 +86,6 @@ export default {
           this.health_interviews_1 = res.data.health_interviews_1
           this.health_interviews_0 = res.data.health_interviews_0
           this.health_interviews_2 = res.data.health_interviews_2
-          // this.selected = ""
         })
     },
 

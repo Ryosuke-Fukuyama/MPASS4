@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :staffs, except: [:show]
       resources :health_interviews do
         collection do
-          get 'done'
+          get 'payment'
         end
       end
     end

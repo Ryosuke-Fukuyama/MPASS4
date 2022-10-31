@@ -225,7 +225,7 @@ ja:
       status:           #カラム名を指定
         initial: 初期
         calling: 呼出
-        done: 済み
+        payment: 済み
         pending: 保留
         noshow: 無断キャンセル
         complete: 完了
@@ -279,7 +279,7 @@ ja:
     select: 選択する
     initial: 初期
     calling: お呼出中
-    done: 済み
+    payment: 済み
     pending: 保留中
     noshow: 無断キャンセル
     complete: 完了

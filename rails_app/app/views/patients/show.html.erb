@@ -2,7 +2,7 @@
 
 <% if @patient.health_interviews.present? %>
   <% unless
-    @last_interview.guide_status.done? &&
+    @last_interview.guide_status.payment? &&
     @last_interview.guide_status.noshow? &&
     @last_interview.guide_status.complete?
   %>
@@ -48,7 +48,7 @@
         <%= simple_format(t('view.message.noshow')) %>
       </div>
     <% end %>
-    <% if @last_interview.guide_status.done? %>
+    <% if @last_interview.guide_status.payment? %>
 <%
 =begin
 %>
@@ -85,7 +85,7 @@
         </div>
       <% else %>
         <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-          <%= simple_format(t('view.message.done')) %>
+          <%= simple_format(t('view.message.calculating')) %>
         </div>
       <% end %>
     <% end %>
