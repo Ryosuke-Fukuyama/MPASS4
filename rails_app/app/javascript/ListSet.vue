@@ -2,10 +2,11 @@
   <ul>
     <div class="calling__list">
       <p>{{ message.calling }}</p>
-      <div v-if="health_interviews_1.length">
+      <div v-if="healthInterviews1.length">
         <NumList
           v-if="reRendering"
-          :health-interviews="health_interviews_1"
+          :health-interviews="healthInterviews1"
+          :session-check="sessionCheck"
           :modal-flag="modalFlag"
           :miss-id="missId"
           @success-update="renewalList"
@@ -16,10 +17,11 @@
     </div>
     <hr>
     <div class="initial__list">
-      <div v-if="health_interviews_0.length">
+      <div v-if="healthInterviews0.length">
         <NumList
           v-if="reRendering"
-          :health-interviews="health_interviews_0"
+          :health-interviews="healthInterviews0"
+          :session-check="sessionCheck"
           :modal-flag="modalFlag"
           :miss-id="missId"
           @success-update="renewalList"
@@ -31,10 +33,11 @@
     <hr>
     <div class="pending__list">
       <p>{{ message.pending }}</p>
-      <div v-if="health_interviews_2.length">
+      <div v-if="healthInterviews2.length">
         <NumList
           v-if="reRendering"
-          :health-interviews="health_interviews_2"
+          :health-interviews="healthInterviews2"
+          :session-check="sessionCheck"
           :modal-flag="modalFlag"
           :miss-id="missId"
           @success-update="renewalList"
@@ -70,9 +73,10 @@ export default {
         calling: "お呼び出し中",
         pending: "保留中"
       },
-      health_interviews_1: [],
-      health_interviews_0: [],
-      health_interviews_2: [],
+      healthInterviews1: [],
+      healthInterviews0: [],
+      healthInterviews2: [],
+      sessionCheck: false,
       modalFlag: false,
       missId: '',
       reRendering: true
@@ -81,15 +85,16 @@ export default {
 
   created() {
     this.fetchArray(this.hospital_id)
+    this.staffSignIn(this.hospital_id)
   },
 
   methods: {
     async fetchArray(hospital_id) {
       const res_index = await axios.get(`/hospitals/${hospital_id}/health_interviews.json`)
         .then((res) => {
-          this.health_interviews_1 = res.data.health_interviews_1
-          this.health_interviews_0 = res.data.health_interviews_0
-          this.health_interviews_2 = res.data.health_interviews_2
+          this.healthInterviews1 = res.data.health_interviews_1
+          this.healthInterviews0 = res.data.health_interviews_0
+          this.healthInterviews2 = res.data.health_interviews_2
          this.toggle()
         })
     },
@@ -97,6 +102,13 @@ export default {
     toggle() {
       this.reRendering = false
       this.$nextTick(() => (this.reRendering = true))
+    },
+
+    async staffSignIn(hospital_id) {
+      await axios.get(`/hospitals/${hospital_id}/health_interviews.json`)
+        .then((res) => {
+          this.sessionCheck = res.data.session_check
+        })
     },
 
     renewalList() {

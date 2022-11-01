@@ -2,7 +2,7 @@
   <div>
     <li v-for="health_interview in classificationHealthInterviews" :key="health_interview.id">
       {{ health_interview.guide_status.id }}
-      <select v-model.lazy="health_interview.guide_status.status" @change="selectStatus(health_interview, $event)">
+      <select v-if="sessionCheck" v-model.lazy="health_interview.guide_status.status" @change="selectStatus(health_interview, $event)">
         <option value="initial">初期</option>
         <option value="calling">呼出</option>
         <option value="pending">保留</option>
@@ -29,6 +29,10 @@ export default {
 
   props: {
     healthInterviews: Array,
+    sessionCheck: {
+      type: Boolean,
+      required: true
+    },
     modalFlag: {
       type: Boolean,
       required: true

@@ -88,7 +88,7 @@ end
 
 # Patient.create!(
 #   name:         "テスト患者",
-#   email:        "demo_patient@mail.com",
+#   email:        "t_patient@mail.com",
 #   password:     "passw0r-D",
 #   confirmed_at: Time.now
 # )

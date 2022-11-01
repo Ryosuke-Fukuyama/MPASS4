@@ -14,7 +14,7 @@ class PatientsController < ApplicationController
 
   def show
     @patient = current_patient if patient_signed_in?
-    # @last_interview = @patient.health_interviews.last
+    @last_interview = @patient.health_interviews.last
   end
 
   def destroy

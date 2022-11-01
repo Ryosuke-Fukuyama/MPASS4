@@ -17,6 +17,10 @@ class HealthInterviewsController < ApplicationController
       @reserved = current_patient.health_interviews
       @last_status = @reserved.last.guide_status
     end
+
+    if staff_signed_in? && current_staff.hospital_id == @hospital.id
+      @session_check = true
+    end
   end
 
   def payment
@@ -40,6 +44,7 @@ class HealthInterviewsController < ApplicationController
     @history = @health_interviews.where(hospital_id: @hospital)
     @health_interview = HealthInterview.new
     @health_interview.build_guide_status
+    binding.irb
   end
 
   def create
