@@ -6,8 +6,8 @@
         <option value="initial">初期</option>
         <option value="calling">呼出</option>
         <option value="pending">保留</option>
-        <option value="3">無断キャンセル</option>
-        <option value="4">決済</option>
+        <option value="noshow">無断キャンセル</option>
+        <option value="complete">決済</option>
       </select>
       <div class="modal__button" v-if="modalFlag && (missId === health_interview.id)">
         <ErrorModal @close-click="informClick()"></ErrorModal>
@@ -36,16 +36,13 @@ export default {
     missId: {
       // type: ,
       required: true
-    },
-  },
-
-  data:() => {
-    return {
-      // modalFlag: this.modalFlag,
-      // missId: this.missId,
-      statuses: [],
     }
   },
+
+  // data:() => {
+  //   return {
+  //   }
+  // },
 
   watch: {
     health_interviews: {
@@ -57,22 +54,6 @@ export default {
     }
   },
 
-  // computed: {
-  //   classificationHealthInterviews: function() {
-  //     return this.healthInterviews
-  //   }
-  //   // params() {
-  //   //   return {
-  //   //     health_interview: {
-  //   //       guide_status: {
-  //   //         status: this.status,
-  //   //         id:     this.id
-  //   //       }
-  //   //     }
-  //   //   }
-  //   // }
-  // },
-
   methods: {
     selectStatus(health_interview, e) {
       health_interview.guide_status.status = e.target.value
@@ -82,19 +63,12 @@ export default {
       axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
       axios.patch(url, health_interview)
         .then(res => {
-          this.$emit('select-status')
+          this.$emit('success-update')
         })
         .catch((err) => {
-          this.selectStatus = ""
           const id = JSON.parse(err.config.data).id
-          this.openModal(id)
-          // this.$emit('select-status-err')
+          this.$emit('failure-update', id)
         })
-    },
-
-     openModal(id) {
-      this.modalFlag = true
-      this.missId = id
     },
 
     informClick() {
@@ -105,6 +79,14 @@ export default {
 </script>
 
 <style>
+  select {
+    width: 10%
+  }
+
+  ul,li {
+    list-style: none
+  }
+
   .modal__button {
   display:inline-flex;
   }

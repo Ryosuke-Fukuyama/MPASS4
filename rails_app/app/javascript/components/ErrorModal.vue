@@ -13,11 +13,10 @@
 <script>
 export default {
   name: 'ErrorModal',
-  data:() => {
-    return {
-      modalFlag: ''
-    }
-  },
+  // data:() => {
+  //   return {
+  //   }
+  // },
 
   methods: {
     closeClick() {

@@ -4,10 +4,12 @@
       <p>{{ message.calling }}</p>
       <div v-if="health_interviews_1.length">
         <NumList
+          v-if="reRendering"
           :health-interviews="health_interviews_1"
           :modal-flag="modalFlag"
           :miss-id="missId"
-          @select-status="updateStatus"
+          @success-update="renewalList"
+          @failure-update="openModal"
           @inform-click="closeModal"
         ></NumList>
       </div>
@@ -16,11 +18,13 @@
     <div class="initial__list">
       <div v-if="health_interviews_0.length">
         <NumList
+          v-if="reRendering"
           :health-interviews="health_interviews_0"
           :modal-flag="modalFlag"
           :miss-id="missId"
-          @select-status="updateStatus"
-          @close-click="closeModal"
+          @success-update="renewalList"
+          @failure-update="openModal"
+          @inform-click="closeModal"
         ></NumList>
       </div>
     </div>
@@ -29,11 +33,13 @@
       <p>{{ message.pending }}</p>
       <div v-if="health_interviews_2.length">
         <NumList
+          v-if="reRendering"
           :health-interviews="health_interviews_2"
           :modal-flag="modalFlag"
           :miss-id="missId"
-          @select-status="updateStatus"
-          @close-click="closeModal"
+          @success-update="renewalList"
+          @failure-update="openModal"
+          @inform-click="closeModal"
         ></NumList>
       </div>
     </div>
@@ -44,8 +50,6 @@
 import axios from 'axios'
 import { csrfToken } from 'rails-ujs'
 import NumList from './components/NumList.vue'
-
-// Vue.component('NumList', NumList)
 
 export default {
   name: 'ListSet',
@@ -62,16 +66,16 @@ export default {
 
   data:() => {
     return {
-      health_interviews_1: [],
-      health_interviews_0: [],
-      health_interviews_2: [],
-      modalFlag: false,
-      missId: "",
       message: {
         calling: "お呼び出し中",
         pending: "保留中"
       },
-      id: ''
+      health_interviews_1: [],
+      health_interviews_0: [],
+      health_interviews_2: [],
+      modalFlag: false,
+      missId: '',
+      reRendering: true
     }
   },
 
@@ -86,16 +90,27 @@ export default {
           this.health_interviews_1 = res.data.health_interviews_1
           this.health_interviews_0 = res.data.health_interviews_0
           this.health_interviews_2 = res.data.health_interviews_2
+         this.toggle()
         })
     },
 
-    updateStatus() {
-      this.fetchArray()
+    toggle() {
+      this.reRendering = false
+      this.$nextTick(() => (this.reRendering = true))
+    },
+
+    renewalList() {
+      this.fetchArray(this.hospital_id)
+    },
+
+    openModal(id) {
+      this.modalFlag = true
+      this.missId = id
     },
 
     closeModal() {
       this.modalFlag = false
-      this.selectStatus = ""
+      // this. = ""  実値に戻したい
     }
   }
 }
