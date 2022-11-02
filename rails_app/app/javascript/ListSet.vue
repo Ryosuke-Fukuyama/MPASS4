@@ -9,6 +9,7 @@
           :session-check="sessionCheck"
           :modal-flag="modalFlag"
           :miss-id="missId"
+          @link-to-health_interview="locationHref"
           @success-update="renewalList"
           @failure-update="openModal"
           @inform-click="closeModal"
@@ -24,6 +25,7 @@
           :session-check="sessionCheck"
           :modal-flag="modalFlag"
           :miss-id="missId"
+          @link-to-health_interview="locationHref"
           @success-update="renewalList"
           @failure-update="openModal"
           @inform-click="closeModal"
@@ -40,6 +42,7 @@
           :session-check="sessionCheck"
           :modal-flag="modalFlag"
           :miss-id="missId"
+          @link-to-health_interview="locationHref"
           @success-update="renewalList"
           @failure-update="openModal"
           @inform-click="closeModal"
@@ -51,7 +54,7 @@
 
 <script>
 import axios from 'axios'
-import { csrfToken } from 'rails-ujs'
+// import { csrfToken } from 'rails-ujs'
 import NumList from './components/NumList.vue'
 
 export default {
@@ -109,6 +112,12 @@ export default {
         .then((res) => {
           this.sessionCheck = res.data.session_check
         })
+    },
+
+    locationHref(health_interview) {
+      const hospital_id = health_interview.hospital_id
+      const id = health_interview.id
+      location = `/hospitals/${hospital_id}/health_interviews/${id}`
     },
 
     renewalList() {

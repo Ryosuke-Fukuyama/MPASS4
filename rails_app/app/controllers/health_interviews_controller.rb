@@ -2,9 +2,9 @@ class HealthInterviewsController < ApplicationController
   before_action :patient_required, only: [:new]
   before_action :staff_required, only: %i[show edit]
   before_action :set_health_interview_params, only: %i[show edit update destroy]
+  before_action :set_hospital_params, only: %i[index payment]
 
   def index
-    @hospital = Hospital.find(params[:id])
     @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital.id)
     if @health_interviews.present?
       @health_interviews = @health_interviews.eager_load(:guide_status).order(created_at: :asc)
@@ -41,10 +41,9 @@ class HealthInterviewsController < ApplicationController
                                       )
       redirect_to patient_path(current_patient.id), notice: t('notice.already')
     end
-    @history = @health_interviews.where(hospital_id: @hospital)
+    @history = @health_interviews.where(hospital_id: params[:id])
     @health_interview = HealthInterview.new
     @health_interview.build_guide_status
-    binding.irb
   end
 
   def create
@@ -89,6 +88,10 @@ class HealthInterviewsController < ApplicationController
 
     def set_health_interview_params
       @health_interview = HealthInterview.find(params[:id])
+    end
+
+    def set_hospital_params
+      @hospital = Hospital.find(params[:id])
     end
 
     def health_interview_params
