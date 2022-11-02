@@ -1,16 +1,14 @@
 <h3><%= @hospital.name %></h3>
 <h3><%= t('view.healthinterviews') + t('view.index') %></h3>
 
-<% if patient_signed_in? && (!@reserved.present? || (@last_status.payment? || @last_status.noshow? || @last_status.complete?)) %>
+<% if patient_signed_in? && (!@reserved.present? || (@last_status.noshow? || @last_status.complete?)) %>
   <%= link_to t('view.new') + t('view.reception'), new_health_interview_path(@hospital), id: "new_health_interview_btn" %>
 <% end %>
-<br><br>
 
 <%= tag.div id: "list-set", data: { hospital_id: @hospital.id }.to_json %>
 
 <% if staff_signed_in? %>
-  <%= link_to t('view.second') + t('view.index'), payment_health_interviews_path(@hospital) %><%# date属性の秘匿性要検討 %>
-
+  <%= link_to t('view.reverse') + t('view.index'), reverse_health_interviews_path(@hospital.id) %><%# date属性の秘匿性要検討 %>
 <% end %>
 
 <%= javascript_pack_tag 'health_interviews_index_controller' %>

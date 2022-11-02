@@ -1,0 +1,7 @@
+<h1><%= Date.current.strftime('%Y/%m/%d') + t('view.hide') + t('view.index') %></h1>
+
+<%= tag.div id: "reverse-list-set", data: { hospital_id: @hospital.id }.to_json %>
+
+<%= link_to t('view.back'), :back %>
+
+<%= javascript_pack_tag 'health_interviews_index_controller' %>

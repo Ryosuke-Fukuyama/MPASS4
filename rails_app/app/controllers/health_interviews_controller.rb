@@ -1,11 +1,12 @@
 class HealthInterviewsController < ApplicationController
   before_action :patient_required, only: [:new]
-  before_action :staff_required, only: %i[show edit]
+  before_action :staff_required, only: %i[show reverse]
   before_action :set_health_interview_params, only: %i[show edit update destroy]
-  before_action :set_hospital_params, only: %i[index payment]
+  before_action :set_hospital_params, only: %i[index reverse]
+  before_action :set_staff_session_params, only: %i[index reverse]
 
   def index
-    @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital.id)
+    @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital)
     if @health_interviews.present?
       @health_interviews = @health_interviews.eager_load(:guide_status).order(created_at: :asc)
       @health_interviews_0 = @health_interviews.search_initial if @health_interviews.search_initial.any?
@@ -17,20 +18,15 @@ class HealthInterviewsController < ApplicationController
       @reserved = current_patient.health_interviews
       @last_status = @reserved.last.guide_status
     end
-
-    if staff_signed_in? && current_staff.hospital_id == @hospital.id
-      @session_check = true
-    end
   end
 
-  def payment
-    @health_interviews = HealthInterview
-                          .search_today
+  def reverse
+    @health_interviews = HealthInterview.search_today
                           .where(hospital_id: @hospital)
-                          .includes(:guide_status)
-                          .order(created_at: :asc)
-    @health_interviews_2 = @health_interviews.search_payment if @health_interviews.search_payment.present?
-    @health_interviews_4 = @health_interviews.search_noshow if @health_interviews.search_noshow.present?
+                          .eager_load(:guide_status)
+                          .order(updated_at: :asc)
+    @health_interviews_3 = @health_interviews.search_noshow if @health_interviews.search_noshow.any?
+    @health_interviews_4 = @health_interviews.search_payment if @health_interviews.search_payment.any?
   end
 
   def new
@@ -68,11 +64,9 @@ class HealthInterviewsController < ApplicationController
   def update
     if @health_interview.guide_status.update(status: guide_status_params[:status])
       # @health_interview.number.destroy if status.status == noshow || status.status == complete
-      render 'index'
-      # , json: { registration: 'OK!' }, status: 200
+      render 'index' # , json: { registration: 'OK!' }, status: 200
     else
-      render 'index'
-      # , json: { registration: 'ERROR!!!' }, status: 500
+      render 'index' # , json: { registration: 'ERROR!!!' }, status: 500
     end
 
     # @email = @health_interview.patient.email
@@ -92,6 +86,12 @@ class HealthInterviewsController < ApplicationController
 
     def set_hospital_params
       @hospital = Hospital.find(params[:id])
+    end
+
+    def set_staff_session_params
+      if staff_signed_in? && current_staff.hospital_id == @hospital.id
+        @session_check = true
+      end
     end
 
     def health_interview_params

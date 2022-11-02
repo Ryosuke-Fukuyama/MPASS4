@@ -27,6 +27,8 @@ class Staffs::SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(resource)
     hospital_id = (resource)[:hospital_id]
+    hospital_path(hospital_id) if current_staff.admin?
+
     health_interviews_path(hospital_id)
   end
 

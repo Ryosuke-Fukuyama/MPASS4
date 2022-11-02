@@ -274,6 +274,7 @@ ja:
     new_healthinterview: 問診票
     first: (初診用)
     second: (再診用)
+    reverse: 裏面
     apply: 申し込む
     search: 検索する
     select: 選択する

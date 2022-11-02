@@ -1,100 +1,88 @@
 <h3><%= @patient.name + t('view.honorific') + t('view.my_page') %></h3>
 
-<% if @patient.health_interviews.present? %>
+<% if @last_status.present? %>
   <% if
-    !@last_interview.guide_status.payment? &&
-    !@last_interview.guide_status.noshow? &&
-    @last_interview.guide_status.complete?
-  %><div>
-      <div>
-        <%= link_to @hospital.name, health_interviews_path(@hospital) %>
+    @last_status == "initial" ||
+    @last_status == "calling" ||
+    @last_status == "pending"
+  %>
+    <%= link_to @hospital.name, health_interviews_path(@hospital) %>
+    <h1><%= t('view.your_number_is') + @last_interview.guide_status.id.to_s %></h1>
 
-        <h1> <%= t('view.your_number_is') + @last_interview.id.to_s %></h1>
-        <% p @index = [] %>
-        <% p patient_id = nil %>
+    <% if @last_status == "initial" %>
+      <div>
+        <% @index = [] %>
+        <% patient_id = nil %>
         <% while patient_id == current_patient.id do %>
-          <% @health_interviews.each.with_index do |health_interview, i| %>
-            <% p @index << i %>
-            <% p health_interview.patient_id %>
+          <% @health_interviews.each.with_index(1) do |health_interview, i| %>
+            <% @index << i  %>
+            <% patient_id = health_interview.patient_id %>
           <% end %>
         <% end %>
         <%= t('view.waiting_befor') + @index.last.to_s + t('view.people') %>
       </div>
-    </div>
-  <% end %>
-
-  <div>
-    <% if @last_interview.guide_status.initial? %>
       <div>
         <%= simple_format(t('view.message.initial')) %>
       </div>
-    <% end %>
-
-    <% if @last_interview.guide_status.calling? %>
+    <% elsif @last_status == "calling" %>
       <div>
         <%= simple_format(t('view.message.calling')) %>
       </div>
-    <% end %>
-
-    <% if @last_interview.guide_status.pending? %>
+    <% else %>
       <div>
         <%= simple_format(t('view.message.pending')) %>
       </div>
     <% end %>
+  <% end %>
 
-    <% if @last_interview.guide_status.noshow? %>
+  <% if @last_status == "noshow" %>
+    <div>
+      <%= simple_format(t('view.message.noshow')) %>
+    </div>
+  <% elsif @last_status == "payment" %>
+    <% if @last_interview.price.present? %>
       <div>
-        <%= simple_format(t('view.message.noshow')) %>
+        <%= simple_format(t('view.message.payment')) %>
+      </div>
+      <div>
+        <p>¥<%= @last_interview.price %></p>
+        <%= form_tag(action: :pay, method: :post) do %>
+          <script type="text/javascript"
+            src="https://checkout.pay.jp"
+            class="payjp-button"
+            data-key=ENV['PAYJP_OPEN_KEY']>
+          </script>
+        <% end %>
+        <h4>テスト用データ</h4>
+        <tr>
+          <th>カード番号:</th>
+          <td>4242424242424242</td>
+        </tr>
+        <tr>
+          <th>有効期限:</th>
+          <td>12/30</td>
+        </tr>
+        <tr>
+          <th>CVC:</th>
+          <td>123</td>
+        </tr>
+        <tr>
+          <th>カード名義:</th>
+          <td>YUI ARAGAKI</td>
+        </tr>
+      </div>
+    <% else %>
+      <div>
+        <%= simple_format(t('view.message.calculating')) %>
       </div>
     <% end %>
+  <% elsif @last_status == "complete" %>
+    <div>
+      <%= simple_format(t('view.message.complete')) %>
+    </div>
+  <% end %>
+<% end %>
 
-    <% if @last_interview.guide_status.payment? %>
-      <% if @last_interview.price.present? %>
-        <div>
-          <%= simple_format(t('view.message.payment')) %>
-        </div>
-        <div>
-          <p>¥<%= @last_interview.price %></p>
-          <%= form_tag(action: :pay, method: :post) do %>
-            <script type="text/javascript"
-              src="https://checkout.pay.jp"
-              class="payjp-button"
-              data-key=ENV['PAYJP_OPEN_KEY']>
-            </script>
-          <% end %>
-          <h4>テスト用データ</h4>
-          <tr>
-            <th>カード番号:</th>
-            <td>4242424242424242</td>
-          </tr>
-          <tr>
-            <th>有効期限:</th>
-            <td>12/30</td>
-          </tr>
-          <tr>
-            <th>CVC:</th>
-            <td>123</td>
-          </tr>
-          <tr>
-            <th>カード名義:</th>
-            <td>YUI ARAGAKI</td>
-          </tr>
-        </div>
-      <% else %>
-        <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-          <%= simple_format(t('view.message.calculating')) %>
-        </div>
-      <% end %>
-    <% end %>
-
-    <% if @last_interview.guide_status.complete? %>
-      <div class="introduce_area d-flex flex-row justify-content-center align-items-center text-left alert text-left">
-        <%= simple_format(t('view.message.complete')) %>
-      </div>
-    <% end %>
-  </div>
-<% end %><br>
-
-<div class="btn btn-primary patient_show_edit_profile_button">
-  <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient), class: "text-white" %>
+<div class="btn">
+  <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient) %>
 </div>

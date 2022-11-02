@@ -1,9 +1,10 @@
 import Vue from 'vue/dist/vue.esm.js'
 // import App from '../App.vue'
 import ListSet from '../ListSet.vue'
+import ReverseListSet from '../ReverseListSet'
 
 // Vue.config.devtools = true
-// Vue.config.productionTip = false
+Vue.config.productionTip = false
 
 document.addEventListener('DOMContentLoaded', () => {
   const node = document.getElementById("list-set")
@@ -11,6 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const vm = new Vue({
     el:  '#list-set',
     render: h => h(ListSet, { props })
+  })
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  const node = document.getElementById("reverse-list-set")
+  const props = JSON.parse(node.getAttribute("data"))
+  const vm_2 = new Vue({
+    el:  '#reverse-list-set',
+    render: h => h(ReverseListSet, { props })
   })
 })
 

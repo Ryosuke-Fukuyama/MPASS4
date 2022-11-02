@@ -15,7 +15,7 @@
             <option value="calling">呼出</option>
             <option value="pending">保留</option>
             <option value="noshow">無断キャンセル</option>
-            <option value="complete">決済</option>
+            <option value="payment">決済</option>
           </select><div
             v-if="modalFlag && (missId === health_interview.id)"
             class="modal__button"

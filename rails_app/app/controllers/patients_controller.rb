@@ -15,7 +15,15 @@ class PatientsController < ApplicationController
   def show
     @patient = current_patient if patient_signed_in?
     @last_interview = @patient.health_interviews.last
+    @last_status = @last_interview
+                     .guide_status.status
+
     @hospital = @last_interview.hospital
+    @health_interviews = HealthInterview.where(hospital_id: @hospital)
+                           .where(updated_at: Time.current.all_day)
+                           .eager_load(:guide_status)
+                           .where(guide_statuses: { status: 'initial' })
+                           .order(created_at: :asc)
   end
 
   def destroy
