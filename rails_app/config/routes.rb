@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :hospitals do
     collection do
-      match 'search' => 'hospitals#search', via: [:get, :post], as: :search
+      # match 'search' => 'hospitals#search', via: [:get, :post], as: :search
       # get 'maps'
     end
     member do

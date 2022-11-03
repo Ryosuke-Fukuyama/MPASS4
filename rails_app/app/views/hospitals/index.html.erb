@@ -1,7 +1,7 @@
 <h3><%= t('view.hospital') + t('view.index') %></h3>
 
-<%= search_form_for @q, url: search_hospitals_path, html: { method: :post } do |f| %>
-  <%= f.label :name_cont, t('view.hospital') + t('view.name') %>
+<%= search_form_for @q, url: hospitals_path do |f| %>
+  <%= f.label :name_cont, t('view.hospital') + t('view.name_of') %>
   <%= f.search_field :name_cont, placeholder: "" %>
 
   <%= f.label :hospital_labels_id_eq, t('view.hospital_label') %>
@@ -35,4 +35,6 @@
   </tbody>
 </table>
 
-<%= paginate @hospitals %>
+<div class="paginate">
+  <%= paginate @hospitals %>
+</div>
