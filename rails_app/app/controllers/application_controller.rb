@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path) unless patient_signed_in?
   end
 
-  def staff_required #一行文だとnil classエラーでる
+  def staff_required # 一行文だとnil classエラーでる
     if !staff_signed_in?
       redirect_back(fallback_location: root_path)
     elsif !(current_staff.hospital_id == @hospital.id)

@@ -1,7 +1,7 @@
 class Patient < ApplicationRecord
   has_many :favorite_hospitals, dependent: :destroy
   has_many :health_interviews, dependent: :destroy
-#   has_many :sns_credentials, dependent: :destroy
+  #   has_many :sns_credentials, dependent: :destroy
 
   validates :name, presence: true,
                    length: { in: 2..20, allow_blank: true }
@@ -16,8 +16,8 @@ class Patient < ApplicationRecord
          :rememberable,
          :confirmable,
          :lockable
-        #  authentication_keys: []
-        #  :omniauthable, omniauth_providers: [:google_oauth2]
+  #  authentication_keys: []
+  #  :omniauthable, omniauth_providers: [:google_oauth2]
 
   # scope :search_patient, -> (hospital_id) do
   #   relevanted_interviews(hospital_id)

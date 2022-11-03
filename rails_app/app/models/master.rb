@@ -1,5 +1,4 @@
 class Master < ApplicationRecord
-
   validates :name, presence: true,
                    uniqueness: true,
                    length: { in: 1..20, allow_blank: true }
@@ -9,12 +8,12 @@ class Master < ApplicationRecord
   devise :database_authenticatable,
          :registerable,
          :recoverable,
-        #  :rememberable,
+         #  :rememberable,
          :confirmable,
          :lockable,
          :timeoutable,
          :trackable,
-         authentication_keys: [:name, :email]
+         authentication_keys: %i[name email]
 
   private
 

@@ -20,13 +20,14 @@ class Staffs::SessionsController < Devise::SessionsController
   # end
 
   protected
+
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   end
 
   def after_sign_in_path_for(resource)
-    hospital_id = (resource)[:hospital_id]
+    hospital_id = resource[:hospital_id]
     hospital_path(hospital_id) if current_staff.admin?
 
     health_interviews_path(hospital_id)

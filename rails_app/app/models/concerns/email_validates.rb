@@ -8,12 +8,12 @@ module EmailValidates
                       length: { maximum: 255 },
                       allow_blank: true
 
-    before_validation {
+    before_validation do
       def email_downcase
         return if email.blank?
 
         self.email = email.downcase
       end
-    }
+    end
   end
 end

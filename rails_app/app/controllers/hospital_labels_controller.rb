@@ -47,11 +47,12 @@ class HospitalLabelsController < ApplicationController
   end
 
   private
-    def set_hospital_label
-      @hospital_label = HospitalLabel.find(params[:id])
-    end
 
-    def hospital_label_params
-      params.require(:hospital_label).permit(:name)
-    end
+  def set_hospital_label
+    @hospital_label = HospitalLabel.find(params[:id])
+  end
+
+  def hospital_label_params
+    params.require(:hospital_label).permit(:name)
+  end
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'tops#index'
 
   devise_for :staffs, controllers: {
-    sessions: 'staffs/sessions',
+    sessions: 'staffs/sessions'
     # registrations: 'staffs/registrations'
   }
   devise_for :masters

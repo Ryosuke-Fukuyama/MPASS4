@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :hospital_label do
-    name { "MyString" }
+    name { 'MyString' }
   end
 end

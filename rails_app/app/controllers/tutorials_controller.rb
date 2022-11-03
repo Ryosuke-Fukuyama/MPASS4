@@ -50,9 +50,7 @@ class TutorialsController < ApplicationController
     seed = ('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a + symbols
     str = ''
 
-    while (str.length < length)
-      str += seed[rand(seed.length)].to_s
-    end
+    str += seed[rand(seed.length)].to_s while str.length < length
 
     str
   end

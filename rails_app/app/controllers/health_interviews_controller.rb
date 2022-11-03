@@ -22,9 +22,9 @@ class HealthInterviewsController < ApplicationController
 
   def reverse
     @health_interviews = HealthInterview.search_today
-                          .where(hospital_id: @hospital)
-                          .eager_load(:guide_status)
-                          .order(updated_at: :asc)
+                                        .where(hospital_id: @hospital)
+                                        .eager_load(:guide_status)
+                                        .order(updated_at: :asc)
     @health_interviews_3 = @health_interviews.search_noshow if @health_interviews.search_noshow.any?
     @health_interviews_4 = @health_interviews.search_payment if @health_interviews.search_payment.any?
   end
@@ -65,7 +65,7 @@ class HealthInterviewsController < ApplicationController
     @health_interview.guide_status.update(status: guide_status_params[:status]) if params[:guide_status].present?
     if health_interview_params[:price].present?
       if @health_interview.update(health_interview_params)
-      # @health_interview.number.destroy if status.status == noshow || status.status == complete
+        # @health_interview.number.destroy if status.status == noshow || status.status == complete
         redirect_to health_interview_path(@hospital, @health_interview) # , json: { registration: 'OK!' }, status: 200
       else
         render 'edit' # , json: { registration: 'ERROR!!!' }, status: 500
@@ -83,38 +83,36 @@ class HealthInterviewsController < ApplicationController
 
   private
 
-    def set_health_interview_params
-      @health_interview = HealthInterview.find(params[:id])
-    end
+  def set_health_interview_params
+    @health_interview = HealthInterview.find(params[:id])
+  end
 
-    def set_hospital_params
-      @hospital = Hospital.find(params[:id])
-    end
+  def set_hospital_params
+    @hospital = Hospital.find(params[:id])
+  end
 
-    def set_staff_session_params
-      if staff_signed_in? && current_staff.hospital_id == @hospital.id
-        @session_check = true
-      end
-    end
+  def set_staff_session_params
+    @session_check = true if staff_signed_in? && current_staff.hospital_id == @hospital.id
+  end
 
-    def health_interview_params
-      params.require(:health_interview).permit(
-        :age,
-        :gender,
-        :symptomatology,
-        :condition,
-        :comment,
-        :price,
-        :hospital_id,
-        # :notification,
-        guide_status_attributes: [
-          :id,
-          :status
-        ]
-      )
-    end
+  def health_interview_params
+    params.require(:health_interview).permit(
+      :age,
+      :gender,
+      :symptomatology,
+      :condition,
+      :comment,
+      :price,
+      :hospital_id,
+      # :notification,
+      guide_status_attributes: %i[
+        id
+        status
+      ]
+    )
+  end
 
-    def guide_status_params
-      params.require(:guide_status).permit(:id, :status)
-    end
+  def guide_status_params
+    params.require(:guide_status).permit(:id, :status)
+  end
 end

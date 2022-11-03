@@ -47,9 +47,8 @@ class StaffsController < ApplicationController
       :name,
       :password,
       :password_confirmation,
-      :admin,
+      :admin
       # :hospital_id
     )
   end
 end
-

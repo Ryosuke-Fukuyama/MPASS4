@@ -59,30 +59,30 @@
 # end
 
 Patient.eager_load(:health_interviews).all.each do |p|
-  symptomatology = "(サンプル)３日前から発熱、倦怠感と吐き気"
-  condition =      "(サンプル)持病等"
+  symptomatology = '(サンプル)３日前から発熱、倦怠感と吐き気'
+  condition =      '(サンプル)持病等'
 
   HealthInterview.create!(
     # age:            "#{1 + rand(100)}",
     # gender:         0,
     # condition:      condition,
     symptomatology: symptomatology,
-    patient_id:     p.id,
-    hospital_id:    1,
+    patient_id: p.id,
+    hospital_id: 1
   )
 end
 
 Patient.eager_load(:health_interviews).all.each do |p|
-  symptomatology = "(サンプル)３日前から発熱、倦怠感と吐き気"
-  condition =      "(サンプル)持病等"
+  symptomatology = '(サンプル)３日前から発熱、倦怠感と吐き気'
+  condition =      '(サンプル)持病等'
 
   HealthInterview.create!(
     # age:            "#{1 + rand(100)}",
     # gender:         0,
     # condition:      condition,
     symptomatology: symptomatology,
-    patient_id:     p.id,
-    hospital_id:    2,
+    patient_id: p.id,
+    hospital_id: 2
   )
 end
 
