@@ -1,6 +1,6 @@
 class HealthInterviewsController < ApplicationController
   before_action :patient_required, only: [:new]
-  before_action :staff_required, only: %i[show reverse]
+  before_action :staff_required, only: %i[show edit reverse]
   before_action :set_health_interview_params, only: %i[show edit update destroy]
   before_action :set_hospital_params, only: %i[index reverse]
   before_action :set_staff_session_params, only: %i[index reverse]
@@ -44,6 +44,7 @@ class HealthInterviewsController < ApplicationController
 
   def create
     @health_interview = HealthInterview.create(health_interview_params)
+    @health_interview.patient_id = current_patient.id
     @health_interview.hospital_id = params[:id]
     if @health_interview.save
       redirect_to patient_path(current_patient.id), notice: t('notice.newinterview')
@@ -61,11 +62,14 @@ class HealthInterviewsController < ApplicationController
   def edit; end
 
   def update
-    if @health_interview.guide_status.update(status: guide_status_params[:status])
+    @health_interview.guide_status.update(status: guide_status_params[:status]) if params[:guide_status].present?
+    if health_interview_params[:price].present?
+      if @health_interview.update(health_interview_params)
       # @health_interview.number.destroy if status.status == noshow || status.status == complete
-      render 'index' # , json: { registration: 'OK!' }, status: 200
-    else
-      render 'index' # , json: { registration: 'ERROR!!!' }, status: 500
+        redirect_to health_interview_path(@hospital, @health_interview) # , json: { registration: 'OK!' }, status: 200
+      else
+        render 'edit' # , json: { registration: 'ERROR!!!' }, status: 500
+      end
     end
 
     # @email = @health_interview.patient.email
@@ -107,7 +111,7 @@ class HealthInterviewsController < ApplicationController
           :id,
           :status
         ]
-      ).merge(patient_id: current_patient.id)
+      )
     end
 
     def guide_status_params

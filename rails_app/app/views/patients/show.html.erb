@@ -11,15 +11,15 @@
 
     <% if @last_status == "initial" %>
       <div>
-        <% @index = [] %>
+        <% index = [] %>
         <% patient_id = nil %>
-        <% while patient_id == current_patient.id do %>
+        <% until patient_id == current_patient.id do %>
           <% @health_interviews.each.with_index(1) do |health_interview, i| %>
-            <% @index << i  %>
+            <% index << i  %>
             <% patient_id = health_interview.patient_id %>
           <% end %>
         <% end %>
-        <%= t('view.waiting_befor') + @index.last.to_s + t('view.people') %>
+        <%= t('view.waiting_befor') + index.last.to_s + t('view.people') %>
       </div>
       <div>
         <%= simple_format(t('view.message.initial')) %>

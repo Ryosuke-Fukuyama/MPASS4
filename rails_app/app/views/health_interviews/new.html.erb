@@ -1,4 +1,4 @@
-<%= form_with(model: [@hospital, @health_interview], local: true) do |f| %>
+<%= form_with(model: [@health_interview], local: true) do |f| %>
 
   <% unless @history.present? %>
   <h3><%= t('view.new_healthinterview') + t('view.first') %></h3>

@@ -61,7 +61,7 @@
 Patient.eager_load(:health_interviews).all.each do |p|
   symptomatology = "(サンプル)３日前から発熱、倦怠感と吐き気"
   condition =      "(サンプル)持病等"
-  comment =        "(サンプル)"
+  comment =        "(サンプル) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
   HealthInterview.create!(
     # age:            "#{1 + rand(100)}",
@@ -81,7 +81,7 @@ end
 # # Rspec用
 # Master.create!(
 #   name:         "テストマスター",
-#   email:        "demo_master@mail.com",
+#   email:        "t_master@mail.com",
 #   password:     "passw0r-D",
 #   confirmed_at: Time.now
 # )

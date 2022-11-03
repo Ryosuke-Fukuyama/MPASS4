@@ -10,8 +10,7 @@
   <% else %>
     <%= link_to t('view.favorite') + t('view.addition'), favorite_hospitals_path(hospital_id: @hospital.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
-<% end %>
-<br><br>
+<% end %><br />
 
 <%#= image_tag @hospital.image.url %>
 
@@ -44,8 +43,7 @@
       <% end %>
     </td>
   </tr>
-</table>
-<br>
+</table><br />
 
 <%= button_to t('view.back'), {controller: 'hospitals', action: 'index'}, {method: :get} %>
 

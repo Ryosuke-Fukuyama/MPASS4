@@ -5,7 +5,6 @@ class CreateHealthInterviews < ActiveRecord::Migration[6.0]
       t.integer :gender
       t.text :symptomatology
       t.text :condition
-      t.text :comment
       t.integer :price
       # t.boolean :notification, default: false
       t.references :patient, null: false, foreign_key: true

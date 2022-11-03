@@ -1,0 +1,24 @@
+<h3><%= t('view.status') + t('view.edit') %></h3>
+
+<%= form_with(model: [@health_interview], local: true) do |f| %>
+
+  <p>No.【<%= @health_interview.id %>】</p>
+
+  <div class="field">
+    <%= f.fields_for :guide_status do |s| %>
+      <%= s.label t('view.status') %>
+      <%= s.select :status, GuideStatus.statuses.keys %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label t('view.price') %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to t('view.back'), :back %>
