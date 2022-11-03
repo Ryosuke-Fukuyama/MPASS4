@@ -51,11 +51,12 @@ class HospitalForm < YAAF::Form
 
   def staffs
     return @staffs if defined?(@staffs)
+
     @staffs = []
 
     if hospital.staffs.present?
       hospital.staffs.each do |staff|
-        attr = staffs_attributes.values&.find { |val| val["id"].to_i == staff.id }
+        attr = staffs_attributes.values&.find { |val| val['id'].to_i == staff.id }
         @staffs << StaffForm.new(attr, staff: staff)
       end
     else
@@ -78,15 +79,14 @@ class HospitalForm < YAAF::Form
                                address: @attributes[:address],
                                access: @attributes[:access],
                                introduction: @attributes[:introduction],
-                               image: @attributes[:image]
-                              }
+                               image: @attributes[:image] }
   end
 
   def hospital_label_ids
-    @hospital_label_ids ||= (@attributes[:hospital_label_ids] || {} )
+    @hospital_label_ids ||= (@attributes[:hospital_label_ids] || {})
   end
 
   def staffs_attributes
-    @staffs_attributes ||= (@attributes[:staffs_attributes] || {} )
+    @staffs_attributes ||= (@attributes[:staffs_attributes] || {})
   end
 end

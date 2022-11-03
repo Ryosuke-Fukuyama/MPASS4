@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+
+  nav p {
+    text-align: center;
+  }
+
+  nav ul {
+    margin-top: 0;
+    padding: 0;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  nav .flex-right {
+    margin-left: auto;
+  }
+
+  ul li {
+    list-style: none;
+    margin: 5px;
+  }
+
+  .logo {
+    font-size: x-large;
+    margin-bottom: 0;
+  }
+
+  /* span.logo-design {
+    background: linear-gradient(transparent 60%, #a8eaff 60%);
+    margin-left: auto;
+    margin-right: auto;
+  } */
+
+  text_area {
+    size: 20x5;
+  }
+
+

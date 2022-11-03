@@ -12,6 +12,7 @@ module RailsApp
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     # config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
+    # config.action_controller.include_all_helpers = false #ヘルパーの使用を限定する
     config.generators do |g|
       g.assets false
       g.helper false

@@ -1,12 +1,11 @@
 class StaffsController < ApplicationController
   before_action :admin_required
-  before_action :admin_limiter, only: %i[update destroy]
   before_action :set_staff, only: %i[edit update destroy]
 
   def index
     @q = Staff.ransack(params[:q])
     @staffs = @q ? @q.result : Staff.all
-    @staffs = @staffs.order(created_at: :asc).page(params[:page]).per(8) # pagination(params)
+    @staffs = @staffs.order(created_at: :asc).page(params[:page]).per(8)
   end
 
   def new
@@ -48,9 +47,8 @@ class StaffsController < ApplicationController
       :name,
       :password,
       :password_confirmation,
-      :admin,
+      :admin
       # :hospital_id
     )
   end
 end
-

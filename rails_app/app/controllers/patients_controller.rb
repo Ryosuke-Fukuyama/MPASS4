@@ -5,16 +5,37 @@ class PatientsController < ApplicationController
 
   def index
     @q = Patient.ransack(params[:q])
-    @health_interviews = HealthInterview.where(hospital_id: @hospital.id)
-    @patient_ids = @health_interviews.pluck(:patient_id)
-    @patients = Patient.where(id: @patient_ids)
-    @patients = @q.result if @q.present?
+    # @health_interviews = HealthInterview.where(hospital_id: @hospital)
+    # @patient_ids = @health_interviews.pluck(:patient_id)
+    # @patients = Patient.where(id: @patient_ids)
+    @patients = Patient.eager_load(:health_interviews)
+                       .where(health_interviews: { hospital_id: @hospital })
+    @patients = @q ? @q.result : @patient # @q.result if @q.present?
     @patients = @patients.order(created_at: :asc).page(params[:page]).per(8)
+  end
+
+  def search
+    index
+    render :index
   end
 
   def show
     @patient = current_patient if patient_signed_in?
-    # @last_interview = @patient.health_interviews.last
+    if @patient.health_interviews.present?
+      @last_interview = @patient.health_interviews.last
+      @last_status = @last_interview.guide_status.status
+      @hospital = @last_interview.hospital
+
+      if @last_status == 'initial'
+        @health_interviews = HealthInterview.where(hospital_id: @hospital)
+                                            .where(created_at: Time.current.all_day)
+                                            .eager_load(:guide_status)
+                                            .where(guide_statuses: { status: 'initial' })
+                                            .order(created_at: :asc)
+        @index = @health_interviews.map { |a| a[:id] }.find_index(current_patient.id)
+        @index += 1
+      end
+    end
   end
 
   def destroy

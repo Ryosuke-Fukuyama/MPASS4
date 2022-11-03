@@ -221,11 +221,11 @@ ja:
     pm: 午後
 
   enums:              #enum型に対する日本語定義であることを明示するために記述
-    guide_label:           #モデル名を指定
+    guide_status:           #モデル名を指定
       status:           #カラム名を指定
         initial: 初期
         calling: 呼出
-        done: 済み
+        payment: 済み
         pending: 保留
         noshow: 無断キャンセル
         complete: 完了
@@ -274,12 +274,13 @@ ja:
     new_healthinterview: 問診票
     first: (初診用)
     second: (再診用)
+    reverse: 裏面
     apply: 申し込む
     search: 検索する
     select: 選択する
     initial: 初期
     calling: お呼出中
-    done: 済み
+    payment: 済み
     pending: 保留中
     noshow: 無断キャンセル
     complete: 完了
@@ -327,7 +328,7 @@ ja:
       payment: |
             本日のお会計は下記の通りになります。
             ご確認の上、お支払いお願い致します。
-      done: |
+      calculating: |
          ご不便をお掛けして申し訳ありません。
          お会計は現在精算中でございます。もう暫くお待ちくださいませ。
       complete: |
