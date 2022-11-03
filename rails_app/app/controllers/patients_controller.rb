@@ -10,7 +10,7 @@ class PatientsController < ApplicationController
     # @patients = Patient.where(id: @patient_ids)
     @patients = Patient.eager_load(:health_interviews)
                     .where(health_interviews: { hospital_id: @hospital })
-    @patients = @q.result if @q.present?
+    @patients = @q ? @q.result : @patient # @q.result if @q.present?
     @patients = @patients.order(created_at: :asc).page(params[:page]).per(8)
   end
 

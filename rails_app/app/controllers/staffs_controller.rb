@@ -6,7 +6,7 @@ class StaffsController < ApplicationController
   def index
     @q = Staff.ransack(params[:q])
     @staffs = @q ? @q.result : Staff.all
-    @staffs = @staffs.order(created_at: :asc).page(params[:page]).per(8) # pagination(params)
+    @staffs = @staffs.order(created_at: :asc).page(params[:page]).per(8)
   end
 
   def new
