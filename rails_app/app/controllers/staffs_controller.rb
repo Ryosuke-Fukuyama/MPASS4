@@ -1,6 +1,5 @@
 class StaffsController < ApplicationController
   before_action :admin_required
-  before_action :admin_limiter, only: %i[update destroy]
   before_action :set_staff, only: %i[edit update destroy]
 
   def index

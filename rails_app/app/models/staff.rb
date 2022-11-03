@@ -6,6 +6,9 @@ class Staff < ApplicationRecord
                    length: { in: 1..20, allow_blank: true }
   include PasswordValidates
 
+  before_update :admin_validation
+  before_destroy :admin_validation
+
   devise :database_authenticatable,
          :lockable,
          :timeoutable,
@@ -14,8 +17,11 @@ class Staff < ApplicationRecord
 
   private
 
-    def admin_limiter
-      throw(:abort) if Staff.select{admin?}.size <= 1
+    def admin_validation
+      if Staff.select{admin?}.size <= 1
+        # flash[:alert] = t('alert.admin_size') # undefined local variable or method `flash' for
+        throw(:abort)
+      end
     end
 
     def email_required?

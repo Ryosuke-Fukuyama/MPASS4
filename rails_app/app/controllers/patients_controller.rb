@@ -24,13 +24,17 @@ class PatientsController < ApplicationController
     if @patient.health_interviews.present?
       @last_interview = @patient.health_interviews.last
       @last_status = @last_interview.guide_status.status
-
       @hospital = @last_interview.hospital
-      @health_interviews = HealthInterview.where(hospital_id: @hospital)
-                            .where(updated_at: Time.current.all_day)
+
+      if @last_status == 'initial'
+        @health_interviews = HealthInterview.where(hospital_id: @hospital)
+                            .where(created_at: Time.current.all_day)
                             .eager_load(:guide_status)
                             .where(guide_statuses: { status: 'initial' })
                             .order(created_at: :asc)
+        @index = @health_interviews.map { |a| a[:id] }.find_index(current_patient.id)
+        @index += 1
+      end
     end
   end
 
