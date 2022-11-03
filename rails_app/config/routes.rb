@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       post 'guest_sign_in'
       post 'guest_staff_sign_in'
       post 'guest_admin_sign_in'
+      post 'guest_master_sign_in'
     end
   end
 

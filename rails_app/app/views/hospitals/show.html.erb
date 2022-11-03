@@ -45,7 +45,7 @@
   </tr>
 </table><br />
 
-<%= button_to t('view.back'), {controller: 'hospitals', action: 'index'}, {method: :get} %>
+<button><%= link_to t('view.back'), :back %></button>
 
 <% if !(patient_signed_in? || staff_signed_in? || master_signed_in?)  %>
   <%= link_to t('view.staff') + t('view.only'), new_staff_session_path, id: "staff-sign_in" %>

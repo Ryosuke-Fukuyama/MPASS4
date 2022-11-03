@@ -5,10 +5,11 @@
   <%= link_to t('view.new') + t('view.reception'), new_health_interview_path(@hospital), id: "new_health_interview_btn" %>
 <% end %>
 
-<%= tag.div id: "list-set", data: { hospital_id: @hospital.id }.to_json %>
+<%= tag.div id: "list-set", data: { hospital_id: @hospital.id }.to_json %><%# date属性の秘匿性要検討 %>
 
 <% if staff_signed_in? %>
-  <%= link_to t('view.reverse') + t('view.index'), reverse_health_interviews_path(@hospital.id) %><%# date属性の秘匿性要検討 %>
+  <%= link_to t('view.reverse') + t('view.index'), reverse_health_interviews_path(@hospital.id) %><br />
+  <%= link_to @hospital.name + t('view.page'), hospital_path(@hospital) %>
 <% end %>
 
 <%= javascript_pack_tag 'health_interviews_index_controller' %>

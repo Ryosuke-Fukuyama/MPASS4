@@ -61,16 +61,14 @@
 Patient.eager_load(:health_interviews).all.each do |p|
   symptomatology = "(サンプル)３日前から発熱、倦怠感と吐き気"
   condition =      "(サンプル)持病等"
-  comment =        "(サンプル) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
   HealthInterview.create!(
     # age:            "#{1 + rand(100)}",
     # gender:         0,
-    # symptomatology: symptomatology,
     # condition:      condition,
+    symptomatology: symptomatology,
     patient_id:     p.id,
     hospital_id:    1,
-    comment:        comment
   )
 end
 
