@@ -43,6 +43,7 @@ class HealthInterviewsController < ApplicationController
   end
 
   def create
+    binding.irb
     # @health_interview = current_patient.health_interviews.build(health_interview_params)
     # @hospital.health_interviews << @health_interview
     @health_interview = HealthInterview.create(health_interview_params)

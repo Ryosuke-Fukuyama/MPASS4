@@ -3,7 +3,7 @@
   <% unless @history.present? %>
   <h3><%= t('view.new_healthinterview') + t('view.first') %></h3>
 
-    <%# 次作では年齢・性別はPatientのカラムとして登録させる %>
+    <%# 次作ではage,gender,(condition?)はPatientのカラムとして登録させる %>
     <div class="field">
       <%= f.label t('view.age') %>
       <%= f.text_field :age, placeholder: t('view.placeholder.integer'), size: 3 %>
@@ -15,18 +15,18 @@
     </div>
 
     <div class="field">
-      <%= f.text_area :symptomatology, size: "20x5", placeholder: t('view.placeholder.symptomatology') %>
+      <%= f.text_area :symptomatology, placeholder: t('view.placeholder.symptomatology') %>
     </div>
 
     <div class="field">
-      <%= f.text_area :condition, size: "20x5", placeholder: t('view.placeholder.condition') %>
+      <%= f.text_area :condition, placeholder: t('view.placeholder.condition') %>
     </div>
 
   <% else %>
   <h3><%= t('view.new_healthinterview') + t('view.second') %></h3>
 
     <div class="field">
-      <%= f.text_area :comment, size: "20x5", placeholder: t('view.placeholder.comment') %>
+      <%= f.text_area :comment, placeholder: t('view.placeholder.comment') %>
     </div>
   <% end %>
 
