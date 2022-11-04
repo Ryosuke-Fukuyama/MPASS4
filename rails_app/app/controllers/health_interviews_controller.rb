@@ -100,7 +100,7 @@ class HealthInterviewsController < ApplicationController
     params.require(:health_interview).permit(
       :age,
       :gender,
-      :symptomatology,
+      :symptoms,
       :condition,
       :comment,
       :price,

@@ -38,7 +38,7 @@
     <th><%= t('view.visit_date') %></th>
     <th>No.</th>
     <th><%= t('view.status') %></th>
-    <th><%= t('view.symptomatology') %></th> # カラム名 symptoms に変更
+    <th><%= t('view.symptoms') %></th> # カラム名 symptoms に変更
   </tr>
 
   <% @history.each.with_index do |history, i| %>
@@ -46,8 +46,8 @@
       <td><%= history.created_at.strftime('%Y/%m/%d') %></td>
       <td align="center">【<%= history.guide_status.id %>】</td>
       <td align="center"><%= history.guide_status.status_i18n %></td>
-      <% if history.symptomatology.present? %></td>
-        <td><%= history.symptomatology  %></td>
+      <% if history.symptoms.present? %></td>
+        <td><%= history.symptoms  %></td>
       <% end %>
     </tr>
     <% if history.guide_status.payment? %>
@@ -60,4 +60,6 @@
   <% end %>
 </table>
 
-<button><%= link_to t('view.back'), :back %></button>
+<button>
+  <%= link_to t('view.back'), :back %>
+</button>

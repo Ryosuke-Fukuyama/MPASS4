@@ -1,9 +1,7 @@
 
 <div class="title_block">
   <h3><%= @hospital.name %></h3>
-  <button type="button">
-    <%= link_to t('view.waiting'), health_interviews_path(@hospital) %>
-  </button>
+
   <% if patient_signed_in? %>
     <% if @favorite_hospital.present? %>
       <%= link_to t('view.favorite') + t('view.cancel'),
@@ -16,6 +14,10 @@
     <% end %>
   <% end %>
 </div>
+
+<button type="button">
+  <%= link_to t('view.waiting'), health_interviews_path(@hospital) %>
+</button>
 
 <table>
   <tr>
@@ -61,16 +63,18 @@
 
 <button>
   <%= link_to t('view.back'), :back %>
-</button><br />
+</button>
 
 
 <% if (staff_signed_in? && current_staff.admin? && current_staff.hospital_id == @hospital.id) || master_signed_in? %>
-  <button>
-    <%= link_to t('view.edit'), edit_hospital_path(@hospital), id: "hospital-edit" %>
-  </button>
-  <button>
-    <%= link_to t('view.destroy'), hospital_path(@hospital), method: :delete, data: { confirm: t('confirm.delete') }, id: "hospital-destroy" %>
-</button>
+  <div>
+    <button>
+      <%= link_to t('view.edit'), edit_hospital_path(@hospital), id: "hospital-edit" %>
+    </button>
+    <button>
+      <%= link_to t('view.destroy'), hospital_path(@hospital), method: :delete, data: { confirm: t('confirm.delete') }, id: "hospital-destroy" %>
+    </button>
+  </div>
 <% end %>
 
 <% if !(patient_signed_in? || staff_signed_in? || master_signed_in?)  %>

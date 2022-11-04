@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2022_10_11_071046) do
   create_table "health_interviews", force: :cascade do |t|
     t.integer "age"
     t.integer "gender"
-    t.text "symptomatology"
+    t.text "symptoms"
     t.text "condition"
     t.integer "price"
     t.bigint "patient_id", null: false

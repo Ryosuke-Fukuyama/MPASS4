@@ -15,7 +15,7 @@
     </div>
 
     <div class="field">
-      <%= f.text_area :symptomatology, placeholder: t('view.placeholder.symptomatology') %>
+      <%= f.text_area :symptoms, placeholder: t('view.placeholder.symptoms') %>
     </div>
 
     <div class="field">
@@ -26,7 +26,7 @@
   <h3><%= t('view.new_health_interview') + t('view.second') %></h3>
 
     <div class="field">
-      <%= f.text_area :symptomatology, placeholder: t('view.placeholder.symptomatology') %>
+      <%= f.text_area :symptoms, placeholder: t('view.placeholder.symptoms') %>
     </div>
   <% end %>
 
@@ -35,7 +35,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.submit t('apply')%>
+    <%= f.submit t('helpers.submit.apply') %>
   </div>
 <% end %>
 

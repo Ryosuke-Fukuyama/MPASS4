@@ -160,6 +160,7 @@ ja:
     select:
       prompt: 選択してください
     submit:
+      apply: 申し込む
       create: 登録する
       submit: 送信する
       update: 更新する
@@ -323,7 +324,7 @@ ja:
       password_confirmation: 同じものを入力してください
       patient_name: フルネーム(漢字)
       staff_name: 名前
-      symptomatology: 症状や、発症時期等
+      symptoms: 症状や、発症時期等
       tel: 半角数字(ハイフンなし)
     message:
       initial: |
