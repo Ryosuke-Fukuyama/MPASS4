@@ -5,6 +5,9 @@ class Master < ApplicationRecord
   include EmailValidates
   include PasswordValidates
 
+  before_update :master_validation
+  before_destroy :master_validation
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -16,6 +19,12 @@ class Master < ApplicationRecord
          authentication_keys: %i[name email]
 
   private
+   def master_validation
+    if Master.all.size <= 1
+      # flash[:alert] = t('alert.master_size') # <-undefined local variable or method `flash' for
+      throw(:abort)
+    end
+  end
 
   def email_required?
     false

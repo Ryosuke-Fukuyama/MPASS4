@@ -45,8 +45,55 @@
     margin-right: auto;
   } */
 
-  text_area {
-    size: 20x5;
+  .small_font {
+    font-size: small;
   }
+
+  .title_block h3 {
+    display: inline-block;
+  }
+
+  form {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .index_area {
+    margin-bottom: 30px;
+  }
+
+  /* .search_area {
+
+  } */
+
+  button {
+    margin: 10px 5px 5px 10px;
+  }
+
+  .paginate {
+    margin-top: 30px;
+  }
+
+  .sky__line {
+    border-top: 3px solid skyblue;
+  }
+
+  .orange__line {
+    border-top: 3px solid orange;
+  }
+
+  .red__line {
+    border-top: 3px solid red;
+  }
+
+  input#health_interview_age {
+    width: 30px;
+  }
+
+  textarea {
+    width: 140px;
+    height: 70px;
+  }
+
 
 

@@ -1,0 +1,13 @@
+<h3><%= t('view.master') + t('view.menu') %></h3>
+
+<div>
+  <%= link_to t('view.master') + t('view.index'), masters_path %>
+</div>
+
+<div>
+  <%= link_to t('view.account') + t('view.edit'), edit_master_registration_path(@master) %>
+</div>
+
+<div>
+  <%= link_to t('view.new') + t('view.hospital'), new_hospital_path %>
+</div>

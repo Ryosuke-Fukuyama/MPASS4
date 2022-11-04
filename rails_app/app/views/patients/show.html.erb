@@ -6,12 +6,12 @@
     @last_status == "calling" ||
     @last_status == "pending"
   %>
-    <%= link_to @hospital.name, health_interviews_path(@hospital) %>
+    <%= link_to @hospital.name + t('view.waiting'), health_interviews_path(@hospital) %>
     <h1><%= t('view.your_number_is') + @last_interview.guide_status.id.to_s %></h1>
 
     <% if @last_status == "initial" %>
       <div>
-        <%= t('view.waiting_befor') + @index.to_s + t('view.people') %>
+        <%= t('view.waiting_befor') + @index.to_s + t('view.people_num') %>
       </div>
       <div>
         <%= simple_format(t('view.message.initial')) %>
@@ -76,5 +76,7 @@
 <% end %>
 
 <div class="btn">
-  <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient) %>
+  <button>
+    <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient) %>
+  </button>
 </div>

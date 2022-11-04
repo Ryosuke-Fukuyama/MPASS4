@@ -14,10 +14,10 @@ class PatientsController < ApplicationController
     @patients = @patients.order(created_at: :asc).page(params[:page]).per(8)
   end
 
-  def search
-    index
-    render :index
-  end
+  # def search
+  #   index
+  #   render :index
+  # end
 
   def show
     @patient = current_patient if patient_signed_in?
@@ -28,11 +28,11 @@ class PatientsController < ApplicationController
 
       if @last_status == 'initial'
         @health_interviews = HealthInterview.where(hospital_id: @hospital)
-                                            .where(created_at: Time.current.all_day)
+                                            .search_today
                                             .eager_load(:guide_status)
                                             .where(guide_statuses: { status: 'initial' })
                                             .order(created_at: :asc)
-        @index = @health_interviews.map { |a| a[:id] }.find_index(current_patient.id)
+        @index = @health_interviews.map { |a| a[:patient_id] }.find_index(current_patient.id)
         @index += 1
       end
     end

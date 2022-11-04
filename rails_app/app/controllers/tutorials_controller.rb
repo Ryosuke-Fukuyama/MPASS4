@@ -27,7 +27,7 @@ class TutorialsController < ApplicationController
       staff.hospital_id = 1
     end
     sign_in staff
-    redirect_to health_interviews_path(staff.hospital_id), notice: t('notice.guest_admin_staff')
+    redirect_to hospital_path(staff.hospital_id), notice: t('notice.guest_admin_staff')
   end
 
   def guest_master_sign_in

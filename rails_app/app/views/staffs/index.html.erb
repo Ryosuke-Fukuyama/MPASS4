@@ -1,43 +1,54 @@
 <h3><%= t('view.staff') + t('view.index') %></h3>
 
-<%= search_form_for @q, url: staffs_path do |f| %>
-  <%= f.label :name_cont, t('view.name') %>
-  <%= f.search_field :name_cont, placeholder: t('view.placeholder.part') %>
-  <br>
-  <%= f.submit t('view.search') %>
-<% end %>
+<div class="search_area">
+  <%= search_form_for @q, url: staffs_path do |f| %>
+    <%= f.label :name_cont, t('view.name') %>
+    <%= f.search_field :name_cont, placeholder: t('view.placeholder.part') %>
+    <%= f.submit t('view.search') %>
+  <% end %>
+</div>
 
-
-<table>
-  <thead>
-    <tr>
-      <th><%= t('view.name') %></th>
-      <th><%= t('view.admin') %></th>
-    </tr>
-  </thead>
-  <hr>
-  <tbody>
-    <% @staffs.each do |staff| %>
+<div class="index_area">
+  <table>
+    <thead>
       <tr>
-        <td>
-          <%= staff.name %>
-        </td>
-        <td class="admin_mark">
-          <%= staff.admin == true ? "○" : "" %>
-        </td>
-        <td>
-          <button>
-            <%= link_to t('view.edit'), edit_staff_path(staff), id: "in-house-edit-staff-#{staff.id}" %>
-          </button>
-          <button>
-            <%= link_to t('view.destroy'), staff, method: :delete, data: { confirm: t('confirm.delete') }, id: "in-house-delete-staff-#{staff.id}" %>
-          </button>
-        </td>
+        <th><%= t('view.name') %></th>
+        <th><%= t('view.admin') %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @staffs.each do |staff| %>
+        <tr>
+          <td>
+            <%= staff.name %>
+          </td>
+          <td class="admin_mark">
+            <%= staff.admin == true ? "○" : "" %>
+          </td>
+          <td>
+            <button>
+              <%= link_to t('view.edit'), edit_staff_path(staff), id: "in-house-edit-staff-#{staff.id}" %>
+            </button>
+            <% unless staff.id == current_staff.id %>
+              <button>
+                <%= link_to t('view.destroy'), staff, method: :delete, data: { confirm: t('confirm.delete') }, id: "in-house-delete-staff-#{staff.id}" %>
+              </button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= paginate @staffs %>
-<br>
-<%= link_to t('view.staff') + t('view.new') + t('view.create'), new_staff_path %>
+  <div align="center", class="paginate">
+    <%= paginate @staffs %>
+  </div>
+</div>
+
+<div>
+  <%= link_to t('view.staff') + t('view.new') + t('view.create'), new_staff_path %>
+</div>
+
+<button>
+  <%= link_to t('view.back'), :back %>
+</button>

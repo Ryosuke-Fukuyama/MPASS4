@@ -1,7 +1,6 @@
 class HospitalsController < ApplicationController
   before_action :admin_required, only: %i[edit update destroy]
   before_action :master_required, only: %i[new create]
-  before_action :set_hospital_parms, only: %i[show]
   before_action :set_hospital_labels, only: %i[index search new edit create update]
 
   def index
@@ -34,6 +33,7 @@ class HospitalsController < ApplicationController
   end
 
   def show
+    @hospital = Hospital.find_by(id: params[:id])
     if patient_signed_in? && current_patient.favorite_hospitals.present?
       @favorite_hospital = current_patient.favorite_hospitals.find_by(hospital_id: @hospital.id)
     end
@@ -76,10 +76,6 @@ class HospitalsController < ApplicationController
         admin
       ]
     )
-  end
-
-  def set_hospital_parms
-    @hospital = Hospital.find_by(id: params[:id])
   end
 
   def set_hospital_labels

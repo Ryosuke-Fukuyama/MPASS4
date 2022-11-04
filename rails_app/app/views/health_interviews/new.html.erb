@@ -1,12 +1,12 @@
 <%= form_with(model: [@health_interview], local: true) do |f| %>
 
   <% unless @history.present? %>
-  <h3><%= t('view.new_healthinterview') + t('view.first') %></h3>
+  <h3><%= t('view.new_health_interview') + t('view.first') %></h3>
 
     <%# 次作ではage,gender,(condition?)はPatientのカラムとして登録させる %>
     <div class="field">
       <%= f.label t('view.age') %>
-      <%= f.text_field :age, placeholder: t('view.placeholder.integer'), size: 3 %>
+      <%= f.text_field :age, placeholder: t('view.placeholder.integer') %>
     </div>
 
     <div class="field">
@@ -23,7 +23,7 @@
     </div>
 
   <% else %>
-  <h3><%= t('view.new_healthinterview') + t('view.second') %></h3>
+  <h3><%= t('view.new_health_interview') + t('view.second') %></h3>
 
     <div class="field">
       <%= f.text_area :symptomatology, placeholder: t('view.placeholder.symptomatology') %>
@@ -35,8 +35,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.submit t('view.apply')%>
+    <%= f.submit t('apply')%>
   </div>
 <% end %>
 
-<%= link_to t('view.back'), :back %>
+<button>
+  <%= link_to t('view.back'), :back %>
+</button>

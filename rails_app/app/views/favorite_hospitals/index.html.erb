@@ -1,16 +1,24 @@
 <h3><%= t('view.favorite') + t('view.hospital') + t('view.index') %></h3>
 
-<table>
-  <thead>
-    <tr>
-    <tr/>
-  </thead>
-  <tbody>
-    <% @favorite_hospitals.each do |favorite| %>
+<div class="index_area">
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to favorite.hospital.name, hospital_path(favorite.hospital.id) %></td>
-        <td><%= link_to t('view.waiting'), hospital_health_interviews_path(favorite.hospital.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <th><%= t('view.hospital') + t('view.name_of') %></th>
+        <td class="small_font"><%= t('view.waiting') %></td>
+      <tr/>
+    </thead>
+    <tbody>
+      <% @favorite_hospitals.each do |favorite| %>
+        <tr>
+          <td><%= link_to favorite.hospital.name, hospital_path(favorite.hospital.id) %></td>
+          <td align="center">
+            <button>
+              <%= link_to t('view.link'), health_interviews_path(favorite.hospital.id) %>
+            </button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

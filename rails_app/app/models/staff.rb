@@ -19,7 +19,7 @@ class Staff < ApplicationRecord
 
   def admin_validation
     if Staff.select { admin? }.size <= 1
-      # flash[:alert] = t('alert.admin_size') # undefined local variable or method `flash' for
+      # flash[:alert] = t('alert.admin_size') # <-undefined local variable or method `flash' for
       throw(:abort)
     end
   end

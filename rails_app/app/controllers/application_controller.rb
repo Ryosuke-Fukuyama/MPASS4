@@ -28,7 +28,14 @@ class ApplicationController < ActionController::Base
   private
 
   def set_hospital_parms
-    @hospital = Hospital.find(params[:hospital_id]) if params[:hospital_id].present?
-    @hospital = Hospital.find(current_staff.hospital_id) if staff_signed_in?
+    if @hospital.nil?
+      if params[:hospital_id].present?
+        @hospital = Hospital.find(params[:hospital_id])
+      elsif staff_signed_in?
+        @hospital = Hospital.find(current_staff.hospital_id)
+      else
+        @hospital = Hospital.find_by(id: params[:id]) if @hospital.nil?
+      end
+    end
   end
 end
