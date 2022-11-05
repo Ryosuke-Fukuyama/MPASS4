@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
         @hospital = Hospital.find(params[:hospital_id])
       elsif staff_signed_in?
         @hospital = Hospital.find(current_staff.hospital_id)
-      elsif params[:id].present?
+      elsif params[:controller] == "hospitals" && params[:id].present?
         @hospital = Hospital.find(params[:id])
       end
     end
