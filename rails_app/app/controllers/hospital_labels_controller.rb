@@ -1,9 +1,11 @@
 class HospitalLabelsController < ApplicationController
-  before_action :set_hospital_label, only: %i[show edit update destroy]
-  # before_action :master_required
+  before_action :set_hospital_label, only: %i[show edit update]
+  before_action :master_required
 
   def index
-    @hospital_labels = HospitalLabel.all.order(name: :asc)
+    @q = HospitalLabel.ransack(params[:q])
+    @hospital_labels = @q ? @q.result : HospitalLabel.all
+    @hospital_labels = @hospital_labels.order(name: :asc).page(params[:page]).per(16)
   end
 
   def new
@@ -11,40 +13,31 @@ class HospitalLabelsController < ApplicationController
   end
 
   def create
-    @hospital_label = HospitalLabel.new(hospital_label_params)
-
-    respond_to do |format|
-      if @hospital_label.save
-        format.html { redirect_to hospital_labels_path, notice: 'Label was successfully created.' }
-        format.json { render :index, status: :created, location: @hospital_label }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @hospital_label.errors, status: :unprocessable_entity }
-      end
+    @hospital_label = HospitalLabel.create(hospital_label_params)
+    if @hospital_label.save
+      redirect_to hospital_labels_path, notice: t('notice.saved')
+    else
+      render :new
     end
   end
 
   def edit; end
 
   def update
-    respond_to do |format|
-      if @hospital_label.update(hospital_label_params)
-        format.html { redirect_to hospital_labels_path, notice: 'Label was successfully updated.' }
-        format.json { render :index, status: :ok, location: @hospital_label }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @hospital_label.errors, status: :unprocessable_entity }
-      end
+    if @hospital_label.update(hospital_label_params)
+      redirect_to hospital_labels_path, notice: t('notice.updated')
+    else
+      render :edit
     end
   end
 
-  def destroy
-    @hospital_label.destroy
-    respond_to do |format|
-      format.html { redirect_to hospital_labels_path, notice: 'Label was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @hospital_label.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to hospital_labels_path, notice: 'Label was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
 

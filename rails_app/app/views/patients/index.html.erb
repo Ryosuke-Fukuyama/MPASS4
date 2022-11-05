@@ -23,9 +23,8 @@
             <%= link_to patient.name, health_interview_path(@hospital, patient.health_interviews.last.id), id: "patient-#{patient.id}-healthinterviews-history" %>
           </td>
           <td align="center">
-            <% @size = [] %>
-
-            <%= patient.health_interviews.size %>
+            <% size = @health_interviews.where(patient_id: patient.id).size %>
+            <%= size %>
           </td>
           <td>
             <button>

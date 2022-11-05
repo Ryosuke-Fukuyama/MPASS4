@@ -1,33 +1,33 @@
 <%= form_with(model: @hospital, local: true) do |f| %>
 
-  <div class="field">
+  <div class="name_field">
     <%= f.label :name, t('view.hospital') + t('view.name_of') %>
-    <%= f.text_field :name, placeholder: t('view.must'), autofocus: true, autocomplete: "name" %>
+    <%= f.text_field :name, placeholder: t('view.placeholder.must') + t('view.placeholder.hospital_name'), autofocus: true, autocomplete: "name" %>
   </div>
 
-  <div class="field">
+  <div class="email_field">
     <%= f.label :email, t('view.email') %>
-    <%= f.email_field :email, placeholder: t('view.must'), autocomplete: "email" %>
+    <%= f.email_field :email, placeholder: t('view.placeholder.must') + t('view.placeholder.email'), autocomplete: "email" %>
   </div>
 
   <div class="field">
     <%= f.label :tel, t('view.tel') %>
-    <%= f.text_field :tel, placeholder: t('view.must'), autocomplete: "tel" %>
+    <%= f.text_field :tel, placeholder: t('view.placeholder.must')+ t('view.placeholder.tel')+ t('view.placeholder.integer'), autocomplete: "tel" %>
   </div>
 
   <div class="field">
     <%= f.label :address, t('view.address') %>
-    <%= f.text_field :address, placeholder: t('view.must'), autocomplete: "address" %>
+    <%= f.text_field :address, placeholder: t('view.placeholder.must')+ t('view.placeholder.address'), autocomplete: "address" %>
   </div>
 
   <div class="field">
     <%= f.label :access, t('view.access') %>
-    <%= f.text_field :access, placeholder: "", autocomplete: "access" %>
+    <%= f.text_field :access, placeholder: t('view.placeholder.access'), autocomplete: "access" %>
   </div>
 
   <div class="field">
     <%= f.label :introduction, t('view.introduction') %>
-    <%= f.text_field :introduction, placeholder: "", autocomplete: "introduction" %>
+    <%= f.text_field :introduction, placeholder: t('view.placeholder.introduction'), autocomplete: "introduction" %>
   </div>
 
   <%
@@ -36,7 +36,7 @@
   <div class="field">
     <%= f.label :image, t('view.image') %>
     <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
-    <%= f.file_field :image, autocomplete: "image" %>
+    <%= f.file_field :image, placeholder: t('view.placeholder.image_file'), autocomplete: "image" %>
     <%= f.hidden_field :image_cache %>
   </div>
   <%
@@ -44,7 +44,10 @@
 %>
 
   <div class="field">
-    <p><%= f.label :hospital_label, t('view.hospital_label') %></p>
+    <p>
+      <%= f.label :hospital_label, t('view.hospital_label') %>
+      <span class="small_font"><%= t('view.must_select') %></span>
+    </p>
     <% @hospital_labels.all.each do |label| %>
       <%= f.check_box :hospital_label_ids,
         { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>

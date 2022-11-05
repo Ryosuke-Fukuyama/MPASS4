@@ -161,9 +161,9 @@ ja:
       prompt: 選択してください
     submit:
       apply: 申し込む
-      create: 登録する
-      submit: 送信する
-      update: 更新する
+      create: 登録
+      submit: 送信
+      update: 更新
   number:
     currency:
       format:
@@ -249,7 +249,6 @@ ja:
     address: 住所
     admin: 管理権限
     age: 年齢
-    apply: 申し込む
     back: 戻る
     cancel: 解除
     create: 作成
@@ -277,6 +276,7 @@ ja:
     maps: 最寄り検索
     master: マスター
     menu: メニュー
+    must_select: 最低一つ選択してください。(複数選択可)
     my_page: マイページ
     name: 名前
     name_of: 名
@@ -293,7 +293,7 @@ ja:
     reception: 受付はこちら
     reservation: 予約
     reverse: 裏面
-    search: 検索する
+    search: 検索
     second: (再診用)
     select: 選択する
     show: 詳細
@@ -312,20 +312,25 @@ ja:
     waiting: オンライン待合室
     waiting_befor: 現在の順番は
     placeholder:
-      address: 〇〇市〇〇 xx-xx-xx 建物名 〇〇〇
+      access: 〇〇駅からバスで〇分
+      address: 〇〇市〇〇 xx-xx-xx
       comment: 気になる点等医師に伝えたいことがございましたら、お気軽にご記入ください。
-      condition: 持病や、服用中のお薬等
+      condition: 持病や、服用中のお薬等あればご記入ください。
       email: xxxx@example.co.jp
+      hospital_label_name: 〇〇科
+      hospital_name: 〇〇病院
+      image_file: sample.jpg
       integer: 半角
+      introduction: "URL: https:// ~~~~"
       mandatory: ※入力してください
+      must: 必須)
       name_or_email: お名前かメールアドレス
       part: 部分一致
-      password: 半角英数(6文字以上)
+      password: 各半角大小英数記号(8文字以上)
       password_confirmation: 同じものを入力してください
       patient_name: フルネーム(漢字)
-      staff_name: 名前
-      symptoms: 症状や、発症時期等
-      tel: 半角数字(ハイフンなし)
+      symptoms: 症状や、発症時期等ご記入ください。
+      tel: ハイフンなし
     message:
       initial: |
             お申し込み頂きありがとうございます。ご案内状況をご確認の上お越しください。

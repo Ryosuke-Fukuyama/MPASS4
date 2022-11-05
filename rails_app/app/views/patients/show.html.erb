@@ -6,25 +6,27 @@
     @last_status == "calling" ||
     @last_status == "pending"
   %>
-    <%= link_to @hospital.name + t('view.waiting'), health_interviews_path(@hospital) %>
     <h1><%= t('view.your_number_is') + @last_interview.guide_status.id.to_s %></h1>
+    <%= link_to @hospital.name + " " + t('view.waiting'), health_interviews_path(@hospital) %>
 
-    <% if @last_status == "initial" %>
-      <div>
-        <%= t('view.waiting_befor') + @index.to_s + t('view.people_num') %>
-      </div>
-      <div>
-        <%= simple_format(t('view.message.initial')) %>
-      </div>
-    <% elsif @last_status == "calling" %>
-      <div>
-        <%= simple_format(t('view.message.calling')) %>
-      </div>
-    <% else %>
-      <div>
-        <%= simple_format(t('view.message.pending')) %>
-      </div>
-    <% end %>
+    <div class="message_area">
+      <% if @last_status == "initial" %>
+        <div>
+          <%= t('view.waiting_befor') + @index.to_s + t('view.people_num') %>
+        </div>
+        <div>
+          <%= simple_format(t('view.message.initial')) %>
+        </div>
+      <% elsif @last_status == "calling" %>
+        <div>
+          <%= simple_format(t('view.message.calling')) %>
+        </div>
+      <% else %>
+        <div>
+          <%= simple_format(t('view.message.pending')) %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 
   <% if @last_status == "noshow" %>
@@ -38,6 +40,9 @@
       </div>
       <div>
         <p>¥<%= @last_interview.price %></p>
+<%
+=begin
+%>
         <%= form_tag(action: :pay, method: :post) do %>
           <script type="text/javascript"
             src="https://checkout.pay.jp"
@@ -63,6 +68,9 @@
           <td>YUI ARAGAKI</td>
         </tr>
       </div>
+<%
+=end
+%>
     <% else %>
       <div>
         <%= simple_format(t('view.message.calculating')) %>

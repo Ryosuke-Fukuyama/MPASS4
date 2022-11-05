@@ -1,0 +1,64 @@
+<h3><%= t('view.hospital_label') + t('view.index') %></h3>
+
+<div class="search_area">
+  <%= search_form_for @q, url: hospital_labels_path do |f| %>
+    <%= f.label :name_cont, t('view.hospital_label') + t('view.name_of') + ":" %>
+    <%= f.search_field :name_cont, placeholder: t('view.placeholder.part') %>
+
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<div class="slender_table">
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('view.hospital_label') + t('view.name_of') %><th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hospital_labels.each.with_index do |label, i| %>
+        <tr>
+          <td align="center"><%= label.name %></td>
+          <td>
+            <button>
+              <%= link_to t('view.edit'), edit_hospital_label_path(label) %>
+            </button>
+          </td>
+          <td><%#= link_to 'Destroy', hospital_label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% break if i== 7 %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('view.hospital_label') + t('view.name_of') %><th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hospital_labels.each.with_index do |label, i| %>
+        <% if i > 7 %>
+          <tr>
+            <td align="center"><%= label.name %></td>
+            <td>
+              <button>
+                <%= link_to t('view.edit'), edit_hospital_label_path(label) %>
+              </button>
+            </td>
+            <td><%#= link_to 'Destroy', hospital_label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        <% break if i== 16 %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div align="center", class="paginate">
+  <%= paginate @hospital_labels %>
+</div>
+
+<%= link_to t('view.new') + t('view.hospital_label'), new_hospital_label_path %>

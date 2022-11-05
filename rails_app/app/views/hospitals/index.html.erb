@@ -4,7 +4,7 @@
   <%= search_form_for @q, url: hospitals_path do |f| %>
     <div>
       <%= f.label :name_cont, t('view.hospital') + t('view.name_of') + ":" %>
-      <%= f.search_field :name_cont, placeholder: "" %>
+      <%= f.search_field :name_cont, placeholder: t('view.placeholder.part') %>
     </div>
     <div>
       <%= f.label :hospital_labels_id_eq, t('view.hospital_label') + ":" %>
@@ -33,7 +33,7 @@
           <td id=<%= "hospital-index_item-access-#{hospital.id}" %> class="small_font"><%= hospital.access %></td>
           <td id=<%= "hospital-index_item-#{hospital.id}-label-name" %> class="small_font">
             <% hospital.hospital_labels.each do |label| %>
-              <%= label.name %>
+              [<%= label.name %>]
             <% end %>
           </td>
         </tr>

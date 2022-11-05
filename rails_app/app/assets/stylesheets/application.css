@@ -29,11 +29,6 @@
     margin-left: auto;
   }
 
-  ul li {
-    list-style: none;
-    margin: 5px;
-  }
-
   .logo {
     font-size: x-large;
     margin-bottom: 0;
@@ -45,11 +40,7 @@
     margin-right: auto;
   } */
 
-  .small_font {
-    font-size: small;
-  }
-
-  .title_block h3 {
+   .title_block h3 {
     display: inline-block;
   }
 
@@ -62,9 +53,31 @@
     margin-bottom: 30px;
   }
 
+  .slender_table {
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .slender_table table {
+    margin-left: 20px;
+  }
+
+  .message_area {
+    margin-top: 30px;
+  }
+
   /* .search_area {
 
   } */
+
+  ul li {
+    list-style: none;
+    margin: 5px;
+  }
+
+  .small_font {
+    font-size: small;
+  }
 
   button {
     margin: 10px 5px 5px 10px;
@@ -73,6 +86,23 @@
   .paginate {
     margin-top: 30px;
   }
+
+  textarea {
+    width: 140px;
+    height: 70px;
+  }
+
+  .email_field input {
+    width: 200px;
+  }
+
+  .age_field input {
+    width: 30px;
+  }
+
+
+
+
 
   .sky__line {
     border-top: 3px solid skyblue;
@@ -85,15 +115,3 @@
   .red__line {
     border-top: 3px solid red;
   }
-
-  input#health_interview_age {
-    width: 30px;
-  }
-
-  textarea {
-    width: 140px;
-    height: 70px;
-  }
-
-
-

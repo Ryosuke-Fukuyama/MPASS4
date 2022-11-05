@@ -1,0 +1,11 @@
+<%= form_with(model: @hospital_label, local: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :name, t('view.name') + ":" %>
+    <%= f.text_field :name, autofocus: true, placeholder: t('view.placeholder.hospital_label_name'), autocomplete: "name" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

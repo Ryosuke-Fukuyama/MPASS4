@@ -4,7 +4,7 @@
   <h3><%= t('view.new_health_interview') + t('view.first') %></h3>
 
     <%# 次作ではage,gender,(condition?)はPatientのカラムとして登録させる %>
-    <div class="field">
+    <div class="age_field">
       <%= f.label t('view.age') %>
       <%= f.text_field :age, placeholder: t('view.placeholder.integer') %>
     </div>
@@ -14,18 +14,18 @@
       <%= f.collection_radio_buttons :gender, HealthInterview.genders_i18n, :first , :last %>
     </div>
 
-    <div class="field">
+    <div class="symptoms_field">
       <%= f.text_area :symptoms, placeholder: t('view.placeholder.symptoms') %>
     </div>
 
-    <div class="field">
+    <div class="condition_field">
       <%= f.text_area :condition, placeholder: t('view.placeholder.condition') %>
     </div>
 
   <% else %>
   <h3><%= t('view.new_health_interview') + t('view.second') %></h3>
 
-    <div class="field">
+    <div class="symptoms_field">
       <%= f.text_area :symptoms, placeholder: t('view.placeholder.symptoms') %>
     </div>
   <% end %>
