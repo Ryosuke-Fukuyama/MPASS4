@@ -67,6 +67,10 @@ group :development do
 end
 
 group :test do
+  # gem 'rspec-parameterized'
+  gem 'shoulda-matchers'
+  gem 'timecop'
+  # gem 'database_cleaner-active_record'
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'

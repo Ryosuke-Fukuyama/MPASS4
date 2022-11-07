@@ -7,12 +7,13 @@ class Hospital < ApplicationRecord
   # mount_uploader :image, ImageUploader
   accepts_nested_attributes_for :staffs
 
-  include EmailValidates
-  include TelValidates
-  include AddressValidates
-
   validates :name, presence: true,
                    length: { maximum: 99 }
+  include EmailValidates
+  include TelValidates
+  validates :tel, presence: true
+  include AddressValidates
+  validates :address, presence: true
 
   # after_validation :geocode, if: :address_changed?
 

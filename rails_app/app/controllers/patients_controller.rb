@@ -11,7 +11,7 @@ class PatientsController < ApplicationController
     @patients = Patient.eager_load(:health_interviews)
                        .where(health_interviews: { hospital_id: @hospital })
     @patients = @q ? @q.result : @patient
-    @patients = @patients.order(created_at: :asc).page(params[:page]).per(8)
+    @patients = @patients.order(name: :asc).page(params[:page])
 
     @health_interviews = HealthInterview.where(hospital_id: @hospital)
   end
@@ -33,7 +33,6 @@ class PatientsController < ApplicationController
                                             .search_today
                                             .eager_load(:guide_status)
                                             .where(guide_statuses: { status: 'initial' })
-                                            .order(created_at: :asc)
         @index = @health_interviews.map { |a| a[:patient_id] }.find_index(current_patient.id)
         @index += 1
       end

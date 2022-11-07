@@ -18,7 +18,7 @@ FactoryBot.define do
     email                 { 'patient-3@mail.com' }
     password              { 'Pass-W0rd' }
     password_confirmation { 'Pass-W0rd' }
-    confirmed_at          {  }
+    confirmed_at          { Time.now }
   end
   factory :fourth_patient, class: 'Patient' do
     name                  { 'とこ' }

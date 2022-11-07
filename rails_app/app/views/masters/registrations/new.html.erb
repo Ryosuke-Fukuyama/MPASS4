@@ -1,7 +1,7 @@
 <h2><%= t('.sign_up') %></h2>
 
 <%= form_with(model: resource, scope: resource_name, url: registration_path(resource_name), local: true) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
 
     <%= f.text_field :name, placeholder: "", autofocus: true, autocomplete: "name" %>
 

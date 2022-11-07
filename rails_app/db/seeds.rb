@@ -21,22 +21,23 @@ end
   "眼科",      # 6
   "耳鼻科",    # 7
   "小児科",    # 8
-  "歯科"       # 9
+  "歯科",      # 9
+  "接骨院"     # 10
 ].each do |name|
     HospitalLabel.create!(name: name)
 end
 
 [
   ["サンプルクリニック", [1]],
-  ["医院", [1]],
+  ["DIC総合病院", [1, 2, 3, 4, 5]],
   ["眼科", [6]],
   ["耳鼻科", [7]],
   ["小児科", [1, 8]],
   ["歯科", [9]],
   ["歯科クリニック", [9]],
-  ["接骨院", []],
-  ["休日診療所", []],
-  ["DIC総合病院", [1, 2, 3, 4, 5]]
+  ["接骨院", [10]],
+  ["休日診療所", [1]],
+  ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]]
 ].each do |name, hospital_label_ids|
   Hospital.create!({
     name:               Gimei.last.kanji + name,
@@ -50,7 +51,7 @@ end
   })
 end
 
-10.times do |n|
+20.times do |n|
   Staff.create!(
     name:        Gimei.unique.name.kanji,
     password:    "passw0r-D",
@@ -96,8 +97,6 @@ HealthInterview.eager_load(:guide_status).where(health_interviews: { hospital_id
   GuideStatus.create!(health_interview_id: h.id)
 end
 
-
-# Rspec用
 Master.create!(
   name:         "テストマスター",
   email:        "t_master@mail.com",

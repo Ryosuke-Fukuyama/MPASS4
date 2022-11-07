@@ -4,7 +4,7 @@ class MastersController < ApplicationController
   def index
     @q = Master.ransack(params[:q])
     @masters = @q ? @q.result : Master.all
-    @masters = @masters.order(created_at: :asc).page(params[:page]).per(8)
+    @masters = @masters.order(created_at: :asc).page(params[:page])
   end
 
   def show; end

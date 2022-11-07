@@ -1,7 +1,7 @@
 class Master < ApplicationRecord
   validates :name, presence: true,
                    uniqueness: true,
-                   length: { in: 1..20, allow_blank: true }
+                   length: { in: 2..20, allow_blank: true }
   include EmailValidates
   include PasswordValidates
 

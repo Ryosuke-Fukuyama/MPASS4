@@ -1,7 +1,8 @@
 
-<div class="title_block">
-  <h3><%= @hospital.name %></h3>
-
+<div>
+  <div class="inline-block">
+    <h3><%= @hospital.name %></h3>
+  </div>
   <% if patient_signed_in? %>
     <% if @favorite_hospital.present? %>
       <%= link_to t('view.favorite') + t('view.cancel'),

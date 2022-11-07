@@ -3,7 +3,7 @@ class Staff < ApplicationRecord
 
   validates :name, presence: true,
                    #  uniqueness: { scope: hospital_id }, # 同病院内での制限をつけたい
-                   length: { in: 1..20, allow_blank: true }
+                   length: { in: 2..20, allow_blank: true }
   include PasswordValidates
 
   before_update :admin_validation

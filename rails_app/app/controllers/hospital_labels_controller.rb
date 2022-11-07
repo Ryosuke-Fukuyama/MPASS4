@@ -5,7 +5,7 @@ class HospitalLabelsController < ApplicationController
   def index
     @q = HospitalLabel.ransack(params[:q])
     @hospital_labels = @q ? @q.result : HospitalLabel.all
-    @hospital_labels = @hospital_labels.order(name: :asc).page(params[:page]).per(16)
+    @hospital_labels = @hospital_labels.order(name: :asc) # .page(params[:page]).per(16)
   end
 
   def new

@@ -6,7 +6,7 @@ class HospitalsController < ApplicationController
   def index
     @q = Hospital.ransack(params[:q])
     @hospitals = @q ? @q.result : Hospital.all
-    @hospitals = @hospitals.includes(:hospital_labels).order(name: :asc).page(params[:page]).per(8)
+    @hospitals = @hospitals.includes(:hospital_labels).order(name: :asc).page(params[:page])
   end
 
   # def search
