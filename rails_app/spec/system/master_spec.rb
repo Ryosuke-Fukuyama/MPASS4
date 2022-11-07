@@ -76,53 +76,53 @@ RSpec.describe 'Master', type: :system do
           fill_in :master_email,    with: master.email
           fill_in :master_password, with: master.password
           click_button 'ログイン'
-          is_expected.to have_content 'Eメールまたはパスワードが違います'
+          is_expected.to have_content 'Emailまたはパスワードが違います'
         end
         example 'no email' do
           fill_in :master_name,    with: master.name
           fill_in :master_email,    with: ''
           fill_in :master_password, with: master.password
           click_button 'ログイン'
-          is_expected.to have_content 'Eメールまたはパスワードが違います'
+          is_expected.to have_content 'Emailまたはパスワードが違います'
         end
         example 'no password' do
           fill_in :master_name,    with: master.name
           fill_in :master_email,    with: master.email
           fill_in :master_password, with: ''
           click_button 'ログイン'
-          is_expected.to have_content 'Eメールまたはパスワードが違います'
+          is_expected.to have_content 'Emailまたはパスワードが違います'
         end
-        # example 'not confirme' do
-        #   master = FactoryBot.create(:fourth_master)
-        #   master.confirmed_at = nil
-        #   fill_in :master_email,    with: master.email
-        #   fill_in :master_password, with: master.password
-        #   click_button 'ログイン'
-        #   is_expected.to have_content 'メールアドレスの本人確認が必要です'
-        # end
-      end
-      context 'success' do
-        example '' do
-          fill_in :master_name,    with: master.name
-          fill_in :master_email,    with: master.email
-          fill_in :master_password, with: master.password
-          click_button 'ログイン'
-          is_expected.to have_content 'ログインしました'
-          is_expected.to have_content "マスターメニュー"
-        end
-      end
+      #   # example 'not confirme' do
+      #   #   master = FactoryBot.create(:fourth_master)
+      #   #   master.confirmed_at = nil
+      #   #   fill_in :master_email,    with: master.email
+      #   #   fill_in :master_password, with: master.password
+      #   #   click_button 'ログイン'
+      #   #   is_expected.to have_content 'メールアドレスの本人確認が必要です'
+      #   # end
+      # end
+      # context 'success' do
+      #   example '' do
+      #     fill_in :master_name,    with: master.name
+      #     fill_in :master_email,    with: master.email
+      #     fill_in :master_password, with: master.password
+      #     click_button 'ログイン'
+      #     is_expected.to have_content 'ログインしました'
+      #     is_expected.to have_content "マスターメニュー"
+      #   end
+      # end
     end
-    describe 'sign_out' do
-      before do
-        sign_in master
-        visit master_path(master)
-      end
-      it {
-        click_link 'ログアウト'
-        is_expected.to have_content 'ログアウトしました'
-        is_expected.to have_content 'このアプリを通して実現したいビジョンは'
-      }
-    end
+    # describe 'sign_out' do
+    #   before do
+    #     sign_in master
+    #     visit master_path(master)
+    #   end
+    #   it {
+    #     click_link 'ログアウト'
+    #     is_expected.to have_content 'ログアウトしました'
+    #     is_expected.to have_content 'このアプリを通して実現したいビジョンは'
+    #   }
+    # end
   end
 
 
