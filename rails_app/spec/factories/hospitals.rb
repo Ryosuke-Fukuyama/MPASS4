@@ -7,6 +7,7 @@ FactoryBot.define do
     access { 'バス1分' }
     # image { open('./public/images/sample.jpg') }
     introduction { 'url: https://hospital-1' }
+    id { 1 }
   end
   factory :second_hospital, class: 'Hospital' do
     name { '第二病院' }
