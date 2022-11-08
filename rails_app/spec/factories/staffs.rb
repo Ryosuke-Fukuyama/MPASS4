@@ -1,7 +1,7 @@
 FactoryBot.define do
-  factory :admin_staff do
+  factory :staff do
     name { 'スタッフ1' }
-    admin { true }
+    admin { false }
     # password { 'Pass-W0rd' }
     # password_confirmation { 'Pass-W0rd' }
     # association :hospital, factory: :hospital
@@ -13,9 +13,9 @@ FactoryBot.define do
     # password_confirmation { 'Pass-W0rd' }
     # association :hospital, factory: :hospital
   end
-  factory :third_staff, class: 'Staff' do
+  factory :admin_staff, class: 'Staff' do
     name { 'スタッフ3' }
-    admin { false }
+    admin { true }
     # password { 'Pass-W0rd' }
     # password_confirmation { 'Pass-W0rd' }
     # association :hospital, factory: :hospital

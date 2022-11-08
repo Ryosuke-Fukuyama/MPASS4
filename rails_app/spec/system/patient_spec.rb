@@ -86,14 +86,14 @@ RSpec.describe 'Patient', type: :system do
           click_button 'ログイン'
           is_expected.to have_content 'Eメールまたはパスワードが違います'
         end
-        # example 'not confirme' do
-        #   patient = FactoryBot.create(:fourth_patient)
-        #   patient.confirmed_at = nil
-        #   fill_in 'Eメール',   with: patient.email
-        #   fill_in 'パスワード', with: patient.password
-        #   click_button 'ログイン'
-        #   is_expected.to have_content 'メールアドレスの本人確認が必要です'
-        # end
+        xexample 'not confirme' do
+          patient = FactoryBot.create(:fourth_patient)
+          patient.confirmed_at = nil
+          fill_in 'Eメール',   with: patient.email
+          fill_in 'パスワード', with: patient.password
+          click_button 'ログイン'
+          is_expected.to have_content 'メールアドレスの本人確認が必要です'
+        end
       end
       context 'success' do
         example '' do
@@ -153,6 +153,7 @@ RSpec.describe 'Patient', type: :system do
         page.dismiss_confirm("本当によろしいですか？") do
           click_on 'アカウント削除'
         end
+        is_expected.not_to have_content "アカウントを削除しました。"
       end
       example 'confirm ok' do
         page.accept_confirm("本当によろしいですか？") do
@@ -190,7 +191,6 @@ RSpec.describe 'Patient', type: :system do
     end
   end
 
-
   let!(:patient_2) { FactoryBot.create(:second_patient) }
   let!(:patient_3) { FactoryBot.create(:third_patient) }
   let!(:health_interview_1) { FactoryBot.create(:health_interview, patient_id: patient_2.id, hospital_id: hospital_1.id) }
@@ -209,7 +209,7 @@ RSpec.describe 'Patient', type: :system do
         click_link 'オンライン待合室'
         click_on '新規受付はこちら'
         is_expected.to have_content '初診用'
-        # fill_in '', with:
+        # fill_in 'symptoms', with:
         click_on '申し込む'
         is_expected.to have_content '受付を完了しました'
         is_expected.to have_content '整理券番号は'
@@ -222,7 +222,7 @@ RSpec.describe 'Patient', type: :system do
         click_link 'オンライン待合室'
         click_on '新規受付はこちら'
         expect(page).to have_content '再診用'
-        # fill_in '', with:
+        # fill_in 'symptoms', with:
         click_on '申し込む'
         is_expected.to have_content '受付を完了しました'
       end
@@ -238,7 +238,6 @@ RSpec.describe 'Patient', type: :system do
       end
     end
   end
-
 
   #  #  未実装
   # describe 'pay' do

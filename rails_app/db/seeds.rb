@@ -1,14 +1,14 @@
+password = "passw0r-D"
+
 10.times do |n|
-  name =         Gimei.name.kanji
-  email =        Faker::Internet.unique.email
-  password =     "passw0r-D"
-  confirmed_at = Time.now
+  # email =   Faker::Internet.unique.email
 
   Patient.create!(
-    name:         name,
-    email:        email,
-    password:     password,
-    confirmed_at: confirmed_at,
+    name:                  Gimei.name.kanji,
+    email:                 Faker::Internet.unique.email,
+    password:              password,
+    password_confirmation: password,
+    confirmed_at:          Time.now
   )
 end
 
@@ -53,35 +53,36 @@ end
 
 20.times do |n|
   Staff.create!(
-    name:        Gimei.unique.name.kanji,
-    password:    "passw0r-D",
-    hospital_id: 1
+    name:                  Gimei.unique.name.kanji,
+    password:              password,
+    password_confirmation: password,
+    hospital_id:           1
   )
 end
 
 Patient.eager_load(:health_interviews).all.each do |p|
-  symptoms = '(サンプル)３日前から発熱、倦怠感と吐き気'
-  condition =      '(サンプル)持病等'
+  symptoms =  '(サンプル)３日前から発熱、倦怠感と吐き気'
+  condition = '(サンプル)持病等'
 
   HealthInterview.create!(
-    age:            "#{1 + rand(100)}",
-    gender:         0,
-    condition:      condition,
-    symptoms: symptoms,
-    patient_id: p.id,
+    age:         "#{1 + rand(100)}",
+    gender:      0,
+    condition:   condition,
+    symptoms:    symptoms,
+    patient_id:  p.id,
     hospital_id: 2
   )
 end
 Patient.eager_load(:health_interviews).all.each do |p|
-  symptoms = '(サンプル)３日前から発熱、倦怠感と吐き気'
-  condition =      '(サンプル)持病等'
+  symptoms =  '(サンプル)３日前から発熱、倦怠感と吐き気'
+  condition = '(サンプル)持病等'
 
   HealthInterview.create!(
-    age:            "#{1 + rand(100)}",
-    gender:         0,
-    condition:      condition,
-    symptoms: symptoms,
-    patient_id: p.id,
+    age:         "#{1 + rand(100)}",
+    gender:      0,
+    condition:   condition,
+    symptoms:    symptoms,
+    patient_id:  p.id,
     hospital_id: 1
   )
 end
@@ -89,7 +90,7 @@ end
 # 周回すると一つのHealthInterviewに複数のGuideStatusが付いてバグる。
 HealthInterview.eager_load(:guide_status).where(health_interviews: { hospital_id: 2 }).all.each do |h|
   GuideStatus.create!(
-    status: 'complete',
+    status:             'complete',
     health_interview_id: h.id
   )
 end
@@ -98,29 +99,33 @@ HealthInterview.eager_load(:guide_status).where(health_interviews: { hospital_id
 end
 
 Master.create!(
-  name:         "テストマスター",
-  email:        "t_master@mail.com",
-  password:     "passw0r-D",
-  confirmed_at: Time.now
+  name:                  "テストマスター",
+  email:                 "t_master@mail.com",
+  password:              password,
+  password_confirmation: password,
+  confirmed_at:          Time.now
 )
 
 Patient.create!(
-  name:         "テスト患者",
-  email:        "t_patient@mail.com",
-  password:     "passw0r-D",
-  confirmed_at: Time.now
+  name:                  "テスト患者",
+  email:                 "t_patient@mail.com",
+  password:              password,
+  password_confirmation: password,
+  confirmed_at:          Time.now
 )
 
 Staff.create!(
-  name:        "テストスタッフ",
-  password:    "passw0r-D",
-  admin:       "false",
-  hospital_id: 1
+  name:                  "テストスタッフ",
+  password:              password,
+  password_confirmation: password,
+  admin:                 "false",
+  hospital_id:           1
 )
 
 Staff.create!(
-  name:        "テストアドミン",
-  password:    "passw0r-D",
-  admin:       "true",
-  hospital_id: 1
+  name:                  "テストアドミン",
+  password:              password,
+  password_confirmation: password,
+  admin:                 "true",
+  hospital_id:           1
 )

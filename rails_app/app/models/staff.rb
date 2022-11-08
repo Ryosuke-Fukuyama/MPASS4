@@ -18,8 +18,8 @@ class Staff < ApplicationRecord
   private
 
   def admin_validation
-    if Staff.select { admin? }.size <= 1
-      # flash[:alert] = t('alert.admin_size') # <-undefined local variable or method `flash' for
+    if Staff.select{|value| value[:admin] == true}.size <= 1
+      # flash.now[:alert] = t('alert.admin_size') # Model内で使えない
       throw(:abort)
     end
   end

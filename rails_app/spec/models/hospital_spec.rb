@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Hospital, type: :model do
   describe 'varidation' do
+    let!(:hospital) { FactoryBot.create(:hospital) }
+
     context 'name' do
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_length_of(:name).is_at_most(99) }
@@ -11,24 +13,28 @@ RSpec.describe Hospital, type: :model do
       it { is_expected.to validate_presence_of(:email) }
       it { is_expected.to validate_length_of(:email).is_at_most(255) }
 
-      # let!(:hospital) { FactoryBot.create(:hospital, email: 'error_test-mail.com') }
-      # it { is_expected.to be_invalid }
+      it {
+        hospital.email = 'error_test-mail.com'
+        is_expected.to be_invalid
+      }
     end
 
-    # context 'email_downcase' do
-    #   let!(:hospital) { FactoryBot.create(:hospital, email: 'HOSPITAL@Mail.com') }
-    #   it {
-    #     expect(hospital.email).to be 'hospital@mail.com'
-    #   }
-    # end
+    xcontext 'email_downcase' do
+      it {
+        hospital.email = 'HOSPITAL@Mail.com'
+        expect(hospital.email).to be 'hospital@mail.com'
+      }
+    end
 
     context 'tel' do
       it { is_expected.to validate_presence_of(:tel) }
       it { is_expected.to validate_length_of(:tel).is_at_least(10) }
       it { is_expected.to validate_length_of(:tel).is_at_most(11) }
 
-      # let!(:hospital) { FactoryBot.create(:hospital, tel: 123456789) }
-      # it { is_expected.to be_invalid }
+      it {
+        let!(:hospital) { FactoryBot.create(:hospital, tel: 123456789) }
+        is_expected.to be_invalid
+      }
     end
 
     context 'address' do
