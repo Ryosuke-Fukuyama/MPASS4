@@ -10,9 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+ @import '~bootstrap/scss/bootstrap';
 
   nav ul {
     margin-top: 0;
@@ -26,7 +26,7 @@
   }
 
   .logo {
-    font-size: x-large;
+    font-size: xx-large;
     margin-bottom: 0;
   }
 
@@ -35,6 +35,10 @@
     margin-left: auto;
     margin-right: auto;
   } */
+
+  .top {
+    margin: 30px 20px 30px 20px;
+  }
 
  form {
     margin-top: 30px;
@@ -60,6 +64,11 @@
 
   .inline-block {
     display: inline-block;
+  }
+
+  .center {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* .search_area {
@@ -93,7 +102,11 @@
   }
 
   .email_field input {
-    width: 200px;
+    width: 220px;
+  }
+
+  .password_field input {
+    width: 220px;
   }
 
   .age_field input {

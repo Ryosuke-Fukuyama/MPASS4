@@ -1,12 +1,12 @@
 <h2><%= t('.sign_in') %></h2>
 
 <%= form_with(model: resource, scope: resource_name, url: session_path(resource_name), local: true) do |f| %>
-  <div class="field">
+  <div class="email_field">
     <%= f.label :email %><br />
     <%= f.email_field :email, placeholder: t('view.placeholder.email'), autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
+  <div class="password_field">
     <%= f.label :password %><br />
     <%= f.password_field :password, placeholder: t('view.placeholder.password'), autocomplete: "current-password" %>
   </div>

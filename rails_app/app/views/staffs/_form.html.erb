@@ -11,19 +11,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br /><i>(<%= t('view.placeholder.staff_name') %>)</i>
+    <%= f.label :name %> <i>(<%= t('view.placeholder.staff_name') %>)</i><br />
     <%= f.text_field :name, autofocus: true, placeholder: t('view.placeholder.name'), autocomplete: "name" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="password_field">
+    <%= f.label :password %><%= t('view.placeholder.length') %>
     <% if @minimum_password_length %>
       <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password", placeholder: t('view.placeholder.password') %>
   </div>
 
-  <div class="field">
+  <div class="password_field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: t('view.placeholder.password_confirmation') %>
   </div>

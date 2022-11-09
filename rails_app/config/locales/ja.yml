@@ -333,12 +333,13 @@ ja:
       image_file: sample.jpg
       integer: 半角
       introduction: "URL: https:// ~~~~"
+      length: (8文字以上)
       mandatory: ※入力してください
       must: 必須)
       name: 全角カタカナ
       name_or_email: お名前かメールアドレス
       part: 部分一致
-      password: 各半角大小英数記号(8文字以上)
+      password: 各半角大小英数記号
       password_confirmation: 同じものを入力してください
       patient_name: フルネーム(漢字)
       staff_name: 完全同名不可
