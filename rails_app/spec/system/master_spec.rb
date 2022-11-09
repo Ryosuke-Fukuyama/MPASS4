@@ -184,7 +184,6 @@ RSpec.describe 'Master', type: :system do
           first('button').click_link
         end
         is_expected.to have_content "削除しました"
-        # expect{ first('button').click_link }.to change{ first('tbody tr td') }.from(master.name).to(master_2.name)
       end
     end
   end

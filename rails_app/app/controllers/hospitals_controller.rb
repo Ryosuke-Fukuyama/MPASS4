@@ -51,8 +51,9 @@ class HospitalsController < ApplicationController
   end
 
   def destroy
-    @hospital.destroy
-    redirect_to hospitals_path, notice: t('notice.destroyed')
+    if @hospital.destroy
+      redirect_to hospitals_path, notice: t('notice.destroyed')
+    end
   end
 
   private

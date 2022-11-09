@@ -335,6 +335,7 @@ ja:
       introduction: "URL: https:// ~~~~"
       mandatory: ※入力してください
       must: 必須)
+      name: 全角カタカナ
       name_or_email: お名前かメールアドレス
       part: 部分一致
       password: 各半角大小英数記号(8文字以上)

@@ -32,8 +32,9 @@ class StaffsController < ApplicationController
   end
 
   def destroy
-    @staff.destroy
-    redirect_to staffs_path, notice: t('notice.destroyed')
+    if @staff.destroy
+      redirect_to staffs_path, notice: t('notice.destroyed')
+    end
   end
 
   private

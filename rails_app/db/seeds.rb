@@ -4,7 +4,7 @@ password = "passw0r-D"
   # email =   Faker::Internet.unique.email
 
   Patient.create!(
-    name:                  Gimei.name.kanji,
+    name:                  Gimei.name.katakana ,
     email:                 Faker::Internet.unique.email,
     password:              password,
     password_confirmation: password,
@@ -40,7 +40,7 @@ end
   ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]], ["医院", [1]]
 ].each do |name, hospital_label_ids|
   Hospital.create!({
-    name:               Gimei.last.kanji + name,
+    name:               Gimei.last.katakana  + name,
     email:              Faker::Internet.unique.email,
     tel:                sprintf('%10d', rand(9999999999)), #　Faker::PhoneNumber.unique.cell_phone # ハイフン有
     address:            Gimei.address.kanji,
@@ -53,7 +53,7 @@ end
 
 20.times do |n|
   Staff.create!(
-    name:                  Gimei.unique.name.kanji,
+    name:                  Gimei.unique.name.katakana ,
     password:              password,
     password_confirmation: password,
     hospital_id:           1
@@ -107,7 +107,7 @@ Master.create!(
 )
 
 Patient.create!(
-  name:                  "テスト患者",
+  name:                  "テストペイシェント",
   email:                 "t_patient@mail.com",
   password:              password,
   password_confirmation: password,

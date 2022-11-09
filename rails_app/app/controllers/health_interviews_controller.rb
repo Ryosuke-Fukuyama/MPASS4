@@ -67,7 +67,7 @@ class HealthInterviewsController < ApplicationController
     if health_interview_params[:price].present?
       if @health_interview.update(health_interview_params)
         # @health_interview.number.destroy if status.status == noshow || status.status == complete
-        redirect_to health_interview_path(@hospital, @health_interview) # , json: { registration: 'OK!' }, status: 200
+        redirect_to health_interview_path(@hospital, @health_interview), notice: t('notice.updated') # , json: { registration: 'OK!' }, status: 200
       else
         render 'edit' # , json: { registration: 'ERROR!!!' }, status: 500
       end

@@ -1,7 +1,7 @@
 class Hospital < ApplicationRecord
-  has_many :staffs, dependent: :destroy
+  has_many :staffs, dependent: :delete_all # staffの before_destroyを回避する為
   has_many :hospital_labelings, dependent: :destroy
-  has_many :hospital_labels, through: :hospital_labelings, dependent: :nullify
+  has_many :hospital_labels, through: :hospital_labelings
   has_many :favorite_hospitals, dependent: :destroy
   has_many :health_interviews, dependent: :destroy
   # mount_uploader :image, ImageUploader

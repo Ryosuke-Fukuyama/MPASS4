@@ -20,7 +20,8 @@
       <% @patients.each do |patient| %>
         <tr>
           <td>
-            <%= link_to patient.name, health_interview_path(@hospital, patient.health_interviews.last.id), id: "patient-#{patient.id}-healthinterviews-history" %>
+            <% health_interview_id = patient.health_interviews.where(hospital_id: @hospital).last.id %>
+            <%= link_to patient.name, health_interview_path(@hospital, health_interview_id), id: "patient-#{patient.id}-healthinterviews-history" %>
           </td>
           <td align="center">
             <% size = @health_interviews.where(patient_id: patient.id).size %>

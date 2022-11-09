@@ -1,41 +1,41 @@
 FactoryBot.define do
   factory :patient do
-    name                  { '一郎' }
+    name                  { 'タナカイチロウ' }
     email                 { 'patient-1@mail.com' }
     password              { 'Pass-W0rd' }
     password_confirmation { 'Pass-W0rd' }
     confirmed_at          { Time.now }
   end
   factory :second_patient, class: 'Patient' do
-    name                  { '二郎' }
+    name                  { 'サトウジロウ' }
     email                 { 'patient-2@mail.com' }
     password              { 'Pass-W0rd' }
     password_confirmation { 'Pass-W0rd' }
     confirmed_at          { Time.now }
   end
   factory :third_patient, class: 'Patient' do
-    name                  { '三郎' }
+    name                  { 'スズキサブロウ' }
     email                 { 'patient-3@mail.com' }
     password              { 'Pass-W0rd' }
     password_confirmation { 'Pass-W0rd' }
     confirmed_at          { Time.now }
   end
   factory :fourth_patient, class: 'Patient' do
-    name                  { 'とこ' }
+    name                  { 'ヤマダハナコ' }
     email                 { 'patient-4@mail.com' }
     password              { 'Pass-W0rd' }
     password_confirmation { 'Pass-W0rd' }
     confirmed_at          { Time.now }
   end
   factory :fifth_patient, class: 'Patient' do
-    name                  { 'リゼ' }
+    name                  { 'タカハシメイコ' }
     email                 { 'patient-5@mail.com' }
     password              { 'Pass-W0rd' }
     password_confirmation { 'Pass-W0rd' }
     confirmed_at          { Time.now }
   end
   factory :sixth_patient, class: 'Patient' do
-    name                  { 'アンジュ' }
+    name                  { 'ワタナベリコ' }
     email                 { 'patient-6@mail.com' }
     password              { 'Pass-W0rd' }
     password_confirmation { 'Pass-W0rd' }

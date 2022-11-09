@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_required
-    if !((staff_signed_in? && current_staff.admin?) || master_signed_in?)
+    if !(staff_signed_in? || master_signed_in?)
       redirect_back(fallback_location: root_path)
-    elsif !((staff_signed_in? && current_staff.hospital_id == @hospital.id) || master_signed_in?)
+    elsif !((staff_signed_in? && current_staff.admin? && current_staff.hospital_id == @hospital.id) || master_signed_in?)
       redirect_back(fallback_location: health_interviews_path(@hospital))
     end
   end

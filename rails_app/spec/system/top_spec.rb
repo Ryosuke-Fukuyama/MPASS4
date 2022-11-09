@@ -30,5 +30,29 @@ RSpec.describe 'Tops', type: :system do
       is_expected.to have_content 'ゲストマスターとしてログインしました。'
     end
   end
+
+
+  xdescribe 'エラーページ' do
+    subject { page }
+    example '404' do
+      visit '/404test'
+
+      is_expected.to have_content 'お探しのページは見つかりません。'
+      expect(page.status_code).to eq 404
+    end
+    xexample '422' do
+      visit
+
+      is_expected.to have_content 'チェック'
+      expect(page.status_code).to eq 422
+    end
+    example '500' do
+      @hospital = nil
+      visit hospital_path(@hospital)
+
+      is_expected.to have_content 'チェック'
+      expect(page.status_code).to eq 500
+    end
+  end
 end
 
