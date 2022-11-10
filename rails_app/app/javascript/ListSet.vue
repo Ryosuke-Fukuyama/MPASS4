@@ -16,7 +16,7 @@
         ></NumList>
       </div>
     </div>
-    <hr>
+    <hr class="sky__line">
     <div class="initial__list">
       <div v-if="healthInterviews0.length">
         <NumList
@@ -32,7 +32,7 @@
         ></NumList>
       </div>
     </div>
-    <hr>
+    <hr class="orange__line">
     <div class="pending__list">
       <p>{{ message.pending }}</p>
       <div v-if="healthInterviews2.length">

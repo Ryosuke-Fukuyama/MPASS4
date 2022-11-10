@@ -3,8 +3,11 @@ class Staff < ApplicationRecord
 
   validates :name, presence: true,
                    #  uniqueness: { scope: hospital_id }, # 同病院内での制限をつけたい
-                   length: { in: 1..20, allow_blank: true }
-  include PasswordValidates
+                   length: { in: 2..20, allow_blank: true }
+  validates :password, presence: true,
+                       confirmation: true,
+                       format: { with: /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[!-\/:-@\[-`{-~])[!-~]{8,20}+\z/, allow_blank: true }
+  validates :password_confirmation, presence: true
 
   before_update :admin_validation
   before_destroy :admin_validation
@@ -18,8 +21,8 @@ class Staff < ApplicationRecord
   private
 
   def admin_validation
-    if Staff.select { admin? }.size <= 1
-      # flash[:alert] = t('alert.admin_size') # undefined local variable or method `flash' for
+    if Staff.select{|value| value[:admin] == true}.size <= 1
+      # flash.now[:alert] = t('alert.admin_size') # Model内で使えない
       throw(:abort)
     end
   end

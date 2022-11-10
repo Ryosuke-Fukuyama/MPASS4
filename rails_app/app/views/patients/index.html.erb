@@ -1,39 +1,47 @@
 <h3><%= t('view.patient') + t('view.index') %></h3>
 
-<%= search_form_for @q, url: patients_path do |f| %>
-  <%= f.label :name_cont, t('view.name') %>
-  <%= f.search_field :name_cont, placeholder: t('view.placeholder.part') %>
-  <br>
-  <%= f.submit t('view.search') %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th><%= t('view.name') %></th>
-      <th><%= t('view.size') %></th>
-    </tr>
-  </thead>
-  <hr>
-  <tbody>
-    <% @patients.each do |patient| %>
-      <tr>
-        <td>
-          <%= link_to patient.name, health_interview_path(@hospital, patient.health_interviews.last.id), id: "patient-#{patient.id}-healthinterviews-history" %>
-        </td>
-        <td align="center">
-          <%= patient.health_interviews.size %>
-        </td>
-        <td>
-          <button>
-            <%= link_to t('view.destroy'), patient, method: :delete, data: { confirm: t('confirm.delete') } %>
-          </button>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div class="paginate">
-  <%= paginate @patients %>
+<div class="search_area">
+  <%= search_form_for @q, url: patients_path do |f| %>
+    <%= f.label :name_cont, t('view.name') %>
+    <%= f.search_field :name_cont, placeholder: t('view.placeholder.part') %>
+    <%= f.submit t('view.search') %>
+  <% end %>
 </div>
+
+<div class="index_are">
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('view.name') %></th>
+        <th><%= t('view.size') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @patients.each do |patient| %>
+        <tr>
+          <td>
+            <% health_interview_id = patient.health_interviews.where(hospital_id: @hospital).last.id %>
+            <%= link_to patient.name, health_interview_path(@hospital, health_interview_id), id: "patient-#{patient.id}-healthinterviews-history" %>
+          </td>
+          <td align="center">
+            <% size = @health_interviews.where(patient_id: patient.id).size %>
+            <%= size %>
+          </td>
+          <td>
+            <button>
+              <%= link_to t('view.destroy'), patient, method: :delete, data: { confirm: t('confirm.delete') } %>
+            </button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div align="center", class="paginate">
+    <%= paginate @patients %>
+  </div>
+</div>
+
+<button>
+  <%= link_to t('view.back'), :back %>
+</button>

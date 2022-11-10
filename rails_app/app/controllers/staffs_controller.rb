@@ -5,7 +5,7 @@ class StaffsController < ApplicationController
   def index
     @q = Staff.ransack(params[:q])
     @staffs = @q ? @q.result : Staff.all
-    @staffs = @staffs.order(created_at: :asc).page(params[:page]).per(8)
+    @staffs = @staffs.order(name: :asc).page(params[:page])
   end
 
   def new
@@ -32,8 +32,9 @@ class StaffsController < ApplicationController
   end
 
   def destroy
-    @staff.destroy
-    redirect_to staffs_path, notice: t('notice.destroyed')
+    if @staff.destroy
+      redirect_to staffs_path, notice: t('notice.destroyed')
+    end
   end
 
   private

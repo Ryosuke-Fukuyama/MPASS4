@@ -5,13 +5,13 @@ Rails.application.routes.draw do
     sessions: 'staffs/sessions'
     # registrations: 'staffs/registrations'
   }
-  devise_for :masters
   devise_for :patients, controllers: {
     sessions: 'patients/sessions',
     passwords: 'patients/passwords',
     registrations: 'patients/registrations'
     # omniauth_callbacks: 'patients/omniauth_callbacks'
   }
+  devise_for :masters
 
   resources :hospitals do
     collection do
@@ -27,11 +27,12 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :hospital_labels, except: [:show]
+  resources :hospital_labels, except: %i[show destroy]
   resources :favorite_hospitals, only: %i[index create destroy]
   resources :patients, only: %i[index show destroy] # do
   #   post :pay, on: :member
   # end
+  resources :masters, only: %i[index show destroy]
 
   resources :tutorials, only: [:index] do
     collection do

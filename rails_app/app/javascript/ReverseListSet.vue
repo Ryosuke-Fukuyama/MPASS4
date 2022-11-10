@@ -16,7 +16,7 @@
         ></NumList>
       </div>
     </div>
-    <hr>
+    <hr class="red__line">
     <div class="noshow__list">
       <p>{{ message.noshow }}</p>
       <div v-if="healthInterviews3.length">

@@ -1,0 +1,21 @@
+<%= form_with(model: @hospital_label, local: true) do |f| %>
+  <% if @hospital_label.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t("errors.template.header", model: HospitalLabel.model_name.human, count: @hospital_label.errors.count) %></h2>
+      <ul>
+        <% @hospital_label.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, t('view.name') + ":" %>
+    <%= f.text_field :name, autofocus: true, placeholder: t('view.placeholder.hospital_label_name'), autocomplete: "name" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

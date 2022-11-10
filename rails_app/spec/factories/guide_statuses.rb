@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :guide_status do
-    status { 1 }
-    health_interview { nil }
+    # association :health_interview, factory: :health_interview
   end
 end

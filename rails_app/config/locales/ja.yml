@@ -1,5 +1,16 @@
 ja:
   activerecord:
+    models:
+      hospital: 病院
+      hospital_label: 診療科
+    attributes:
+      hospital:
+        name: 病院名
+        email: メールアドレス
+        tel: 電話番号
+        address: 住所
+      hospital_label:
+        name: 名前
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -106,16 +117,20 @@ ja:
       month: 月
       year: 年
   notice:
-    saved: 登録しました！
+    saved: 新規登録しました！
     updated: 更新しました！
     destroyed: 削除しました！
-    already: 既に申し込み済みです。(※同時に複数の病院の受付はできません。)
-    newinterview: 受付を完了しました!
-    off_favorite: お気に入りから削除しました！
+    new_interview: 受付を完了しました!
     on_favorite: お気に入りに追加しました！
+    off_favorite: お気に入りから削除しました！
+    paied: 支払いが完了しました！
     guest_patient: ゲストユーザーとしてログインしました.
     guest_staff: ゲストスタッフとしてログインしました。
     guest_admin_staff: ゲスト管理スタッフとしてログインしました。
+    guest_master: ゲストマスターとしてログインしました。
+  alert:
+    already: 既に申し込み済みです。(※同時に複数の病院の受付はできません。)
+    admin_size: 管理人アカウントがいなくなります。
   errors:
     format: "%{attribute}%{message}"
     messages:
@@ -156,9 +171,10 @@ ja:
     select:
       prompt: 選択してください
     submit:
-      create: 登録する
-      submit: 保存する
-      update: 更新する
+      apply: 申し込む
+      create: 登録
+      submit: 送信
+      update: 更新
   number:
     currency:
       format:
@@ -219,13 +235,12 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-
-  enums:              #enum型に対する日本語定義であることを明示するために記述
-    guide_status:           #モデル名を指定
-      status:           #カラム名を指定
+  enums:             #enum型に対する日本語定義であることを明示するために記述
+    guide_status:
+      status:
         initial: 初期
         calling: 呼出
-        payment: 済み
+        payment: 決済
         pending: 保留
         noshow: 無断キャンセル
         complete: 完了
@@ -233,84 +248,103 @@ ja:
       gender:
         man: 男性
         woman: 女性
-
+  confirm:
+    delete: 削除しますか？
+    change_status: ステータスの値は正しいですか？
+  message:
+    verification_failed: reCAPTCHA認証に失敗しました！
   view:
-    waiting: オンライン待合室
-    hospital: 病院
-    hospital_label: 診療科
-    favorite: お気に入り
-    my_page: マイページ
-    sign_out: ログアウト
-    sign_in: ログイン
-    sign_up: 新規アカウント
-    honorific: 様の
-    your_number_is: 整理券番号は
-    waiting_befor: 現在の順番は
-    people: 人目です
-    healthinterviews: 予約
-    staff: スタッフ
-    only: 専用
-    patient: 患者
+    access: アクセス
     account: アカウント
-    name: 名
-    size: 来院回数
-    status: ステータス
+    addition: 追加
+    address: 住所
     admin: 管理権限
-    top: トップページ
-    tutorial: 使い方
-    index: 一覧
-    hide: 非表示
-    show: 詳細
-    history: 来院履歴
-    edit: 編集
+    age: 年齢
+    back: 戻る
+    cancel: 解除
     create: 作成
     destroy: 削除
-    back: 戻る
-    new: 新規
-    create: 作成
-    addition: 追加する
-    cancel: 取り消す
-    reception: 受付はこちら
-    new_healthinterview: 問診票
-    first: (初診用)
-    second: (再診用)
-    reverse: 裏面
-    apply: 申し込む
-    search: 検索する
-    select: 選択する
-    initial: 初期
-    calling: お呼出中
-    payment: 済み
-    pending: 保留中
-    noshow: 無断キャンセル
-    complete: 完了
-    age: 年齢
-    gender: 性別
-    please_new: パスワード（新しいものを設定してください)
-    maps: 最寄り検索
-    address: 住所
-    access: アクセス
-    introduction: 情報
-    tel: 電話番号
+    edit: 編集
     email: メールアドレス
-    guest_patient: ゲストユーザー
-    guest_staff: ゲストスタッフ
+    favorite: ☆お気に入り
+    first: (初診用)
+    gender: 性別
     guest_admin_staff: ゲスト管理スタッフ
+    guest_staff: ゲストスタッフ
+    guest_master: ゲストマスター
+    guest_patient: ゲストユーザー
+    health_interviews:
+    hospital_label: 診療科
+    hide: 非表示
+    history: 来院履歴
+    honorific: 様の
+    hospital: 病院
+    hospital_label: 診療科
+    image: 画像
+    index: 一覧
+    introduction: 情報
+    link: リンク
+    maps: 最寄り検索
+    master: マスター
+    menu: メニュー
+    must_select: 最低一つ選択してください。(複数選択可)
+    my_page: マイページ
+    name: 名前
+    name_of: 名
+    new: 新規
+    new_health_interview: 問診票
+    none: 未登録
+    only: 専用
+    page: ページ
+    patient: 患者
+    payment: 支払い
+    people_num: 人目です
+    please_new: パスワード（新しいものを設定してください)
+    price: 金額
+    reception: 受付はこちら
+    reservation: 予約
+    reverse: 裏面
+    search: 検索
+    second: (再診用)
+    select: 選択する
+    show: 詳細
+    sign_in: ログイン
+    sign_out: ログアウト
+    sign_up: 新規アカウント
+    size: 来院回数
+    staff: スタッフ
+    status: ステータス
+    symptoms: 症状
+    tel: 電話番号
+    top: トップページ
+    tutorial: 使い方
+    visit_date: 来院日
+    your_number_is: 整理券番号は
+    waiting: オンライン待合室
+    waiting_befor: 現在の順番は
     placeholder:
-      patient_name: フルネーム(漢字)
-      staff_name: 名前
-      email: xxxx@example.co.jp
-      password: 半角英数(6文字以上)
-      password_confirmation: 同じものを入力してください
-      name_or_email: お名前かメールアドレス
-      tel: 半角数字(ハイフンなし)
-      address: 〇〇市〇〇 xx-xx-xx 建物名 〇〇〇
-      mandatory: ※入力してください
-      integer: 半角数字
-      part: 部分一致
-      symptomatology: 症状や、発症時期等
-      condition: 持病や、服用中のお薬等
+      access: 〇〇駅からバスで〇分
+      address: 〇〇市〇〇 xx-xx-xx
       comment: 気になる点等医師に伝えたいことがございましたら、お気軽にご記入ください。
+      condition: 持病や、服用中のお薬等あればご記入ください。
+      email: xxxx@example.co.jp
+      hospital_label_name: 〇〇科
+      hospital_name: 〇〇病院
+      image_file: sample.jpg
+      integer: 半角
+      introduction: "URL: https:// ~~~~"
+      length: (8文字以上)
+      mandatory: ※入力してください
+      must: 必須)
+      name: 全角カタカナ
+      name_or_email: お名前かメールアドレス
+      part: 部分一致
+      password: 各半角大小英数記号
+      password_confirmation: 同じものを入力してください
+      patient_name: フルネーム(漢字)
+      staff_name: 完全同名不可
+      symptoms: 症状や、発症時期等ご記入ください。
+      tel: ハイフンなし
     message:
       initial: |
             お申し込み頂きありがとうございます。ご案内状況をご確認の上お越しください。
@@ -333,8 +367,3 @@ ja:
          お会計は現在精算中でございます。もう暫くお待ちくださいませ。
       complete: |
              お支払いが確認できました。お大事にしてください。
-
-  confirm:
-    delete: 削除しますか？
-  message:
-    verification_failed: reCAPTCHA認証に失敗しました

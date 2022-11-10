@@ -1,9 +1,11 @@
 class Master < ApplicationRecord
   validates :name, presence: true,
                    uniqueness: true,
-                   length: { in: 1..20, allow_blank: true }
+                   length: { in: 2..20, allow_blank: true }
   include EmailValidates
   include PasswordValidates
+
+  before_destroy :master_validation
 
   devise :database_authenticatable,
          :registerable,
@@ -16,6 +18,12 @@ class Master < ApplicationRecord
          authentication_keys: %i[name email]
 
   private
+   def master_validation
+    if Master.all.size <= 1
+      # flash.now[:alert] = t('alert.master_size')
+      throw(:abort)
+    end
+  end
 
   def email_required?
     false

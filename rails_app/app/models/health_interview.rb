@@ -4,6 +4,8 @@ class HealthInterview < ApplicationRecord
   has_one :guide_status, dependent: :destroy
   accepts_nested_attributes_for :guide_status, allow_destroy: true
 
+  include Scopes
+
   enum gender: { man: 0, woman: 1 }
 
   scope :search_initial, -> { where(guide_statuses: { status: 'initial' }) }
@@ -11,5 +13,4 @@ class HealthInterview < ApplicationRecord
   scope :search_pending, -> { where(guide_statuses: { status: 'pending' }) }
   scope :search_payment, -> { where(guide_statuses: { status: 'payment' }) }
   scope :search_noshow, -> { where(guide_statuses: { status: 'noshow' }) }
-  scope :search_today, -> { where(updated_at: Time.current.all_day) }
 end

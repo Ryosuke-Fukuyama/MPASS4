@@ -10,6 +10,8 @@ class Patient < ApplicationRecord
   include TelValidates
   include AddressValidates
 
+  include Scopes
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,

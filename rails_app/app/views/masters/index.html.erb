@@ -1,0 +1,43 @@
+<h3><%= t('view.master') + t('view.index') %></h3>
+
+<div class="search_area">
+  <%= search_form_for @q, url: masters_path do |f| %>
+    <%= f.label :name_cont, t('view.name') %>
+    <%= f.search_field :name_cont, placeholder: t('view.placeholder.part') %>
+    <%= f.submit t('view.search') %>
+  <% end %>
+</div>
+
+<div class="index_area">
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('view.name') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @masters.each do |master| %>
+        <tr>
+          <td>
+            <%= master.name %>
+          </td>
+          <% unless master.id == current_master.id %>
+            <td>
+              <button>
+                <%= link_to t('view.destroy'), master, data: { confirm: t('confirm.delete') }, method: :delete %>
+              </button>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div align="center", class="paginate">
+    <%= paginate @masters %>
+  </div>
+</div>
+
+<button>
+  <%= link_to t('view.back'), :back %>
+</button>

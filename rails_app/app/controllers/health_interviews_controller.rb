@@ -33,9 +33,10 @@ class HealthInterviewsController < ApplicationController
     @health_interviews = current_patient.health_interviews
     if @health_interviews.present? && (@health_interviews.last.guide_status.initial? ||
                                         @health_interviews.last.guide_status.calling? ||
-                                        @health_interviews.last.guide_status.pending?
+                                        @health_interviews.last.guide_status.pending? ||
+                                        @health_interviews.last.guide_status.payment?
                                       )
-      redirect_to patient_path(current_patient.id), notice: t('notice.already')
+      redirect_to patient_path(current_patient.id), alert: t('alert.already')
     end
     @history = @health_interviews.where(hospital_id: params[:id])
     @health_interview = HealthInterview.new
@@ -47,7 +48,7 @@ class HealthInterviewsController < ApplicationController
     @health_interview.patient_id = current_patient.id
     @health_interview.hospital_id = params[:id]
     if @health_interview.save
-      redirect_to patient_path(current_patient.id), notice: t('notice.newinterview')
+      redirect_to patient_path(current_patient.id), notice: t('notice.new_interview')
     else
       render :new
     end
@@ -66,7 +67,7 @@ class HealthInterviewsController < ApplicationController
     if health_interview_params[:price].present?
       if @health_interview.update(health_interview_params)
         # @health_interview.number.destroy if status.status == noshow || status.status == complete
-        redirect_to health_interview_path(@hospital, @health_interview) # , json: { registration: 'OK!' }, status: 200
+        redirect_to health_interview_path(@hospital, @health_interview), notice: t('notice.updated') # , json: { registration: 'OK!' }, status: 200
       else
         render 'edit' # , json: { registration: 'ERROR!!!' }, status: 500
       end
@@ -99,7 +100,7 @@ class HealthInterviewsController < ApplicationController
     params.require(:health_interview).permit(
       :age,
       :gender,
-      :symptomatology,
+      :symptoms,
       :condition,
       :comment,
       :price,

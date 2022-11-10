@@ -1,13 +1,13 @@
-<p class="logo">MPASS</p>
+<p align="center" class="logo">MPASS</p>
 <ul>
   <li>
-    <%= link_to 'Top', root_path, id: "global-navi_top" %>
+    <%= link_to t('view.top'), root_path, id: "global-navi_top" %>
+  </li>
+  <li>
+    <%= link_to t('view.hospital') + t('view.index'), hospitals_path, id: "global-navi_hospital-index" %>
   </li>
   <% if patient_signed_in? || staff_signed_in? || master_signed_in? %>
     <% if patient_signed_in? %>
-      <li>
-        <%= link_to t('view.hospital') + t('view.index'), hospitals_path, id: "global-navi_hospital-index" %>
-      </li>
       <li>
         <%= link_to t('view.my_page'), patient_path(current_patient.id), id: "global-navi_patient-show" %>
       </li>
@@ -30,10 +30,7 @@
       </div>
     <% else %>
       <li>
-        <%= link_to t('view.hospital') + t('view.index'), hospitals_path, id: "global-navi_hospital-index" %>
-      </li>
-      <li>
-        <%= link_to t('view.hospital') + t('view.new'), new_hospital_path, id: "global-navi_new-hospital" %>
+        <%= link_to t('view.master') + t('view.menu'), master_path(current_master.id), id: "global-navi_new-hospital" %>
       </li>
       <div class="flex-right">
         <li>

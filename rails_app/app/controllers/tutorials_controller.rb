@@ -5,6 +5,7 @@ class TutorialsController < ApplicationController
     patient = Patient.find_or_create_by!(email: 'guest@example.com') do |patient|
       patient.name = 'ゲスト'
       patient.password = generate_password
+      patient.password_confirmation = patient.password
       patient.confirmed_at = Time.now
     end
     sign_in patient
@@ -14,6 +15,7 @@ class TutorialsController < ApplicationController
   def guest_staff_sign_in
     staff = Staff.find_or_create_by!(name: 'ゲストスタッフ') do |staff|
       staff.password = generate_password
+      staff.password_confirmation = staff.password
       staff.hospital_id = 1
     end
     sign_in staff
@@ -24,16 +26,18 @@ class TutorialsController < ApplicationController
     staff = Staff.find_or_create_by!(name: 'ゲストアドミン') do |staff|
       staff.admin = true
       staff.password = generate_password
+      staff.password_confirmation = staff.password
       staff.hospital_id = 1
     end
     sign_in staff
-    redirect_to health_interviews_path(staff.hospital_id), notice: t('notice.guest_admin_staff')
+    redirect_to hospital_path(staff.hospital_id), notice: t('notice.guest_admin_staff')
   end
 
   def guest_master_sign_in
     master = Master.find_or_create_by!(email: 'guest_master@example.com') do |master|
       master.name = 'ゲストマスター'
       master.password = generate_password
+      master.password_confirmation = master.password
       master.confirmed_at = Time.now
     end
     sign_in master

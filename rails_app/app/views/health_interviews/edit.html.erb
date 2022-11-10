@@ -1,13 +1,15 @@
-<h3><%= t('view.status') + t('view.edit') %></h3>
+<h3><%= t('view.payment') + t('view.edit') %></h3>
 
 <%= form_with(model: [@health_interview], local: true) do |f| %>
 
-  <p>No.【<%= @health_interview.id %>】</p>
+  <p align="center">No.【<%= @health_interview.id %>】</p>
+
 
   <div class="field">
     <%= f.fields_for :guide_status do |s| %>
       <%= s.label t('view.status') %>
-      <%= s.select :status, GuideStatus.statuses.keys %>
+      <%= s.select :status,
+        GuideStatus.statuses.keys.map {|k| [I18n.t("enums.guide_status.status.#{k}"), k]} %>
     <% end %>
   </div>
 

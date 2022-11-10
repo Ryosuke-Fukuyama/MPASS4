@@ -1,40 +1,47 @@
 <h3><%= t('view.hospital') + t('view.index') %></h3>
 
-<%= search_form_for @q, url: hospitals_path do |f| %>
-  <%= f.label :name_cont, t('view.hospital') + t('view.name_of') %>
-  <%= f.search_field :name_cont, placeholder: "" %>
+<div class="search_area">
+  <%= search_form_for @q, url: hospitals_path do |f| %>
+    <div>
+      <%= f.label :name_cont, t('view.hospital') + t('view.name_of') + ":" %>
+      <%= f.search_field :name_cont, placeholder: t('view.placeholder.part') %>
+    </div>
+    <div>
+      <%= f.label :hospital_labels_id_eq, t('view.hospital_label') + ":" %>
+      <%= f.select :hospital_labels_id_eq, @hospital_labels.map{ |label| [label.name, label.id] }, include_blank: t('view.select') %>
 
-  <%= f.label :hospital_labels_id_eq, t('view.hospital_label') %>
-  <%= f.select :hospital_labels_id_eq, @hospital_labels.map{ |label| [label.name, label.id] }, include_blank: t('view.select') %>
+      <%= f.submit %>
+    </div>
+  <% end %>
 
-  <%= f.submit t('view.search') %>
-<% end %>
+  <%#= link_to t('view.maps'), maps_hospitals_path %>
+</div>
 
-<%#= link_to t('view.maps'), maps_hospitals_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th><%= t('view.hospital') + t('view.name') %></th>
-      <th><%= t('view.access') %></th>
-      <th><%= t('view.hospital_label') %></th>
-    <tr/>
-  </thead>
-  <tbody>
-    <% @hospitals.each do |hospital| %>
+<div class="index_area">
+  <table>
+    <thead>
       <tr>
-        <td id=<%= "hospital-index_item-name-#{hospital.id}" %>><%= link_to hospital.name, hospital_path(hospital.id) %></td>
-        <td id=<%= "hospital-index_item-access-#{hospital.id}" %>><%= hospital.access %></td>
-        <td id=<%= "hospital-index_item-#{hospital.id}-label-name" %>>
-          <% hospital.hospital_labels.each do |label| %>
-            <%= label.name %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <th><%= t('view.hospital') + t('view.name_of') %></th>
+        <th><%= t('view.access') %></th>
+        <th><%= t('view.hospital_label') %></th>
+      <tr/>
+    </thead>
+    <tbody>
+      <% @hospitals.each do |hospital| %>
+        <tr>
+          <td id=<%= "hospital-index_item-name-#{hospital.id}" %>><%= link_to hospital.name, hospital_path(hospital.id) %></td>
+          <td id=<%= "hospital-index_item-access-#{hospital.id}" %> class="small_font"><%= hospital.access %></td>
+          <td id=<%= "hospital-index_item-#{hospital.id}-label-name" %> class="small_font">
+            <% hospital.hospital_labels.each do |label| %>
+              [<%= label.name %>]
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<div class="paginate">
-  <%= paginate @hospitals %>
+  <div align="center", class="paginate">
+    <%= paginate @hospitals %>
+  </div>
 </div>

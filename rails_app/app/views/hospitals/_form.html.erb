@@ -1,0 +1,73 @@
+<%= form_with(model: @hospital, local: true) do |f| %>
+  <% if @hospital.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t("errors.template.header", model: Hospital.model_name.human, count: @hospital.errors.count) %></h2>
+      <ul>
+        <% @hospital.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="name_field">
+    <%= f.label :name, t('view.hospital') + t('view.name_of') %>
+    <%= f.text_field :name, placeholder: t('view.placeholder.must') + t('view.placeholder.hospital_name'), autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="email_field">
+    <%= f.label :email, t('view.email') %>
+    <%= f.email_field :email, placeholder: t('view.placeholder.must') + t('view.placeholder.email'), autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tel, t('view.tel') %>
+    <%= f.text_field :tel, placeholder: t('view.placeholder.must')+ t('view.placeholder.tel')+ t('view.placeholder.integer'), autocomplete: "tel" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, t('view.address') %>
+    <%= f.text_field :address, placeholder: t('view.placeholder.must')+ t('view.placeholder.address'), autocomplete: "address" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :access, t('view.access') %>
+    <%= f.text_field :access, placeholder: t('view.placeholder.access'), autocomplete: "access" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction, t('view.introduction') %>
+    <%= f.text_field :introduction, placeholder: t('view.placeholder.introduction'), autocomplete: "introduction" %>
+  </div>
+
+  <%
+=begin
+%>
+  <div class="field">
+    <%= f.label :image, t('view.image') %>
+    <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
+    <%= f.file_field :image, placeholder: t('view.placeholder.image_file'), autocomplete: "image" %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  <%
+=end
+%>
+
+  <div class="field">
+    <p>
+      <%= f.label :hospital_label, t('view.hospital_label') %>
+      <span class="small_font"><%= t('view.must_select') %></span>
+    </p>
+    <% @hospital_labels.all.each do |label| %>
+      <%= f.check_box :hospital_label_ids,
+        { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
+      <label><%= label.name %></label>
+    <% end %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
+
+<button>
+  <%= link_to t('view.back'), :back %>
+</button>

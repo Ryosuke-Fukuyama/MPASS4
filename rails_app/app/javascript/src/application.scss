@@ -1,0 +1,130 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+ @import '~bootstrap/scss/bootstrap';
+
+  nav ul {
+    margin-top: 0;
+    padding: 0;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  nav .flex-right {
+    margin-left: auto;
+  }
+
+  .logo {
+    font-size: xx-large;
+    margin-bottom: 0;
+  }
+
+  /* span.logo-design {
+    background: linear-gradient(transparent 60%, #a8eaff 60%);
+    margin-left: auto;
+    margin-right: auto;
+  } */
+
+  .top {
+    margin: 30px 20px 30px 20px;
+  }
+
+ form {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .index_area {
+    margin-bottom: 30px;
+  }
+
+  .slender_table {
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .slender_table table {
+    margin-left: 20px;
+  }
+
+  .message_area {
+    margin-top: 30px;
+  }
+
+  .inline-block {
+    display: inline-block;
+  }
+
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* .search_area {
+
+  } */
+
+  ul li {
+    list-style: none;
+    margin: 5px;
+  }
+
+  td {
+    padding-bottom: 10px;
+  }
+
+  .small_font {
+    font-size: small;
+  }
+
+  button {
+    margin: 10px 5px 5px 10px;
+  }
+
+  .paginate {
+    margin-top: 30px;
+  }
+
+  textarea {
+    width: 140px;
+    height: 70px;
+  }
+
+  .email_field input {
+    width: 220px;
+  }
+
+  .password_field input {
+    width: 220px;
+  }
+
+  .age_field input {
+    width: 30px;
+  }
+
+
+
+
+
+  .sky__line {
+    border-top: 3px solid skyblue;
+  }
+
+  .orange__line {
+    border-top: 3px solid orange;
+  }
+
+  .red__line {
+    border-top: 3px solid red;
+  }

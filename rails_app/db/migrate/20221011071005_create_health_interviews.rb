@@ -3,7 +3,7 @@ class CreateHealthInterviews < ActiveRecord::Migration[6.0]
     create_table :health_interviews do |t|
       t.integer :age
       t.integer :gender
-      t.text :symptomatology
+      t.text :symptoms
       t.text :condition
       t.integer :price
       # t.boolean :notification, default: false

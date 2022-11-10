@@ -275,6 +275,8 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    shoulda-matchers (5.0.0)
+      activesupport (>= 5.2.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -289,6 +291,7 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.11)
+    timecop (0.9.4)
     tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unicode-display_width (2.2.0)
@@ -352,8 +355,10 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (>= 6)
   selenium-webdriver
+  shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
+  timecop
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
