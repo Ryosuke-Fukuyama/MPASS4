@@ -16,6 +16,9 @@
     "vue-template-compiler": "^2.6.12"
   },
   "version": "0.1.0",
+  "engines": {
+    "node": "14.16.0"
+  },
   "devDependencies": {
     "webpack-dev-server": "^4.11.1"
   }
