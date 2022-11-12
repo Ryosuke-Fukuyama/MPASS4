@@ -40,9 +40,6 @@
       </div>
       <div>
         <p>¥<%= @last_interview.price %></p>
-<%
-=begin
-%>
         <%= form_tag(action: :pay, method: :post) do %>
           <script type="text/javascript"
             src="https://checkout.pay.jp"
@@ -68,9 +65,6 @@
           <td>YUI ARAGAKI</td>
         </tr>
       </div>
-<%
-=end
-%>
     <% else %>
       <div>
         <%= simple_format(t('view.message.calculating')) %>

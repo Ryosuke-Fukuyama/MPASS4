@@ -41,16 +41,16 @@ class PatientsController < ApplicationController
     redirect_to patients_path, notice: t('notice.destroyed')
   end
 
-  # def pay
-  #   Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-  #   charge = Payjp::Charge.create(
-  #     amount: @last_interview.price,
-  #     card: params['payjp-token'],
-  #     currency: 'jpy'
-  #   )
-  #   PaymentMailer.charged_mail(@last_interview).deliver
-  #   redirect_to patient_path, notice: t('notice.paied')
-  # end
+  def pay
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    charge = Payjp::Charge.create(
+      amount: @last_interview.price,
+      card: params['payjp-token'],
+      currency: 'jpy'
+    )
+    PaymentMailer.charged_mail(@last_interview).deliver
+    redirect_to patient_path, notice: t('notice.paied')
+  end
 
   private
 

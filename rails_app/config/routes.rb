@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   end
   resources :hospital_labels, except: %i[show destroy]
   resources :favorite_hospitals, only: %i[index create destroy]
-  resources :patients, only: %i[index show destroy] # do
-  #   post :pay, on: :member
-  # end
+  resources :patients, only: %i[index show destroy] do
+    post :pay, on: :member
+  end
   resources :masters, only: %i[index show destroy]
 
   resources :tutorials, only: [:index] do
