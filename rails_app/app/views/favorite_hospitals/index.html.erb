@@ -13,9 +13,7 @@
         <tr>
           <td><%= link_to favorite.hospital.name, hospital_path(favorite.hospital.id) %></td>
           <td align="center">
-            <button>
-              <%= link_to t('view.link'), health_interviews_path(favorite.hospital.id) %>
-            </button>
+            <%= link_to t('view.link'), health_interviews_path(favorite.hospital.id), class: "btn btn-success", role: "button" %>
           </td>
         </tr>
       <% end %>

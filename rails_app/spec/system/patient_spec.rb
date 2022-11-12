@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Patient', type: :system do
   let!(:patient_1) { FactoryBot.create(:patient) }
+  let!(:delete_verify_env_test){ Recaptcha.configuration.skip_verify_env.delete("test") }
   before do
     visit root_path
   end
@@ -44,15 +45,14 @@ RSpec.describe 'Patient', type: :system do
         click_on 'アカウント登録'
         is_expected.to have_content 'パスワード（確認用）とパスワードの入力が一致しません'
       end
-      #  #  未実装
-      # example 'no check' do
-      #   fill_in 'お名前',            with: "テスト太郎"
-      #   fill_in 'Eメール',           with: "test@mail.com"
-      #   fill_in 'パスワード',         with: "Pass-W0rd"
-      #   fill_in 'パスワード（確認用）', with: "Pass-W0rd"
-      #   click_on "アカウント登録"
-      #   is_expected.to have_content "reCAPTCHA認証に失敗しました"
-      # end
+      example 'no check' do
+        fill_in 'お名前',            with: "テスト太郎"
+        fill_in 'Eメール',           with: "test@mail.com"
+        fill_in 'パスワード',         with: "Pass-W0rd"
+        fill_in 'パスワード（確認用）', with: "Pass-W0rd"
+        click_on "アカウント登録"
+        is_expected.to have_content "reCAPTCHA認証に失敗しました"
+      end
     end
     context 'success' do
       example 'fill in all' do
@@ -60,7 +60,7 @@ RSpec.describe 'Patient', type: :system do
         fill_in 'Eメール',            with: 'test@mail.com'
         fill_in 'パスワード',         with: 'Pass-W0rd'
         fill_in 'パスワード（確認用）', with: 'Pass-W0rd'
-        # check '.recaptcha-checkbox-border'
+        check '.recaptcha-checkbox-border'
         click_on 'アカウント登録'
         is_expected.to have_content '本人確認用のメールを送信しました。'
       end
@@ -239,20 +239,19 @@ RSpec.describe 'Patient', type: :system do
     end
   end
 
-  #  #  未実装
-  # describe 'pay' do
-  #   before do
-  #     payjp_charge = double('Payjp::Charge')
-  #     allow(Payjp::Charge).to receive(:create).and_return(payjp_charge)
-  #     allow(payjp_customer).to receive(:id).and_return('cus_xxxxxxxxxxxxx')
-  #   end
-  #   context 'mock' do
-  #     example 'ok' do
-  #       post :create, params: { token: 'tok_xxxxxxxx' }
-  #       credit = create(:credit, user_id: user.id, customer_id: 'cus_xxxxxxxxxxxxx')
-  #       expect(assigns(:credit).customer_id).to eq(credit.customer_id)
-  #       expect(page).to have_content 'お支払いが完了しました'
-  #     end
-  #   end
-  # end
+  describe 'pay' do
+    before do
+      payjp_charge = double('Payjp::Charge')
+      allow(Payjp::Charge).to receive(:create).and_return(payjp_charge)
+      allow(payjp_customer).to receive(:id).and_return('cus_xxxxxxxxxxxxx')
+    end
+    context 'mock' do
+      example 'ok' do
+        post :create, params: { token: 'tok_xxxxxxxx' }
+        credit = create(:credit, user_id: user.id, customer_id: 'cus_xxxxxxxxxxxxx')
+        expect(assigns(:credit).customer_id).to eq(credit.customer_id)
+        expect(page).to have_content 'お支払いが完了しました'
+      end
+    end
+  end
 end

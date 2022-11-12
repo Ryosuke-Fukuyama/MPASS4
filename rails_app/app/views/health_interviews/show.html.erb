@@ -54,12 +54,10 @@
       <tr>
         <th><%= t('view.price') %></th>
         <td colspan="2">¥<span align="right"><%= history.price %></span></td>
-        <td><%= link_to t('view.edit'), edit_health_interview_path(@hospital, history.id) %></td>
+        <td><%= link_to t('view.edit'), edit_health_interview_path(@hospital, history.id), class: "btn btn-primary", role: "button" %></td>
       </tr>
     <% end %>
   <% end %>
 </table>
 
-<button>
-  <%= link_to t('view.back'), :back %>
-</button>
+<%= link_to t('view.back'), :back, class: "button_06", role: "button" %>

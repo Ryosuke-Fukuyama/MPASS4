@@ -80,7 +80,5 @@
 <% end %>
 
 <div class="btn">
-  <button>
-    <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient) %>
-  </button>
+  <%= link_to t('view.account') + t('view.edit'), edit_patient_registration_path(@patient), class: "btn btn-primary", role: "button" %>
 </div>

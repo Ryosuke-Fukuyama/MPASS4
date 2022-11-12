@@ -9,6 +9,10 @@
       </h2>
     </div>
   <% end %>
+  <% if flash[:recaptcha_error].present? %>
+    <p class="left-margin"><%= flash[:recaptcha_error] %></p>
+  <% end %>
+
   <%= f.text_field :name, placeholder: t('view.placeholder.name'), autofocus: true, autocomplete: "name" %>
 
   <%= f.email_field :email, placeholder: "", autocomplete: "email" %>
@@ -19,6 +23,8 @@
   <%= f.password_field :password, placeholder: "", autocomplete: "new-password" %>
 
   <%= f.password_field :password_confirmation, placeholder: "", autocomplete: "new-password" %>
+
+  <div><%= recaptcha_tags %></div>
 
   <div class="actions">
     <%= f.submit t('.sign_up') %>

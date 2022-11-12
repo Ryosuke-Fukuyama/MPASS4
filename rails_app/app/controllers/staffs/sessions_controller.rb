@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Staffs::SessionsController < Devise::SessionsController
-  # protect_from_forgery with: :exception
+  # include Recaptcha
+  prepend_before_action :check_captcha_sign_in, only: [:create]
   before_action :configure_sign_in_params, only: [:create]
+  # protect_from_forgery with: :exception
 
   # GET /resource/sign_in
   # def new
@@ -35,5 +37,16 @@ class Staffs::SessionsController < Devise::SessionsController
 
   def after_sign_out_path_for(_resource)
     new_staff_session_path
+  end
+
+  private
+
+  def check_captcha_sign_in
+    unless verify_recaptcha(message: t('message.verification_failed'))
+      self.resource = resource_class.new sign_in_params
+      resource.validate
+      set_minimum_password_length
+      respond_with_navigational(resource) { render :new }
+    end
   end
 end

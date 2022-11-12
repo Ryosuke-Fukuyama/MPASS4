@@ -5,20 +5,14 @@
   </div>
   <% if patient_signed_in? %>
     <% if @favorite_hospital.present? %>
-      <%= link_to t('view.favorite') + t('view.cancel'),
-        favorite_hospital_path(id: @favorite_hospital.id), method: :delete, class: 'btn btn-danger'
-      %>
+      <%= link_to t('view.favorite') + t('view.cancel'), favorite_hospital_path(id: @favorite_hospital.id), method: :delete, class: "btn btn-warning", role: "button" %>
     <% else %>
-      <%= link_to t('view.favorite') + t('view.addition'),
-        favorite_hospitals_path(hospital_id: @hospital.id), method: :post, class: 'btn btn-primary'
-      %>
+      <%= link_to t('view.favorite') + t('view.addition'), favorite_hospitals_path(hospital_id: @hospital.id), method: :post, class: "btn btn-outline-warning", role: "button" %>
     <% end %>
   <% end %>
 </div>
 
-<button type="button">
-  <%= link_to t('view.waiting'), health_interviews_path(@hospital) %>
-</button>
+<%= link_to t('view.waiting'), health_interviews_path(@hospital), class: "btn btn-outline-success" %>
 
 <table>
   <tr>
@@ -62,24 +56,18 @@
   <% end %>
 </table>
 
-<button>
-  <%= link_to t('view.back'), :back %>
-</button>
+<%= link_to t('view.back'), :back, class: "button_06", role: "button" %>
 
 
 <% if (staff_signed_in? && current_staff.admin? && current_staff.hospital_id == @hospital.id) || master_signed_in? %>
   <div>
-    <button>
-      <%= link_to t('view.edit'), edit_hospital_path(@hospital), id: "hospital-edit" %>
-    </button>
-    <button>
-      <%= link_to t('view.destroy'), hospital_path(@hospital), method: :delete, data: { confirm: t('confirm.delete') }, id: "hospital-destroy" %>
-    </button>
+    <%= link_to t('view.edit'), edit_hospital_path(@hospital), id: "hospital-edit", class: "btn btn-primary", role: "button" %>
+    <%= link_to t('view.destroy'), hospital_path(@hospital), method: :delete, data: { confirm: t('confirm.delete') }, id: "hospital-destroy", class: "btn btn-danger", role: "button" %>
   </div>
 <% end %>
 
 <% if !(patient_signed_in? || staff_signed_in? || master_signed_in?)  %>
-  <%= link_to t('view.staff') + t('view.only'), new_staff_session_path, id: "staff-sign_in" %>
+  <%= link_to t('view.staff') + t('view.only'), new_staff_session_path, id: "staff-sign_in", class: "btn btn-outline-primary", role: "button" %>
 <% end %>
 
 

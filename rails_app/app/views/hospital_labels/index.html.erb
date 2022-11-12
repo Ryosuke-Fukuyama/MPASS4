@@ -21,11 +21,11 @@
         <tr>
           <td align="center"><%= label.name %></td>
           <td>
-            <button>
-              <%= link_to t('view.edit'), edit_hospital_label_path(label) %>
-            </button>
+            <%= link_to t('view.edit'), edit_hospital_label_path(label), class: "btn btn-primary", role: "button" %>
           </td>
-          <td><%#= link_to 'Destroy', hospital_label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <%#= link_to 'Destroy', hospital_label, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button" %>
+          </td>
         </tr>
         <% break if i== 7 %>
       <% end %>
@@ -44,11 +44,11 @@
           <tr>
             <td align="center"><%= label.name %></td>
             <td>
-              <button>
-                <%= link_to t('view.edit'), edit_hospital_label_path(label) %>
-              </button>
+              <%= link_to t('view.edit'), edit_hospital_label_path(label), class: "btn btn-primary", role: "button" %>
             </td>
-            <td><%#= link_to 'Destroy', hospital_label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td>
+              <%#= link_to 'Destroy', hospital_label, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", role: "button" %>
+            </td>
           </tr>
         <% end %>
         <% break if i== 16 %>
@@ -61,4 +61,4 @@
   <%#= paginate @hospital_labels %>
 </div>
 
-<%= link_to t('view.new') + t('view.hospital_label'), new_hospital_label_path %>
+<%= link_to t('view.new') + t('view.hospital_label'), new_hospital_label_path, class: "btn btn-outline-primary", role: "button" %>

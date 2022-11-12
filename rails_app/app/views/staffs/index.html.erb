@@ -33,13 +33,9 @@
             <%= staff.admin == true ? "○" : "" %>
           </td>
           <td>
-            <button>
-              <%= link_to t('view.edit'), edit_staff_path(staff), id: "in-house-edit-staff-#{staff.id}" %>
-            </button>
+            <%= link_to t('view.edit'), edit_staff_path(staff), id: "in-house-edit-staff-#{staff.id}", class: "btn btn-primary", role: "button" %>
             <% unless staff.id == current_staff.id %>
-              <button>
-                <%= link_to t('view.destroy'), staff, method: :delete, data: { confirm: t('confirm.delete') }, id: "in-house-delete-staff-#{staff.id}" %>
-              </button>
+              <%= link_to t('view.destroy'), staff, method: :delete, data: { confirm: t('confirm.delete') }, id: "in-house-delete-staff-#{staff.id}", class: "btn btn-danger", role: "button" %>
             <% end %>
           </td>
         </tr>
@@ -56,6 +52,4 @@
   <%= link_to t('view.staff') + t('view.new') + t('view.create'), new_staff_path %>
 </div>
 
-<button>
-  <%= link_to t('view.back'), :back %>
-</button>
+<%= link_to t('view.back'), :back, class: "button_06", role: "button" %>

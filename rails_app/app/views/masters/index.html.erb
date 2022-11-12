@@ -23,9 +23,7 @@
           </td>
           <% unless master.id == current_master.id %>
             <td>
-              <button>
-                <%= link_to t('view.destroy'), master, data: { confirm: t('confirm.delete') }, method: :delete %>
-              </button>
+              <%= link_to t('view.destroy'), master, data: { confirm: t('confirm.delete') }, method: :delete, class: "btn btn-danger", role: "button" %>
             </td>
           <% end %>
         </tr>
@@ -38,6 +36,4 @@
   </div>
 </div>
 
-<button>
-  <%= link_to t('view.back'), :back %>
-</button>
+<%= link_to t('view.back'), :back, class: "button_06", role: "button" %>
