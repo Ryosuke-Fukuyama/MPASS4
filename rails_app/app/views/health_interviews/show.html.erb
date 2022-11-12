@@ -1,63 +1,66 @@
 <h3><%= @health_interview.patient.name + t('view.history') %></h3>
 
-<table>
-  <tr>
-    <th><%= t('view.email') %></th>
-    <td><%= @health_interview.patient.email %></td>
-  </tr>
-
-  <tr>
-    <th><%= t('view.tel') %></th>
-    <% if @health_interview.patient.tel.present? %>
-      <td>@health_interview.patient.tel %></td>
-    <% else %>
-      <p>
-        <td><%= t('view.none') %></td>
-      </>
-    <% end %>
-  </tr>
-
-  <tr>
-    <th><%= t('view.gender') %></th>
-    <td><%= @first_interview.gender_i18n %></td>
-  </tr>
-
-  <tr>
-    <th><%= t('view.age') %></th>
-    <td><%= @first_interview.age %></td>
-  </tr>
-
-  <tr>
-    <th><%= t('view.condition') %></th>
-    <td><%= @first_interview.condition %></td>
-  </tr>
-</table><br />
-
-<table>
-  <tr>
-    <th><%= t('view.visit_date') %></th>
-    <th>No.</th>
-    <th><%= t('view.status') %></th>
-    <th><%= t('view.symptoms') %></th> # カラム名 symptoms に変更
-  </tr>
-
-  <% @history.each.with_index do |history, i| %>
+<div>
+  <table>
     <tr>
-      <td><%= history.created_at.strftime('%Y/%m/%d') %></td>
-      <td align="center">【<%= history.guide_status.id %>】</td>
-      <td align="center"><%= history.guide_status.status_i18n %></td>
-      <% if history.symptoms.present? %></td>
-        <td><%= history.symptoms  %></td>
+      <th><%= t('view.email') %></th>
+      <td><%= @health_interview.patient.email %></td>
+    </tr>
+
+    <tr>
+      <th><%= t('view.tel') %></th>
+      <% if @health_interview.patient.tel.present? %>
+        <td>@health_interview.patient.tel %></td>
+      <% else %>
+        <p>
+          <td><%= t('view.none') %></td>
+        </>
       <% end %>
     </tr>
-    <% if history.guide_status.payment? %>
+
+    <tr>
+      <th><%= t('view.gender') %></th>
+      <td><%= @first_interview.gender_i18n %></td>
+    </tr>
+
+    <tr>
+      <th><%= t('view.age') %></th>
+      <td><%= @first_interview.age %></td>
+    </tr>
+
+    <tr>
+      <th><%= t('view.condition') %></th>
+      <td><%= @first_interview.condition %></td>
+    </tr>
+  </table>
+<div>
+<div>
+  <table>
+    <tr>
+      <th><%= t('view.visit_date') %></th>
+      <th>No.</th>
+      <th><%= t('view.status') %></th>
+      <th><%= t('view.symptoms') %></th> # カラム名 symptoms に変更
+    </tr>
+
+    <% @history.each.with_index do |history, i| %>
       <tr>
-        <th><%= t('view.price') %></th>
-        <td colspan="2">¥<span align="right"><%= history.price %></span></td>
-        <td><%= link_to t('view.edit'), edit_health_interview_path(@hospital, history.id), class: "btn btn-primary", role: "button" %></td>
+        <td><%= history.created_at.strftime('%Y/%m/%d') %></td>
+        <td align="center">【<%= history.guide_status.id %>】</td>
+        <td align="center"><%= history.guide_status.status_i18n %></td>
+        <% if history.symptoms.present? %></td>
+          <td><%= history.symptoms  %></td>
+        <% end %>
       </tr>
+      <% if history.guide_status.payment? %>
+        <tr>
+          <th><%= t('view.price') %></th>
+          <td colspan="2">¥<span align="right"><%= history.price %></span></td>
+          <td><%= link_to t('view.edit'), edit_health_interview_path(@hospital, history.id), class: "btn btn-primary", role: "button" %></td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
-</table>
+  </table>
+</div>
 
 <%= link_to t('view.back'), :back, class: "button_06", role: "button" %>

@@ -4,12 +4,12 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <div><%= f.label :name %></div>
     <%= f.text_field :name, placeholder: t('view.placeholder.name'), autofocus: true, autocomplete: "name" %>
   </div>
 
   <div class="email_field">
-    <%= f.label :email %><br />
+    <div><%= f.label :email %></div>
     <%= f.email_field :email, placeholder: t('view.placeholder.email'), autocomplete: "email" %>
   </div>
 
@@ -18,31 +18,31 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :tel %><br />
+    <div><%= f.label :tel %></div>
     <%= f.text_field :tel, placeholder: t('view.placeholder.tel') + t('view.placeholder.integer'), autocomplete: "tel" %>
   </div>
 
   <div class="field">
-    <%= f.label :address %><br />
+    <div><%= f.label :address %></div>
     <%= f.text_field :address, placeholder: t('view.placeholder.address'), autocomplete: "address" %>
   </div>
 
   <div class="password_field">
-    <%= f.label :password %><%= t('view.placeholder.length') %> <span class="small_font"><i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i></span><br />
+    <div><%= f.label :password %><%= t('view.placeholder.length') %> <span class="small_font"><i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i></span></div>
     <%= f.password_field :password, placeholder: t('view.placeholder.password'), autocomplete: "new-password" %>
     <% if @minimum_password_length %>
-      <br />
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+
+      <div><em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em></div>
     <% end %>
   </div>
 
   <div class="password_field">
-    <%= f.label :password_confirmation %><br />
+    <div><%= f.label :password_confirmation %></div>
     <%= f.password_field :password_confirmation, placeholder: t('view.placeholder.password_confirmation'), autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <span class="small_font"><i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i></span><br />
+    <div><%= f.label :current_password %> <span class="small_font"><i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i></span></div>
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
@@ -51,6 +51,8 @@
   </div>
 <% end %>
 
-<%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %><br />
+<div>
+  <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>
+</div>
 
 <%= link_to t('devise.shared.links.back'), :back %>

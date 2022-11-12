@@ -4,7 +4,9 @@
     <h3><%= t('view.reservation') + t('view.index') %></h3>
   </div>
   <% if staff_signed_in? %>
-    <%= link_to t('view.reverse'), reverse_health_interviews_path(@hospital.id) %><br />
+    <div>
+      <%= link_to t('view.reverse'), reverse_health_interviews_path(@hospital.id) %>
+    </div>
   <% end %>
 </div>
 
