@@ -3,7 +3,7 @@
 class Patients::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  # before_action :check_captcha, only: [:create]
+  prepend_before_action :check_captcha, only: [:create]
 
   # GET /resource/sign_up
   # def new
@@ -65,14 +65,14 @@ class Patients::RegistrationsController < Devise::RegistrationsController
     patient_path(resource)
   end
 
-  # private
+  private
 
-  #   def check_captcha
-  #     unless verify_recaptcha(message: t('message.verification_failed'))
-  #       self.resource = resource_class.new sign_up_params
-  #       resource.validate
-  #       set_minimum_password_length
-  #       respond_with_navigational(resource) { render :new }
-  #     end
-  #   end
+    def check_captcha
+      unless verify_recaptcha(message: t('message.verification_failed'))
+        self.resource = resource_class.new sign_up_params
+        resource.validate
+        set_minimum_password_length
+        respond_with_navigational(resource) { render :new }
+      end
+    end
 end
