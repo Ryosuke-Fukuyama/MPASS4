@@ -1,7 +1,7 @@
 class PatientsController < ApplicationController
   # before_action :authenticate_patient!, except: %i[index]
   before_action :admin_required, only: [:index]
-  before_action :set_patient, only: %i[show update destroy]
+  before_action :set_patient, only: %i[show update destroy pay]
 
   def index
     @q = Patient.ransack(params[:q])
@@ -42,13 +42,14 @@ class PatientsController < ApplicationController
   end
 
   def pay
+    @last_interview = @patient.health_interviews.last
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     charge = Payjp::Charge.create(
       amount: @last_interview.price,
       card: params['payjp-token'],
       currency: 'jpy'
     )
-    PaymentMailer.charged_mail(@last_interview).deliver
+    # PaymentMailer.charged_mail(@last_interview).deliver
     redirect_to patient_path, notice: t('notice.paied')
   end
 

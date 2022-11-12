@@ -34,7 +34,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 # gem 'geocoder'
 # gem 'gon'
 
-# gem 'payjp'
+gem 'payjp'
 
 gem 'faker'
 gem 'gimei'

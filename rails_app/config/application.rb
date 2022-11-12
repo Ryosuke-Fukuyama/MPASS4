@@ -4,6 +4,11 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
+# # Load dotenv only in development or test environment
+# if ['development', 'test'].include? ENV['RAILS_ENV']
+#   Dotenv::Railtie.load
+# end
+
 module RailsApp
   class Application < Rails::Application
     config.load_defaults 6.0
