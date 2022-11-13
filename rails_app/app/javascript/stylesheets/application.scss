@@ -34,7 +34,7 @@ nav .flex-right {
 }
 .logo {
   font-size: xx-large;
-  margin-bottom: 0;
+  // margin-bottom: 0;
 }
 /* span.logo-design {
   background: linear-gradient(transparent 60%, #a8eaff 60%);
@@ -49,7 +49,7 @@ form {
   margin-bottom: 30px;
 }
 .index_area {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .slender_table {
   display: -webkit-flex;
@@ -72,6 +72,9 @@ form {
   margin-left: auto;
   margin-right: auto;
 }
+.margin_left {
+  margin-left: 40px;
+}
 /* .search_area {
 } */
 ul li {
@@ -84,15 +87,17 @@ td {
 .small_font {
   font-size: small;
 }
-button {
-  margin: 10px 5px 5px 10px;
-}
 .btn {
-  padding: 5px;
+  padding: 2px 5px;
+  margin: 15px 0px 5px 5px;
+}
+label {
+  margin-top: 6px;
+  margin-bottom: 0;
 }
 textarea {
-  width: 140px;
-  height: 70px;
+  width: 220px;
+  height: 80px;
 }
 .email_field input {
   width: 220px;
@@ -102,6 +107,9 @@ textarea {
 }
 .age_field input {
   width: 40px;
+}
+.actions {
+  margin-top: 15px;
 }
 .paginate {
   margin-top: 30px;

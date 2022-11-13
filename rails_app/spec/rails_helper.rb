@@ -75,4 +75,10 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+
+  # config.after do |example|
+  #   if example.metadata[:type] == :feature and example.exception.present? and example.metadata[:open_on_error] == true
+  #     save_and_open_page
+  #   end
+  # end
 end

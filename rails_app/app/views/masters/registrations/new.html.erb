@@ -2,6 +2,9 @@
 
 <%= form_with(model: resource, scope: resource_name, url: registration_path(resource_name), local: true) do |f| %>
   <%#= render "devise/shared/error_messages", resource: resource %>
+  <% if flash[:recaptcha_error].present? %>
+    <p class="margin-left"><%= flash[:recaptcha_error] %></p>
+  <% end %>
   <% if resource.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -9,11 +12,8 @@
       </h2>
     </div>
   <% end %>
-  <% if flash[:recaptcha_error].present? %>
-    <p class="left-margin"><%= flash[:recaptcha_error] %></p>
-  <% end %>
 
-  <%= f.text_field :name, placeholder: t('view.placeholder.name'), autofocus: true, autocomplete: "name" %>
+  <%= f.text_field :name, placeholder: '', autofocus: true, autocomplete: "name" %>
 
   <%= f.email_field :email, placeholder: "", autocomplete: "email" %>
 
@@ -24,7 +24,7 @@
 
   <%= f.password_field :password_confirmation, placeholder: "", autocomplete: "new-password" %>
 
-  <div><%= recaptcha_tags %></div>
+  <%= recaptcha_tags %>
 
   <div class="actions">
     <%= f.submit t('.sign_up') %>

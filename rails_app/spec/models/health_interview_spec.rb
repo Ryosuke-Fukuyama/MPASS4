@@ -9,6 +9,12 @@ RSpec.describe HealthInterview, type: :model do
     }
   end
 
+  # xdescribe 'validation' do
+  #   context 'price' do
+  #     it { is_expected.to validate_numericality_of(:price) }
+  #   end
+  # end
+
   let!(:patient_1) { FactoryBot.create(:patient) }
   let!(:patient_2) { FactoryBot.create(:second_patient) }
   let!(:patient_3) { FactoryBot.create(:third_patient) }
@@ -30,7 +36,6 @@ RSpec.describe HealthInterview, type: :model do
     before do
       @health_interviews = HealthInterview.eager_load(:guide_status)
     end
-
     context 'only initial' do
       subject { @health_interviews.search_initial.sample.guide_status.status }
       it { is_expected.to eq 'initial' }

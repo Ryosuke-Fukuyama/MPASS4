@@ -3,7 +3,7 @@
 <%= form_with(model: resource, scope: resource_name, url: registration_path(resource_name), local: true) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <% if flash[:recaptcha_error].present? %>
-    <p><li class="left-margin"><%= flash[:recaptcha_error] %></li></p>
+    <p class="margin_left"><%= flash[:recaptcha_error] %></p>
   <% end %>
 
   <div class="field">
@@ -17,11 +17,13 @@
   </div>
 
   <div class="password_field">
-    <%= f.label :password %><%= t('view.placeholder.length') %>
-    <% if @minimum_password_length %>
-      <div><em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em></div>
-    <% end %>
-    <%= f.password_field :password, placeholder: t('view.placeholder.password'), autocomplete: "new-password" %>
+    <div>
+      <%= f.label :password %><%= t('view.placeholder.length') %>
+      <% if @minimum_password_length %>
+        <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+      <% end %>
+    </div>
+      <%= f.password_field :password, placeholder: t('view.placeholder.password'), autocomplete: "new-password" %>
   </div>
 
   <div class="password_field">

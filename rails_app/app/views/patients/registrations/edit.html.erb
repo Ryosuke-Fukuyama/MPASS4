@@ -19,7 +19,7 @@
 
   <div class="field">
     <div><%= f.label :tel %></div>
-    <%= f.text_field :tel, placeholder: t('view.placeholder.tel') + t('view.placeholder.integer'), autocomplete: "tel" %>
+    <%= f.telephone_field :tel, placeholder: t('view.placeholder.tel') + t('view.placeholder.integer'), autocomplete: "tel" %>
   </div>
 
   <div class="field">
@@ -28,7 +28,10 @@
   </div>
 
   <div class="password_field">
-    <div><%= f.label :password %><%= t('view.placeholder.length') %> <span class="small_font"><i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i></span></div>
+    <div>
+      <%= f.label :password %><%= t('view.placeholder.length') %>
+      <span class="small_font"><i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i></span>
+    </div>
     <%= f.password_field :password, placeholder: t('view.placeholder.password'), autocomplete: "new-password" %>
     <% if @minimum_password_length %>
 
@@ -41,8 +44,11 @@
     <%= f.password_field :password_confirmation, placeholder: t('view.placeholder.password_confirmation'), autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <div><%= f.label :current_password %> <span class="small_font"><i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i></span></div>
+  <div class="password_field">
+    <div>
+      <%= f.label :current_password %>
+      <span class="small_font"><i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i></span>
+    </div>
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 

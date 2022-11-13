@@ -3,7 +3,6 @@ module TelValidates
 
   included do
     validates :tel, length: { in: 10..11, allow_blank: true }
-    # numericality: { only_integer: true }
 
     # # "NoMethodError: undefined method `size' for nil:NilClass"
     # after_validation {

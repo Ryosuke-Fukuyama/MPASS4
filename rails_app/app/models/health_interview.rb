@@ -4,10 +4,11 @@ class HealthInterview < ApplicationRecord
   has_one :guide_status, dependent: :destroy
   accepts_nested_attributes_for :guide_status, allow_destroy: true
 
-  include Scopes
+  # validates :price, numericality: { only_integer: true }
 
   enum gender: { man: 0, woman: 1 }
 
+  include Scopes
   scope :search_initial, -> { where(guide_statuses: { status: 'initial' }) }
   scope :search_calling, -> { where(guide_statuses: { status: 'calling' }) }
   scope :search_pending, -> { where(guide_statuses: { status: 'pending' }) }

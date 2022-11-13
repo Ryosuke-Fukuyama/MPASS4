@@ -23,7 +23,8 @@ class Masters::SessionsController < Devise::SessionsController
   protected
 
   def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+    binding.irb
+    devise_parameter_sanitizer.permit(:sign_in, keys: %i[name email])
   end
 
   # def after_sign_in_path_for(resource)
@@ -33,6 +34,7 @@ class Masters::SessionsController < Devise::SessionsController
   private
 
   def check_captcha_sign_in
+    binding.irb
     unless verify_recaptcha(message: t('message.verification_failed'))
       self.resource = resource_class.new sign_in_params
       resource.validate

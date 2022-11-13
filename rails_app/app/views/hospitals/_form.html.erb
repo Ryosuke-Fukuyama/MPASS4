@@ -10,48 +10,50 @@
     </div>
   <% end %>
 
-  <div class="name_field">
-    <%= f.label :name, t('view.hospital') + t('view.name_of') %>
-    <%= f.text_field :name, placeholder: t('view.placeholder.must') + t('view.placeholder.hospital_name'), autofocus: true, autocomplete: "name" %>
-  </div>
+  <table>
+    <tr class="email_field">
+      <td><%= f.label :name, t('view.hospital') + t('view.name_of') %></td>
+      <td><%= f.text_field :name, placeholder: t('view.placeholder.must') + t('view.placeholder.hospital_name'), autofocus: true, autocomplete: "name" %></td>
+    </tr>
 
-  <div class="email_field">
-    <%= f.label :email, t('view.email') %>
-    <%= f.email_field :email, placeholder: t('view.placeholder.must') + t('view.placeholder.email'), autocomplete: "email" %>
-  </div>
+    <tr class="email_field">
+      <td><%= f.label :email, t('view.email') %></td>
+      <td><%= f.email_field :email, placeholder: t('view.placeholder.must') + t('view.placeholder.email'), autocomplete: "email" %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :tel, t('view.tel') %>
-    <%= f.text_field :tel, placeholder: t('view.placeholder.must')+ t('view.placeholder.tel')+ t('view.placeholder.integer'), autocomplete: "tel" %>
-  </div>
+    <tr class="field">
+      <td><%= f.label :tel, t('view.tel') %></td>
+      <td><%= f.telephone_field :tel, placeholder: t('view.placeholder.must')+ t('view.placeholder.tel')+ t('view.placeholder.integer'), autocomplete: "tel" %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :address, t('view.address') %>
-    <%= f.text_field :address, placeholder: t('view.placeholder.must')+ t('view.placeholder.address'), autocomplete: "address" %>
-  </div>
+    <tr class="field">
+      <td><%= f.label :address, t('view.address') %></td>
+      <td><%= f.text_area :address, placeholder: t('view.placeholder.must')+ t('view.placeholder.address'), autocomplete: "address" %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :access, t('view.access') %>
-    <%= f.text_field :access, placeholder: t('view.placeholder.access'), autocomplete: "access" %>
-  </div>
+    <tr class="field">
+      <td><%= f.label :access, t('view.access') %></td>
+      <td><%= f.text_area :access, placeholder: t('view.placeholder.access'), autocomplete: "access" %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :introduction, t('view.introduction') %>
-    <%= f.text_field :introduction, placeholder: t('view.placeholder.introduction'), autocomplete: "introduction" %>
-  </div>
+    <tr class="field">
+      <td><%= f.label :introduction, t('view.introduction') %></td>
+      <td><%= f.text_area :introduction, placeholder: t('view.placeholder.introduction'), autocomplete: "introduction" %></td>
+    </tr>
 
   <%
 =begin
 %>
-  <div class="field">
-    <%= f.label :image, t('view.image') %>
-    <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
-    <%= f.file_field :image, placeholder: t('view.placeholder.image_file'), autocomplete: "image" %>
-    <%= f.hidden_field :image_cache %>
-  </div>
+    <tr class="field">
+      <%= f.label :image, t('view.image') %>
+      <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
+      <%= f.file_field :image, placeholder: t('view.placeholder.image_file'), autocomplete: "image" %>
+      <%= f.hidden_field :image_cache %>
+    </tr>
   <%
 =end
 %>
+  </table>
 
   <div class="field">
     <p>

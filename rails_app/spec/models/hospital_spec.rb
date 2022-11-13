@@ -32,7 +32,7 @@ RSpec.describe Hospital, type: :model do
       it { is_expected.to validate_length_of(:tel).is_at_most(11) }
 
       it {
-        let!(:hospital) { FactoryBot.create(:hospital, tel: 123456789) }
+        hospital.tel = '123456789'
         is_expected.to be_invalid
       }
     end

@@ -25,15 +25,13 @@ class Master < ApplicationRecord
     end
   end
 
-  def email_required?
-    false
-  end
-
-  def _changed?
-    false
-  end
-
-  def will_save_change_to_email?
-    false
-  end
+  # def email_required?
+  #   false
+  # end
+  # def _changed?
+  #   false
+  # end
+  # def will_save_change_to_email?
+  #   false
+  # end
 end

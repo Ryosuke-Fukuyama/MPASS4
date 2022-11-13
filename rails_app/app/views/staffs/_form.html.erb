@@ -16,10 +16,12 @@
   </div>
 
   <div class="password_field">
-    <%= f.label :password %><%= t('view.placeholder.length') %>
-    <% if @minimum_password_length %>
-    <div><em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em></div>
-    <% end %>
+    <div>
+      <%= f.label :password %><%= t('view.placeholder.length') %>
+      <% if @minimum_password_length %>
+      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+      <% end %>
+    </div>
     <%= f.password_field :password, autocomplete: "new-password", placeholder: t('view.placeholder.password') %>
   </div>
 
