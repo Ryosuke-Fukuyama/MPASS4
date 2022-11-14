@@ -99,18 +99,14 @@ export default {
 </script>
 
 <style>
-   ul,li {
-    list-style: none;
-  }
-
   span {
     display: -webkit-flex;
     display: flex;
   }
 
   select {
-    width: 50px;
-    border-radius: 15px;
+    width: 55px;
+    border-radius: 10px;
   }
 
   .link__to {
