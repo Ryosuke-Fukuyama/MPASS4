@@ -5,7 +5,7 @@
 
       <div v-if="sessionCheck">
         <span>
-          <div @click="linkToHealthInterview(health_interview)" class="link__to">
+          <div @click="linkToHealthInterview(health_interview)" class="link__to font__large">
             {{ health_interview.guide_status.id }}
           </div><select
             v-model.lazy="health_interview.guide_status.status"
@@ -107,6 +107,10 @@ export default {
   select {
     width: 55px;
     border-radius: 10px;
+  }
+
+  .font__large {
+    font-size: large;
   }
 
   .link__to {
