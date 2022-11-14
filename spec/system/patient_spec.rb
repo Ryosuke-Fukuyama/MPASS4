@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Patient', type: :system do
   let!(:patient_1) { FactoryBot.create(:patient) }
   let!(:delete_verify_env_test){ Recaptcha.configuration.skip_verify_env.delete("test") }
-  before do
-    visit root_path
-  end
+  # before do
+  #   visit root_path
+  # end
 
   describe 'sign_up' do
     subject { page }
     before do
+      visit root_path
       click_on '新規アカウント'
     end
     context 'Failure' do
@@ -71,6 +72,7 @@ RSpec.describe 'Patient', type: :system do
     subject { page }
     describe 'sign_in' do
       before do
+        visit root_path
         click_on 'ログイン'
       end
       context 'Failure' do

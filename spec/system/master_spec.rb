@@ -203,7 +203,7 @@ RSpec.describe 'Master', type: :system do
 
 
   let!(:hospital_label_1) { FactoryBot.create(:hospital_label, id: 1) }
-  let!(:hospital_label_2) { FactoryBot.create(:second_hospital_label) }
+  let!(:hospital_label_2) { FactoryBot.create(:second_hospital_label, id: 2) }
 
   describe 'new hospital' do
     subject { page }

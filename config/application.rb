@@ -11,11 +11,12 @@ Bundler.require(*Rails.groups)
 
 module RailsApp
   class Application < Rails::Application
-    config.load_defaults 6.0
+    config.load_defaults 6.1
+    config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
-    config.i18n.default_locale = :ja
     # config.action_controller.include_all_helpers = false #ヘルパーの使用を限定する
+    # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
     config.generators do |g|

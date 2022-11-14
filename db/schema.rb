@@ -2,24 +2,23 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_11_071046) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_11_14_123149) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "favorite_hospitals", force: :cascade do |t|
     t.bigint "patient_id"
     t.bigint "hospital_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["hospital_id"], name: "index_favorite_hospitals_on_hospital_id"
     t.index ["patient_id"], name: "index_favorite_hospitals_on_patient_id"
   end
@@ -27,8 +26,8 @@ ActiveRecord::Schema.define(version: 2022_10_11_071046) do
   create_table "guide_statuses", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.bigint "health_interview_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["health_interview_id"], name: "index_guide_statuses_on_health_interview_id"
   end
 
@@ -40,8 +39,8 @@ ActiveRecord::Schema.define(version: 2022_10_11_071046) do
     t.integer "price"
     t.bigint "patient_id", null: false
     t.bigint "hospital_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["hospital_id"], name: "index_health_interviews_on_hospital_id"
     t.index ["patient_id"], name: "index_health_interviews_on_patient_id"
   end
@@ -49,16 +48,16 @@ ActiveRecord::Schema.define(version: 2022_10_11_071046) do
   create_table "hospital_labelings", force: :cascade do |t|
     t.bigint "hospital_id"
     t.bigint "hospital_label_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["hospital_id"], name: "index_hospital_labelings_on_hospital_id"
     t.index ["hospital_label_id"], name: "index_hospital_labelings_on_hospital_label_id"
   end
 
   create_table "hospital_labels", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "hospitals", force: :cascade do |t|
@@ -69,8 +68,8 @@ ActiveRecord::Schema.define(version: 2022_10_11_071046) do
     t.string "access"
     t.text "image"
     t.text "introduction"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "masters", force: :cascade do |t|
@@ -78,21 +77,21 @@ ActiveRecord::Schema.define(version: 2022_10_11_071046) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.datetime "reset_password_sent_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "locked_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_masters_on_confirmation_token", unique: true
     t.index ["email"], name: "index_masters_on_email", unique: true
     t.index ["name"], name: "index_masters_on_name", unique: true
@@ -107,17 +106,17 @@ ActiveRecord::Schema.define(version: 2022_10_11_071046) do
     t.string "tel"
     t.string "address"
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "locked_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_patients_on_confirmation_token", unique: true
     t.index ["email"], name: "index_patients_on_email", unique: true
     t.index ["name"], name: "index_patients_on_name"
@@ -131,15 +130,15 @@ ActiveRecord::Schema.define(version: 2022_10_11_071046) do
     t.boolean "admin", default: false
     t.bigint "hospital_id"
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "locked_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["hospital_id"], name: "index_staffs_on_hospital_id"
     t.index ["name"], name: "index_staffs_on_name", unique: true
   end
