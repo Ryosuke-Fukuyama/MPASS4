@@ -1,4 +1,4 @@
-<%= form_with(model: @staff, local: true) do |f| %>
+<%= form_with(model: @staff) do |f| %>
   <% if @staff.errors.any? %>
     <div id="error_explanation">
       <h2><%= t("errors.template.header", model: Staff.model_name.human, count: @staff.errors.count) %></h2>

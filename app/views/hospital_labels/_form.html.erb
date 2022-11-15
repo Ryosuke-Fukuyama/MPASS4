@@ -1,4 +1,4 @@
-<%= form_with(model: @hospital_label, local: true) do |f| %>
+<%= form_with(model: @hospital_label) do |f| %>
   <% if @hospital_label.errors.any? %>
     <div id="error_explanation">
       <h2><%= t("errors.template.header", model: HospitalLabel.model_name.human, count: @hospital_label.errors.count) %></h2>
