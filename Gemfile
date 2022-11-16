@@ -19,7 +19,7 @@ gem 'ransack'
 # gem 'ed25519', '>= 1.2', '< 2.0'
 # gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 # # gem 'image_processing', '~> 1.2'
-# gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'unicorn'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails'
 
@@ -46,7 +46,7 @@ group :development, :test do
   gem 'capistrano-safe-deploy-to'
   gem 'capistrano-rbenv'
   # gem 'capistrano-bundler'
-  # gem 'capistrano3-unicorn'
+  gem 'capistrano3-unicorn'
   gem 'rspec-rails', '~> 4.0.2'
   gem 'factory_bot_rails'
   gem 'launchy'
