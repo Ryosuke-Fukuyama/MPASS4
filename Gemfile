@@ -41,17 +41,18 @@ gem 'gimei'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capistrano', "~> 3.10", require: false
+  gem 'capistrano-rails', "~> 1.6", require: false
+  gem 'capistrano-safe-deploy-to'
+  gem 'capistrano-rbenv'
+  # gem 'capistrano-bundler'
+  # gem 'capistrano3-unicorn'
+  gem 'rspec-rails', '~> 4.0.2'
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'pry-byebug'
   gem 'pry-doc'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 4.0.2'
-  # gem 'capistrano', '3.6.0'
-  # gem 'capistrano-bundler'
-  # gem 'capistrano-rails'
-  # gem 'capistrano-rbenv'
-  # gem 'capistrano3-unicorn'
 end
 
 group :development do
