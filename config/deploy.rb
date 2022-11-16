@@ -3,8 +3,9 @@ lock "~> 3.17.1"
 
 set :application, "MPASS4"
 set :repo_url, "https://github.com/Ryosuke-Fukuyama/MPASS4.git"
-set :bundle_without, %w{test}.join(':')
+# set :bundle_without, %w{test}.join(':')
 set :rbenv_version, '3.0.4'
+set :log_level, :info
 
 # append :linked_files, 'config/secrets.yml'
 # Default branch is :master
@@ -24,10 +25,10 @@ set :rbenv_version, '3.0.4'
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml", 'config/master.key'
+set :linked_files, %w{config/secrets.yml}
 
 # Default value for linked_dirs is []
-# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor", "storage"
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -36,7 +37,27 @@ set :rbenv_version, '3.0.4'
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+after 'deploy:published', 'deploy:seed'   # 9
+ after 'deploy:finished', 'deploy:restart'   # 10
+
+ namespace :deploy do
+   desc 'Run seed'
+   task :seed do
+     on roles(:db) do
+       with rails_env: fetch(:rails_env) do
+         within current_path do
+           execute :bundle, :exec, :rake, 'db:seed'
+         end
+       end
+     end
+   end
+   desc 'Restart application'
+   task :restart do
+     invoke 'unicorn:restart'
+   end
+ end
