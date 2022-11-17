@@ -41,18 +41,11 @@
       <td><%= f.text_area :introduction, placeholder: t('view.placeholder.introduction'), autocomplete: "introduction" %></td>
     </tr>
 
-  <%
-=begin
-%>
     <tr class="field">
-      <%= f.label :image, t('view.image') %>
-      <%= image_tag(@hospital.image.url) if @hospital.image && @hospital.image.url %>
-      <%= f.file_field :image, placeholder: t('view.placeholder.image_file'), autocomplete: "image" %>
-      <%= f.hidden_field :image_cache %>
+      <td><%= f.label :image, t('view.image') %></td>
+      <%= image_tag(@hospital.image.variant(resize_to_fit: [600, 600]) if @hospital.image.present? %>
+      <td><%= f.file_field :image, placeholder: t('view.placeholder.image_file'), autocomplete: "image" %></td>
     </tr>
-  <%
-=end
-%>
   </table>
 
   <div class="field">

@@ -1,8 +1,6 @@
 password = "passw0r-D"
 
 10.times do |n|
-  # email =   Faker::Internet.unique.email
-
   Patient.create!(
     name:                  Gimei.name.katakana ,
     email:                 Faker::Internet.unique.email,
@@ -46,7 +44,7 @@ end
     address:            Gimei.address.kanji,
     access:             "〇〇駅 徒歩◆◆分",
     introduction:       "http://sample-url",
-    # image:            open("./public/images/sample.jpg"),
+    # image:              open("./public/images/sample.jpeg"),
     hospital_label_ids: hospital_label_ids
   })
 end
@@ -60,43 +58,42 @@ end
   )
 end
 
-Patient.eager_load(:health_interviews).all.each do |p|
-  symptoms =  '(サンプル)３日前から発熱、倦怠感と吐き気'
-  condition = '(サンプル)持病等'
+# Patient.eager_load(:health_interviews).all.each do |p|
+#   symptoms =  '(サンプル)３日前から発熱、倦怠感と吐き気'
+#   condition = '(サンプル)持病等'
 
-  HealthInterview.create!(
-    age:         "#{1 + rand(100)}",
-    gender:      0,
-    condition:   condition,
-    symptoms:    symptoms,
-    patient_id:  p.id,
-    hospital_id: 2
-  )
-end
-Patient.eager_load(:health_interviews).all.each do |p|
-  symptoms =  '(サンプル)３日前から発熱、倦怠感と吐き気'
-  condition = '(サンプル)持病等'
+#   HealthInterview.create!(
+#     age:         "#{1 + rand(100)}",
+#     gender:      0,
+#     condition:   condition,
+#     symptoms:    symptoms,
+#     patient_id:  p.id,
+#     hospital_id: 2
+#   )
+# end
+# Patient.eager_load(:health_interviews).all.each do |p|
+#   symptoms =  '(サンプル)３日前から発熱、倦怠感と吐き気'
+#   condition = '(サンプル)持病等'
 
-  HealthInterview.create!(
-    age:         "#{1 + rand(100)}",
-    gender:      0,
-    condition:   condition,
-    symptoms:    symptoms,
-    patient_id:  p.id,
-    hospital_id: 1
-  )
-end
-
-# 周回すると一つのHealthInterviewに複数のGuideStatusが付いてバグる。
-HealthInterview.eager_load(:guide_status).where(health_interviews: { hospital_id: 2 }).all.each do |h|
-  GuideStatus.create!(
-    status:             'complete',
-    health_interview_id: h.id
-  )
-end
-HealthInterview.eager_load(:guide_status).where(health_interviews: { hospital_id: 1 }).all.each do |h|
-  GuideStatus.create!(health_interview_id: h.id)
-end
+#   HealthInterview.create!(
+#     age:         "#{1 + rand(100)}",
+#     gender:      0,
+#     condition:   condition,
+#     symptoms:    symptoms,
+#     patient_id:  p.id,
+#     hospital_id: 1
+#   )
+# end
+# # 周回すると一つのHealthInterviewに複数のGuideStatusが付いてバグる。
+# HealthInterview.eager_load(:guide_status).where(health_interviews: { hospital_id: 2 }).all.each do |h|
+#   GuideStatus.create!(
+#     status:             'complete',
+#     health_interview_id: h.id
+#   )
+# end
+# HealthInterview.eager_load(:guide_status).where(health_interviews: { hospital_id: 1 }).all.each do |h|
+#   GuideStatus.create!(health_interview_id: h.id)
+# end
 
 Master.create!(
   name:                  "テストマスター",
@@ -105,7 +102,6 @@ Master.create!(
   password_confirmation: password,
   confirmed_at:          Time.now
 )
-
 Patient.create!(
   name:                  "テストペイシェント",
   email:                 "t_patient@mail.com",
@@ -113,7 +109,6 @@ Patient.create!(
   password_confirmation: password,
   confirmed_at:          Time.now
 )
-
 Staff.create!(
   name:                  "テストスタッフ",
   password:              password,
@@ -121,7 +116,6 @@ Staff.create!(
   admin:                 "false",
   hospital_id:           1
 )
-
 Staff.create!(
   name:                  "テストアドミン",
   password:              password,

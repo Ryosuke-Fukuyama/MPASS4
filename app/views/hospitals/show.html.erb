@@ -18,47 +18,55 @@
 </div>
 
 <div class="index_area">
-  <table>
-    <tr>
-      <th><%= t('view.address') %></th>
-      <td><%= @hospital.address %></td>
-    </tr>
-    <tr>
-      <th><%= t('view.access') %></th>
-      <td><%= @hospital.access %></td>
-    </tr>
-    <tr>
-      <th><%= t('view.introduction') %></th>
-      <td><%= @hospital.introduction %></td>
-    </tr>
-    <tr>
-      <th><%= t('view.tel') %></th>
-      <td><%= @hospital.tel %></td>
-    <tr>
-      <th><%= t('view.email') %></th>
-      <td><%= @hospital.email %></td>
-    </tr>
-    <tr>
-      <th><%= t('view.hospital_label') %></th>
-      <td>
-        <% @hospital.hospital_labels.each do |label| %>
-          <%= label.name %>
-        <% end %>
-      </td>
-    </tr>
-    <% if staff_signed_in? && current_staff.admin? && current_staff.hospital_id == @hospital.id %>
-      <tr>
-        <th>
-          <%= link_to t('view.patient') + t('view.index'), patients_path, id: "patient-index"  %>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <%= link_to t('view.staff') + t('view.index'), staffs_path(@hospital), id: "staff-index" %>
-        </th>
-      </tr>
+  <div class="hospital_table">
+    <% if @hospital.image.present? %>
+      <%= image_tag @hospital.image.variant(resize_to_fit: [600, 600]) %>
+    <% else %>
+      <%= image_pack_tag 'media/images/no_image_image.jpeg' %>
     <% end %>
-  </table>
+
+    <table class="hospital_table">
+      <tr>
+        <th><%= t('view.address') %></th>
+        <td><%= @hospital.address %></td>
+      </tr>
+      <tr>
+        <th><%= t('view.access') %></th>
+        <td><%= @hospital.access %></td>
+      </tr>
+      <tr>
+        <th><%= t('view.introduction') %></th>
+        <td><%= @hospital.introduction %></td>
+      </tr>
+      <tr>
+        <th><%= t('view.tel') %></th>
+        <td><%= @hospital.tel %></td>
+      <tr>
+        <th><%= t('view.email') %></th>
+        <td><%= @hospital.email %></td>
+      </tr>
+      <tr>
+        <th><%= t('view.hospital_label') %></th>
+        <td>
+          <% @hospital.hospital_labels.each do |label| %>
+            <%= label.name %>
+          <% end %>
+        </td>
+      </tr>
+      <% if staff_signed_in? && current_staff.admin? && current_staff.hospital_id == @hospital.id %>
+        <tr>
+          <th>
+            <%= link_to t('view.patient') + t('view.index'), patients_path, id: "patient-index"  %>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <%= link_to t('view.staff') + t('view.index'), staffs_path(@hospital), id: "staff-index" %>
+          </th>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
 
 <%= link_to t('view.back'), :back, class: "button_06", role: "button" %>

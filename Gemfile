@@ -16,10 +16,10 @@ gem 'enum_help'
 gem 'kaminari'
 gem 'ransack'
 # gem 'bcrypt', '~> 3.1.7'
-# gem 'ed25519', '>= 1.2', '< 2.0'
 # gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
-# # gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 gem 'unicorn'
+# gem 'ed25519', '>= 1.2', '< 2.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails'
 

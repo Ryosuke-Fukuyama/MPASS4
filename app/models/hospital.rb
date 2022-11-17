@@ -4,7 +4,7 @@ class Hospital < ApplicationRecord
   has_many :hospital_labels, through: :hospital_labelings
   has_many :favorite_hospitals, dependent: :destroy
   has_many :health_interviews, dependent: :destroy
-  # mount_uploader :image, ImageUploader
+  has_one_attached :image
   accepts_nested_attributes_for :staffs
 
   validates :name, presence: true,
