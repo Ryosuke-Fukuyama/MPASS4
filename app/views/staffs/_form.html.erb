@@ -17,7 +17,7 @@
 
   <div class="password_field">
     <div>
-      <%= f.label :password %><%= t('view.placeholder.length') %>
+      <%= f.label :password %><%= t('view.placeholder.pw_length') %>
       <% if @minimum_password_length %>
       <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
       <% end %>

@@ -42,7 +42,15 @@ class HospitalsController < ApplicationController
   def edit; end
 
   def update
+    if params[:hospital][:image_ids]
+      params[:hospital][:image_ids].each do |image_id|
+        image = @hospital.images.find(image_id)
+        image.purge
+      end
+    end
+
     @hospital.hospital_labelings.delete_all unless params[:hospital][:hospital_label_ids]
+
     if @hospital.update(hospital_params)
       redirect_to hospital_path(@hospital), notice: t('notice.updated')
     else
@@ -67,7 +75,7 @@ class HospitalsController < ApplicationController
       :address,
       :access,
       :introduction,
-      :image,
+      images: [],
       hospital_label_ids: [],
       staffs_attributes: %i[
         id

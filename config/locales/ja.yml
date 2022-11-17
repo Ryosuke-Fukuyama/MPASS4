@@ -9,6 +9,7 @@ ja:
         email: メールアドレス
         tel: 電話番号
         address: 住所
+        images: 写真
       hospital_label:
         name: 名前
     errors:
@@ -17,6 +18,9 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+        type_validate: はjeg、jpegまたはpng形式でアップロードしてください
+        size_validate: は1つのファイル100KB以内にしてください
+        length_validate: は5枚以内になるよう調整してください
   date:
     abbr_day_names:
     - 日
@@ -235,7 +239,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  enums:             #enum型に対する日本語定義であることを明示するために記述
+  enums:
     guide_status:
       status:
         initial: 初期
@@ -262,6 +266,7 @@ ja:
     age: 年齢
     back: 戻る
     cancel: 解除
+    check_delete: チェックをつけた写真は削除されます。
     create: 作成
     destroy: 削除
     edit: 編集
@@ -330,10 +335,9 @@ ja:
       email: xxxx@example.co.jp
       hospital_label_name: 〇〇科
       hospital_name: 〇〇病院
-      image_file: sample.jpg
+      images_rules: (※５枚まで/100Kbytsまで/jeg・jpegまたはpng形式)
       integer: 半角
       introduction: "URL: https:// ~~~~"
-      length: (8文字以上)
       mandatory: ※入力してください
       must: 必須)
       name: 全角カタカナ
@@ -342,6 +346,7 @@ ja:
       password: 各半角大小英数記号
       password_confirmation: 同じものを入力してください
       patient_name: フルネーム(漢字)
+      pw_length: (8文字以上)
       staff_name: 完全同名不可
       symptoms: 症状や、発症時期等ご記入ください。
       tel: ハイフンなし

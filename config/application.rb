@@ -15,10 +15,11 @@ module RailsApp
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
-    # config.action_controller.include_all_helpers = false #ヘルパーの使用を限定する
+    # config.action_controller.include_all_helpers = false # ヘルパーの使用を限定する
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.active_storage.variant_processor = :vips
+    config.active_storage.replace_on_assign_to_many = false # ActiveStorage上書きしない
     config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
     config.generators do |g|
       g.assets false

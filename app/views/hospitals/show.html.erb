@@ -19,13 +19,16 @@
 
 <div class="index_area">
   <div class="hospital_table">
-    <% if @hospital.image.present? %>
-      <%= image_tag @hospital.image.variant(resize_to_fit: [600, 600]) %>
+    <% if @hospital.images.present? %>
+      <%#= image_tag @hospital.image.variant(resize_to_fit: [600, 600]) %>
+      <% @hospital.images.each do |image| %>
+        <%= image_tag image.variant(resize_to_fit: [300, 300]) %>
+      <% end %>
     <% else %>
       <%= image_pack_tag 'media/images/no_image_image.jpeg' %>
     <% end %>
 
-    <table class="hospital_table">
+    <table>
       <tr>
         <th><%= t('view.address') %></th>
         <td><%= @hospital.address %></td>

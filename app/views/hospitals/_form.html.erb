@@ -42,9 +42,35 @@
     </tr>
 
     <tr class="field">
-      <td><%= f.label :image, t('view.image') %></td>
-      <%= image_tag(@hospital.image.variant(resize_to_fit: [600, 600]) if @hospital.image.present? %>
-      <td><%= f.file_field :image, placeholder: t('view.placeholder.image_file'), autocomplete: "image" %></td>
+      <td><%= f.label :images %></td>
+      <td colspan="2">
+        <%= f.file_field :images, multiple: true %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= t('view.placeholder.images_rules') %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <%= t('view.check_delete') %>
+      </td>
+    </tr>
+    <tr>
+      <% if @hospital.images.attached? %>
+        <td colspan="3">
+          <% @hospital.images.each do |image| %>
+            <div class="inline-block">
+              <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
+              <%# for属性の値をinputタグのid名と一致させることで、要素が連動する。%>
+              <label for="hospital_image_ids_<%= image.id %>" >
+                <%= image_tag image.variant(resize_to_fit: [200, 200]) %>
+              </label>
+            </div>
+          <% end %>
+        </td>
+      <% end %>
     </tr>
   </table>
 

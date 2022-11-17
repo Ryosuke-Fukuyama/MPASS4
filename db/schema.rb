@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(version: 2022_11_16_230824) do
     t.string "tel", null: false
     t.string "address", null: false
     t.string "access"
-    t.text "image"
     t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
