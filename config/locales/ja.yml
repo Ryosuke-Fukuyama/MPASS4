@@ -21,6 +21,8 @@ ja:
         type_validate: はjeg、jpegまたはpng形式でアップロードしてください
         size_validate: は1つのファイル100KB以内にしてください
         length_validate: は5枚以内になるよう調整してください
+        admin_size: 管理人アカウントがいなくなります。
+        master_size: マスターアカウントがいなくなります。
   date:
     abbr_day_names:
     - 日
@@ -134,7 +136,6 @@ ja:
     guest_master: ゲストマスターとしてログインしました。
   alert:
     already: 既に申し込み済みです。(※同時に複数の病院の受付はできません。)
-    admin_size: 管理人アカウントがいなくなります。
   errors:
     format: "%{attribute}%{message}"
     messages:

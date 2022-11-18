@@ -20,7 +20,7 @@ class Master < ApplicationRecord
   private
    def master_validation
     if Master.all.size <= 1
-      # flash.now[:alert] = t('alert.master_size')
+      errors.add(:master_size)
       throw(:abort)
     end
   end
