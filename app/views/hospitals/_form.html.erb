@@ -65,7 +65,7 @@
               <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
               <%# for属性の値をinputタグのid名と一致させることで、要素が連動する。%>
               <label for="hospital_image_ids_<%= image.id %>" >
-                <%= image_tag image.variant(resize_to_fit: [200, 200]) %>
+                <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
               </label>
             </div>
           <% end %>

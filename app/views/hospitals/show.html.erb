@@ -20,9 +20,9 @@
 <div class="index_area">
   <div class="hospital_table">
     <% if @hospital.images.present? %>
-      <%#= image_tag @hospital.image.variant(resize_to_fit: [600, 600]) %>
+      <%#= image_tag @hospital.image.variant(resize_to_limit: [600, 600]) %>
       <% @hospital.images.each do |image| %>
-        <%= image_tag image.variant(resize_to_fit: [300, 300]) %>
+        <%= image_tag image.variant(resize_to_limit: [300, 300]) %>
       <% end %>
     <% else %>
       <%= image_pack_tag 'media/images/no_image_image.jpeg' %>

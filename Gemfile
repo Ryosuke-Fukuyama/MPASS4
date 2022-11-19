@@ -18,7 +18,7 @@ gem 'ransack'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 gem 'image_processing', '~> 1.2'
-gem 'ruby-vips'
+# gem 'ruby-vips' ec2でlibvipsのインストールができなかった
 gem 'aws-sdk-s3', require: false
 gem 'unicorn'
 # gem 'ed25519', '>= 1.2', '< 2.0'
