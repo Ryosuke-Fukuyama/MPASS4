@@ -5,6 +5,7 @@ set :application, "MPASS4"
 set :repo_url, "https://github.com/Ryosuke-Fukuyama/MPASS4.git"
 # set :bundle_without, %w{test}.join(':')
 set :rbenv_version, '3.0.4'
+append :linked_files, 'config/secrets.yml'
 set :log_level, :info
 
 # append :linked_files, 'config/secrets.yml'
@@ -42,22 +43,22 @@ set :keep_releases, 5
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-after 'deploy:published', 'deploy:seed'   # 9
- after 'deploy:finished', 'deploy:restart'   # 10
+after 'deploy:published', 'deploy:seed'
+after 'deploy:finished', 'deploy:restart'
 
- namespace :deploy do
-   desc 'Run seed'
-   task :seed do
-     on roles(:db) do
-       with rails_env: fetch(:rails_env) do
-         within current_path do
-           execute :bundle, :exec, :rake, 'db:seed'
-         end
-       end
-     end
-   end
-   desc 'Restart application'
-   task :restart do
-     invoke 'unicorn:restart'
-   end
- end
+namespace :deploy do
+  desc 'Run seed'
+  task :seed do
+    on roles(:db) do
+      with rails_env: fetch(:rails_env) do
+        within current_path do
+          execute :bundle, :exec, :rake, 'db:seed'
+        end
+      end
+    end
+  end
+  desc 'Restart application'
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end

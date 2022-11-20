@@ -1,21 +1,16 @@
 # README
 
 ## 開発言語
-- Ruby version '2.6.5'
-- rails version '6.0.5'
+- Ruby version '3.0.1'
+- rails version '6.1.0'
 
 ## 実行手順
 ```
 $ git clone
-$ cd rails_app
 $ bundle
 $ rails db:create db:migrate
 $ rails db:seed
 $ rails s
-
-$ cd nuxt_app
-$ yarn install
-$ yarn dev
 ```
 
 ## カタログ設計/テーブル定義書/ワイヤーフレーム
