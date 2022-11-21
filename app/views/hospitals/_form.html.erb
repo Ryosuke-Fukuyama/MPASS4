@@ -79,11 +79,7 @@
       <%= f.label :hospital_label, t('view.hospital_label') %>
       <span class="small_font"><%= t('view.must_select') %></span>
     </p>
-    <% @hospital_labels.all.each do |label| %>
-      <%= f.check_box :hospital_label_ids,
-        { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
-      <label><%= label.name %></label>
-    <% end %>
+    <%= f.collection_check_boxes :hospital_label_ids, HospitalLabel.all, :id, :name %>
   </div>
 
   <%= f.submit %>
