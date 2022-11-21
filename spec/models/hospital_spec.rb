@@ -42,6 +42,34 @@ RSpec.describe Hospital, type: :model do
       it { is_expected.to validate_length_of(:address).is_at_most(255) }
     end
 
+    xcontext 'image' do
+      # fixture_file_upload('_sample.png')
+      # Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/_sample.png'))
+      example 'type' do
+        text_file = File.open(Rails.root.join('spec/fixtures/sample.text'))
+        hospital.images.attach(text_file) # 'Could not find or build blob: expected attachable'
+        hospital.valid?
+        expect(hospital.errors.messages[:images]).to include '写真はjeg、jpegまたはpng形式でアップロードしてください'
+      end
+      example 'size' do
+        png_file = File.open(Rails.root.join('spec/fixtures/over_size_sample.png'))
+        hospital.images.attach(png_file)
+        hospital.valid?
+        expect(hospital.errors.messages[:images]).to include '写真は1つのファイル100KB以内にしてください'
+      end
+      example 'length' do
+        jpg_file = File.open(Rails.root.join('spec/fixtures/under_size_sample.jpg'))
+        hospital.images.attach(jpg_file)
+        hospital.images.attach(jpg_file)
+        hospital.images.attach(jpg_file)
+        hospital.images.attach(jpg_file)
+        hospital.images.attach(jpg_file)
+        hospital.images.attach(jpg_file)
+        hospital.valid?
+        expect(hospital.errors.messages[:images]).to include '写真は5枚以内になるよう調整してください'
+      end
+    end
+
     # # 未実装箇所
     # context 'map after_validation' do
     #   let!(:hospital_2) { FactoryBot.create(:second_hospital, address: '兵庫県神戸市中央区加納町１丁目３−１') }

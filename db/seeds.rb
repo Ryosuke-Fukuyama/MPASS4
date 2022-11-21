@@ -95,31 +95,32 @@ end
 #   GuideStatus.create!(health_interview_id: h.id)
 # end
 
-Master.create!(
-  name:                  "テストマスター",
-  email:                 "t_master@mail.com",
-  password:              password,
-  password_confirmation: password,
-  confirmed_at:          Time.now
-)
-Patient.create!(
-  name:                  "テストペイシェント",
-  email:                 "t_patient@mail.com",
-  password:              password,
-  password_confirmation: password,
-  confirmed_at:          Time.now
-)
-Staff.create!(
-  name:                  "テストスタッフ",
-  password:              password,
-  password_confirmation: password,
-  admin:                 "false",
-  hospital_id:           1
-)
-Staff.create!(
-  name:                  "テストアドミン",
-  password:              password,
-  password_confirmation: password,
-  admin:                 "true",
-  hospital_id:           1
-)
+# # ゲストログイン実装後不要
+# Master.create!(
+#   name:                  "テストマスター",
+#   email:                 "t_master@mail.com",
+#   password:              password,
+#   password_confirmation: password,
+#   confirmed_at:          Time.now
+# )
+# Patient.create!(
+#   name:                  "テストペイシェント",
+#   email:                 "t_patient@mail.com",
+#   password:              password,
+#   password_confirmation: password,
+#   confirmed_at:          Time.now
+# )
+# Staff.create!(
+#   name:                  "テストスタッフ",
+#   password:              password,
+#   password_confirmation: password,
+#   admin:                 "false",
+#   hospital_id:           1
+# )
+# Staff.create!(
+#   name:                  "テストアドミン",
+#   password:              password,
+#   password_confirmation: password,
+#   admin:                 "true",
+#   hospital_id:           1
+# )

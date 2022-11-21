@@ -5,7 +5,7 @@ FactoryBot.define do
     tel { '0000000001' }
     address { '1丁目' }
     access { 'バス1分' }
-    # image { open('./public/images/sample.jpg') }
+    images { [] }
     introduction { 'url: https://hospital-1' }
     id { 1 }
   end
@@ -15,7 +15,7 @@ FactoryBot.define do
     tel { '0000000002' }
     address { '2丁目' }
     access { 'バス2分' }
-    # image { open('./public/images/test.jpg') }
+    images { [] }
     introduction { 'url: https://hospital-2' }
   end
   factory :third_hospital, class: 'Hospital' do
@@ -24,7 +24,7 @@ FactoryBot.define do
     tel { '0000000003' }
     address { '3丁目' }
     access { 'バス3分' }
-    # image { open('./public/images/test.jpg') }
+    images { [] }
     introduction { 'url: https://hospital-3' }
   end
 end

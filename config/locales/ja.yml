@@ -16,11 +16,11 @@ ja:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
-        type_validate: はjeg、jpegまたはpng形式でアップロードしてください
-        size_validate: は1つのファイル100KB以内にしてください
-        length_validate: は5枚以内になるよう調整してください
+          has_one: "%{record}が存在しているので削除できません。"
+          has_many: "%{record}が存在しているので削除できません。"
+        type_validate: はjeg、jpegまたはpng形式でアップロードしてください。
+        size_validate: は1つのファイル100KB以内にしてください。
+        length_validate: は5枚以内になるよう調整してください。
         admin_size: 管理人アカウントがいなくなります。
         master_size: マスターアカウントがいなくなります。
   date:
