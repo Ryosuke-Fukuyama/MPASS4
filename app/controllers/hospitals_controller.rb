@@ -1,7 +1,7 @@
 class HospitalsController < ApplicationController
   before_action :admin_required, only: %i[edit update destroy]
   before_action :master_required, only: %i[new create]
-  before_action :set_hospital_labels, only: %i[index search new edit create update]
+  before_action :set_hospital_labels, only: [:index]
 
   def index
     @q = Hospital.ransack(params[:q])
