@@ -1,4 +1,5 @@
 # README
+## 現在デプロイ中のコードはaws_ver branchのものになります。
 
 ## 開発言語
 - Ruby version '2.6.5'
