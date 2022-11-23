@@ -29,7 +29,7 @@ set :log_level, :info
 set :linked_files, %w{config/secrets.yml .env}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads} # SSHKit::Command::Failed   Permission denied
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -42,6 +42,9 @@ set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+# set :ssh_options, auth_methods: ['publickey'],
+#                   keys: ['~/.ssh/test_app.pem'],
+#                   forward_agent: true
 
 after 'deploy:published', 'deploy:seed'
 after 'deploy:finished', 'deploy:restart'
