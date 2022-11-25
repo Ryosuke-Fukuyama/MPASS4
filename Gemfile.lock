@@ -412,6 +412,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capistrano (~> 3.10)
+  capistrano-bundler
   capistrano-rails (~> 1.6)
   capistrano-rbenv
   capistrano-safe-deploy-to

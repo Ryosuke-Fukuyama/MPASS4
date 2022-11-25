@@ -3,14 +3,9 @@ lock "~> 3.17.1"
 
 set :application, "MPASS4"
 set :repo_url, "https://github.com/Ryosuke-Fukuyama/MPASS4.git"
-# set :bundle_without, %w{test}.join(':')
-set :rbenv_version, '3.0.4'
-append :linked_files, 'config/secrets.yml'
-set :log_level, :info
 
-# append :linked_files, 'config/secrets.yml'
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+ask :branch, 'aws_ver', `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
@@ -40,16 +35,35 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads} # SSHKit
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
+
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-# set :ssh_options, auth_methods: ['publickey'],
-#                   keys: ['~/.ssh/test_app.pem'],
-#                   forward_agent: true
+
+set :rbenv_version, '3.0.4'
+set :log_level, :info
 
 after 'deploy:published', 'deploy:seed'
 after 'deploy:finished', 'deploy:restart'
 
 namespace :deploy do
+  Rake::Task["deploy:check:directories"].clear
+  Rake::Task["deploy:check:linked_dirs"].clear
+
+  namespace :check do
+    desc '(overwrite) Check shared and release directories exist'
+    task :directories do
+      on release_roles :all do
+        execute :sudo, :mkdir, '-pv', shared_path, releases_path
+      end
+    end
+    task :linked_dirs do
+      next unless any? :linked_dirs
+      on release_roles :all do
+        execute :sudo, :mkdir, '-pv', linked_dirs(shared_path)
+      end
+    end
+  end
+
   desc 'Run seed'
   task :seed do
     on roles(:db) do
