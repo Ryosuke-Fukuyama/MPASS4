@@ -46,23 +46,23 @@ after 'deploy:published', 'deploy:seed'
 after 'deploy:finished', 'deploy:restart'
 
 namespace :deploy do
-  Rake::Task["deploy:check:directories"].clear
-  Rake::Task["deploy:check:linked_dirs"].clear
+  # Rake::Task["deploy:check:directories"].clear
+  # Rake::Task["deploy:check:linked_dirs"].clear
 
-  namespace :check do
-    desc '(overwrite) Check shared and release directories exist'
-    task :directories do
-      on release_roles :all do
-        execute :sudo, :mkdir, '-pv', shared_path, releases_path
-      end
-    end
-    task :linked_dirs do
-      next unless any? :linked_dirs
-      on release_roles :all do
-        execute :sudo, :mkdir, '-pv', linked_dirs(shared_path)
-      end
-    end
-  end
+  # namespace :check do
+  #   desc '(overwrite) Check shared and release directories exist'
+  #   task :directories do
+  #     on release_roles :all do
+  #       execute :sudo, :mkdir, '-pv', shared_path, releases_path
+  #     end
+  #   end
+  #   task :linked_dirs do
+  #     next unless any? :linked_dirs
+  #     on release_roles :all do
+  #       execute :sudo, :mkdir, '-pv', linked_dirs(shared_path)
+  #     end
+  #   end
+  # end
 
   desc 'Run seed'
   task :seed do
