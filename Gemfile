@@ -46,9 +46,9 @@ group :development, :test do
   gem 'capistrano', "~> 3.10", require: false
   gem 'capistrano-rails', "~> 1.6", require: false
   gem 'capistrano-safe-deploy-to'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-bundler'
-  gem 'capistrano3-unicorn'
+  # gem 'capistrano-rbenv'
+  # gem 'capistrano-bundler'
+  # gem 'capistrano3-unicorn'
   gem 'rspec-rails', '~> 4.0.2'
   gem 'factory_bot_rails'
   gem 'launchy'
