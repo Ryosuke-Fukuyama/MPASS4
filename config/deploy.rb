@@ -39,31 +39,13 @@ set :keep_releases, 5
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :rbenv_version, '3.0.4'
+set :rbenv_version, '3.0.5'
 set :log_level, :info
 
 after 'deploy:published', 'deploy:seed'
 after 'deploy:finished', 'deploy:restart'
 
 namespace :deploy do
-  # Rake::Task["deploy:check:directories"].clear
-  # Rake::Task["deploy:check:linked_dirs"].clear
-
-  # namespace :check do
-  #   desc '(overwrite) Check shared and release directories exist'
-  #   task :directories do
-  #     on release_roles :all do
-  #       execute :sudo, :mkdir, '-pv', shared_path, releases_path
-  #     end
-  #   end
-  #   task :linked_dirs do
-  #     next unless any? :linked_dirs
-  #     on release_roles :all do
-  #       execute :sudo, :mkdir, '-pv', linked_dirs(shared_path)
-  #     end
-  #   end
-  # end
-
   desc 'Run seed'
   task :seed do
     on roles(:db) do
