@@ -3,6 +3,7 @@ lock "~> 3.17.1"
 
 set :application, "MPASS4"
 set :repo_url, "https://github.com/Ryosuke-Fukuyama/MPASS4.git"
+# set :bundle_without, %w{test}.join(':')
 
 # Default branch is :master
 ask :branch, 'aws_ver', `git rev-parse --abbrev-ref HEAD`.chomp
@@ -24,7 +25,7 @@ ask :branch, 'aws_ver', `git rev-parse --abbrev-ref HEAD`.chomp
 set :linked_files, %w{config/secrets.yml .env}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads} # SSHKit::Command::Failed   Permission denied
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -35,11 +36,13 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads} # SSHKit
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
-
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
 set :rbenv_version, '3.0.5'
+# set :rbenv_custom_path, '/home/sample_user/.rbenv'
+# set :bundle_path, '/home/sample_user/.rbenv/shime/bundle'
+# set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :log_level, :info
 
 after 'deploy:published', 'deploy:seed'
