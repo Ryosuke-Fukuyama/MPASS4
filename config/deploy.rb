@@ -41,9 +41,7 @@ set :keep_releases, 5
 
 set :rbenv_version, '3.0.1'
 set :rbenv_ruby, '3.0.5'
-# set :rbenv_custom_path, '/home/sample-user/.rbenv'
-# set :bundle_path, '/home/sample_user/.rbenv/shime/bundle'
-# set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+# set :rbenv_custom_path, ''
 set :log_level, :info
 
 after 'deploy:published', 'deploy:seed'
