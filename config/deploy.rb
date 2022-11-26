@@ -39,8 +39,9 @@ set :keep_releases, 5
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :rbenv_version, '3.0.5'
-# set :rbenv_custom_path, '/home/sample_user/.rbenv'
+set :rbenv_version, '3.0.1'
+set :rbenv_ruby, '3.0.5'
+# set :rbenv_custom_path, '/home/sample-user/.rbenv'
 # set :bundle_path, '/home/sample_user/.rbenv/shime/bundle'
 # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :log_level, :info
