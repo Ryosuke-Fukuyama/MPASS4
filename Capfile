@@ -30,8 +30,8 @@ install_plugin Capistrano::SCM::Git
 require "capistrano/rbenv"
 # require "capistrano/chruby"
 require "capistrano/bundler"
-# require "capistrano/rails/assets"
-require "capistrano/webpacker/precompile"
+require "capistrano/rails/assets"
+# require "capistrano/webpacker/precompile"
 require "capistrano/rails/migrations"
 require "capistrano/safe_deploy_to"
 require 'capistrano3/unicorn'
