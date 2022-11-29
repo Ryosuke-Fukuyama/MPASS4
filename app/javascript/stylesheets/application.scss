@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  */
+ @import 'health_interviews.scss';
  @import '~bootstrap/scss/bootstrap';
  @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
 
@@ -143,66 +144,6 @@ textarea {
 .pagination>li>a:hover {
   border-radius: 15px;
 }
-
-
-.sky__line {
-  border-top: 3px solid skyblue;
-}
-.orange__line {
-  border-top: 3px solid orange;
-}
-.red__line {
-  border-top: 3px solid red;
-}
-
-
-.button_line004 a {
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 200px;
-  padding: 10px 25px;
-  color: #313131;
-  transition: 0.3s ease-in-out;
-  font-weight: 600;
-}
-.button_line004 a:before,
-.button_line004 a:after {
-  content: '';
-  width: 18px;
-  height: 18px;
-  border-color: #6bb6ff;
-  box-sizing: border-box;
-  border-style :solid;
-  display: block;
-  position: absolute;
-  transition: all 0.3s ease-in-out;
-}
-.button_line004 a:before {
-  top: -6px;
-  left: -6px;
-  border-width: 2px 0 0 2px;
-  z-index: 5;
-}
-.button_line004 a:after {
-  bottom: -6px;
-  right: -6px;
-  border-width: 0 2px 2px 0;
-}
-.button_line004 a:hover:before,
-.button_line004 a:hover:after {
-  width: calc(100% + 12px);
-  height: calc(100% + 12px);
-  border-color: #6bb6ff;
-}
-.button_line004 a:hover {
-  color: #fff;
-  background-color: #6bb6ff;
-  border-color: #6bb6ff;
-}
-
 
 .button_06 {
 	text-decoration: none;

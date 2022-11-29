@@ -118,9 +118,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.noshow__list {
-  color: red;
-}
-</style>
