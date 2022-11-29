@@ -2,8 +2,10 @@
 
 <div class="top">
   <%= link_to t('view.guest_patient'), guest_sign_in_tutorials_path, method: :post %>
-  <p>患者側のログインリンクです。受付に申し込んだ後は、スタッフ側の操作を受け、画面が変化します。</p>
-  <div>※新規申し込み機能をお試しの際は、◯◯サンプル病院でお願いします。</div>
+  <p>
+    患者側のログインリンクです。受付に申し込んだ後は、スタッフ側の操作を受け、画面が変化します。
+    <div>※新規申し込み機能をお試しの際は、◯◯サンプル病院でお願いします。</div>
+  </p>
 
   <%= link_to t('view.guest_staff'), guest_staff_sign_in_tutorials_path, method: :post %>
   <p>通常医療スタッフのログインリンクです。診察の進行に合わせてステータスを変更することができます。</p>
