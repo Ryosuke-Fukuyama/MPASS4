@@ -42,17 +42,10 @@ set :keep_releases, 5
 set :rbenv_version, '3.0.1'
 set :rbenv_ruby, '3.0.5'
 # set :rbenv_custom_path, ''
-set :assets_roles, %i[webpack]
-set :assets_prefix, 'packs'
-set :keep_assets, 10
-set :assets_manifests, lambda {
-  [release_path.join('public', fetch(:assets_prefix), 'manifest.json*')]
-}
 set :log_level, :info
 
 # after 'deploy:published', 'deploy:seed'
 after 'deploy:finished', 'deploy:restart'
-# after 'deploy:updated', 'webpacker:precompile'
 
 namespace :deploy do
   desc 'Run seed'
