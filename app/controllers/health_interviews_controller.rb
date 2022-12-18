@@ -73,7 +73,7 @@ class HealthInterviewsController < ApplicationController
       binding.irb
       @third_patient = @health_interviews_0[3 - 1]
       @email = @third_patient.email
-      unless @health_interview.notification?
+      unless @third_patient.notification?
         NotificationMailer.with(to: @email, hospital_name: @hospital.name).calling_soon.deliver_now
       end
     end
