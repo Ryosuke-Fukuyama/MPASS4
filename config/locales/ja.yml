@@ -373,3 +373,8 @@ ja:
          お会計は現在精算中でございます。もう暫くお待ちくださいませ。
       complete: |
              お支払いが確認できました。お大事にしてください。
+  mailer:
+    subject:
+      calling_soon: 直前通知
+    message:
+      calling_soon: 間もなく順番となります。お近くでお待ちください。

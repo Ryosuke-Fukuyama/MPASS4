@@ -63,19 +63,29 @@ class HealthInterviewsController < ApplicationController
   def edit; end
 
   def update
-    @health_interview.guide_status.update(status: guide_status_params[:status]) if params[:guide_status].present?
+    if params[:guide_status].present?
+      @health_interview.guide_status.update(status: guide_status_params[:status])
+      @health_interviews_0 = HealthInterview.search_today
+                                            .where(hospital_id: @hospital)
+                                            .eager_load(:guide_status)
+                                            .search_initial
+                                            .order(created_at: :asc)
+      binding.irb
+      @third_patient = @health_interviews_0[3 - 1]
+      @email = @third_patient.email
+      unless @health_interview.notification?
+        NotificationMailer.with(to: @email, hospital_name: @hospital.name).calling_soon.deliver_now
+      end
+    end
     if health_interview_params[:price].present?
       if @health_interview.update(health_interview_params)
+        # NotificationMailer.bill_mail(@health_interview, @email).deliver
         # @health_interview.number.destroy if status.status == noshow || status.status == complete
         redirect_to health_interview_path(@hospital, @health_interview), notice: t('notice.updated') # , json: { registration: 'OK!' }, status: 200
       else
         render 'edit' # , json: { registration: 'ERROR!!!' }, status: 500
       end
     end
-
-    # @email = @health_interview.patient.email
-    # NotificationMailer.soon_mail(@health_interview, @email).deliver_later if @health_interview.notification?
-    # NotificationMailer.bill_mail(@health_interview, @email).deliver if @health_interview.price.present?
   end
 
   def destroy
