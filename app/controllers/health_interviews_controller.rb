@@ -71,10 +71,11 @@ class HealthInterviewsController < ApplicationController
                                             .search_initial
                                             .order(created_at: :asc)
       binding.irb
-      @third_patient = @health_interviews_0[3 - 1]
-      @email = @third_patient.email
-      unless @third_patient.notification?
+      @third_health_interview = @health_interviews_0[3 - 1]
+      unless @third_health_interview.notification?
+        @email = @third_health_interview.patient.email
         NotificationMailer.with(to: @email, hospital_name: @hospital.name).calling_soon.deliver_now
+        @third_health_interview.update(notification: true)
       end
     end
     if health_interview_params[:price].present?
