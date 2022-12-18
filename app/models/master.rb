@@ -11,7 +11,7 @@ class Master < ApplicationRecord
          :registerable,
          :recoverable,
         #  :rememberable,
-        #  :confirmable,
+         :confirmable,
          :lockable,
          :timeoutable,
          :trackable,

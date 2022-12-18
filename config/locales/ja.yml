@@ -243,7 +243,7 @@ ja:
   enums:
     guide_status:
       status:
-        initial: 初期
+        initial: 予約
         calling: 呼出
         payment: 決済
         pending: 保留

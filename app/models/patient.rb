@@ -16,7 +16,7 @@ class Patient < ApplicationRecord
          :registerable,
          :recoverable,
          :rememberable,
-        #  :confirmable,
+         :confirmable,
          :lockable
   #  authentication_keys: []
   #  :omniauthable, omniauth_providers: [:google_oauth2]

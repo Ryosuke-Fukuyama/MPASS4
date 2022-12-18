@@ -449,6 +449,7 @@ DEPENDENCIES
   rails (= 6.1)
   ransack
   recaptcha
+  rexml
   rspec-rails (~> 4.0.2)
   rubocop
   rubocop-rails

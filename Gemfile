@@ -50,6 +50,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano3-unicorn'
   gem 'rspec-rails', '~> 4.0.2'
+  gem 'rexml'
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'pry-byebug'
