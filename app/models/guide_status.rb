@@ -2,7 +2,7 @@ class GuideStatus < ApplicationRecord
   belongs_to :health_interview, optional: true
 
   STATUSES = {
-    initial: 0,
+    waiting: 0,
     calling: 1,
     pending: 2,
     noshow: 3,

@@ -36,9 +36,9 @@ RSpec.describe HealthInterview, type: :model do
     before do
       @health_interviews = HealthInterview.eager_load(:guide_status)
     end
-    context 'only initial' do
-      subject { @health_interviews.search_initial.sample.guide_status.status }
-      it { is_expected.to eq 'initial' }
+    context 'only waiting' do
+      subject { @health_interviews.search_waiting.sample.guide_status.status }
+      it { is_expected.to eq 'waiting' }
     end
     context 'only calling' do
       subject { @health_interviews.search_calling.sample.guide_status.status }

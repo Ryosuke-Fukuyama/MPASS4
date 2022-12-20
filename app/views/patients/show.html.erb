@@ -2,7 +2,7 @@
 
 <% if @last_status.present? %>
   <% if
-    @last_status == "initial" ||
+    @last_status == "waiting" ||
     @last_status == "calling" ||
     @last_status == "pending"
   %>
@@ -10,12 +10,12 @@
     <%= link_to @hospital.name + " " + t('view.waiting'), health_interviews_path(@hospital) %>
 
     <div class="message_area">
-      <% if @last_status == "initial" %>
+      <% if @last_status == "waiting" %>
         <div>
           <%= t('view.waiting_befor') + @index.to_s + t('view.people_num') %>
         </div>
         <div>
-          <%= simple_format(t('view.message.initial')) %>
+          <%= simple_format(t('view.message.waiting')) %>
         </div>
       <% elsif @last_status == "calling" %>
         <div>

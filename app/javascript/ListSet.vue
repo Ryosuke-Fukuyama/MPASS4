@@ -17,7 +17,7 @@
       </div>
     </div>
     <hr class="sky__line">
-    <div class="initial__list">
+    <div class="waiting__list">
       <div v-if="healthInterviews0.length">
         <NumList
           v-if="reRendering"

@@ -9,7 +9,7 @@ class HealthInterview < ApplicationRecord
   enum gender: { man: 0, woman: 1 }
 
   include Scopes
-  scope :search_initial, -> { where(guide_statuses: { status: 'initial' }) }
+  scope :search_waiting, -> { where(guide_statuses: { status: 'waiting' }) }
   scope :search_calling, -> { where(guide_statuses: { status: 'calling' }) }
   scope :search_pending, -> { where(guide_statuses: { status: 'pending' }) }
   scope :search_payment, -> { where(guide_statuses: { status: 'payment' }) }

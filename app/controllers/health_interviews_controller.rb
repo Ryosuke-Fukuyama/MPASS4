@@ -9,7 +9,7 @@ class HealthInterviewsController < ApplicationController
     @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital)
     if @health_interviews.present?
       @health_interviews = @health_interviews.eager_load(:guide_status).order(created_at: :asc)
-      @health_interviews_0 = @health_interviews.search_initial if @health_interviews.search_initial.any?
+      @health_interviews_0 = @health_interviews.search_waiting if @health_interviews.search_waiting.any?
       @health_interviews_1 = @health_interviews.search_calling if @health_interviews.search_calling.any?
       @health_interviews_2 = @health_interviews.search_pending if @health_interviews.search_pending.any?
     end
@@ -31,7 +31,7 @@ class HealthInterviewsController < ApplicationController
 
   def new
     @health_interviews = current_patient.health_interviews
-    if @health_interviews.present? && (@health_interviews.last.guide_status.initial? ||
+    if @health_interviews.present? && (@health_interviews.last.guide_status.waiting? ||
                                         @health_interviews.last.guide_status.calling? ||
                                         @health_interviews.last.guide_status.pending? ||
                                         @health_interviews.last.guide_status.payment?
@@ -68,7 +68,7 @@ class HealthInterviewsController < ApplicationController
       @health_interviews_0 = HealthInterview.search_today
                                             .where(hospital_id: @hospital)
                                             .eager_load(:guide_status)
-                                            .search_initial
+                                            .search_waiting
                                             .order(created_at: :asc)
       @third_health_interview = @health_interviews_0[3 - 1]
       unless @third_health_interview.notification?

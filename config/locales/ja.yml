@@ -243,7 +243,7 @@ ja:
   enums:
     guide_status:
       status:
-        initial: 予約
+        waiting: 待機
         calling: 呼出
         payment: 決済
         pending: 保留
@@ -352,7 +352,7 @@ ja:
       symptoms: 症状や、発症時期等ご記入ください。
       tel: ハイフンなし
     message:
-      initial: |
+      waiting: |
             お申し込み頂きありがとうございます。ご案内状況をご確認の上お越しください。
             今月初めてのご来院の場合は保険証をお忘れなきようお持ちください。
             ご案内時にご不在の場合、次の方をご案内させて頂きます。

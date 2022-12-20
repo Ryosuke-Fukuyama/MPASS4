@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe GuideStatus, type: :model do
   describe 'enum status' do
     it { is_expected.to define_enum_for(:status).with_values(
-                                                              initial: 0,
+                                                              waiting: 0,
                                                               calling: 1,
                                                               pending: 2,
                                                               noshow: 3,

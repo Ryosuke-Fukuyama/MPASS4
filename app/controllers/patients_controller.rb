@@ -25,11 +25,11 @@ class PatientsController < ApplicationController
       @last_status = @last_interview.guide_status.status
       @hospital = @last_interview.hospital
 
-      if @last_status == 'initial'
+      if @last_status == 'waiting'
         @health_interviews = HealthInterview.where(hospital_id: @hospital)
                                             .search_today
                                             .eager_load(:guide_status)
-                                            .where(guide_statuses: { status: 'initial' })
+                                            .where(guide_statuses: { status: 'waiting' })
         @index = @health_interviews.map { |a| a[:patient_id] }.find_index(current_patient.id)
         @index += 1
       end

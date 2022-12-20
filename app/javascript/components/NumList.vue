@@ -11,7 +11,7 @@
           @change="selectStatus(health_interview, $event)"
           class="vue__select"
         >
-          <option value="initial">初期</option>
+          <option value="waiting">待機</option>
           <option value="calling">呼出</option>
           <option value="pending">保留</option>
           <option value="noshow">無断キャンセル</option>
