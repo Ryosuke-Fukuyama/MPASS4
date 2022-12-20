@@ -70,21 +70,21 @@ class HealthInterviewsController < ApplicationController
                                             .eager_load(:guide_status)
                                             .search_initial
                                             .order(created_at: :asc)
-      binding.irb
       @third_health_interview = @health_interviews_0[3 - 1]
       unless @third_health_interview.notification?
         @email = @third_health_interview.patient.email
-        NotificationMailer.with(to: @email, hospital_name: @hospital.name).calling_soon.deliver_now
+        NotificationMailer.with(to: @email, hospital_name: @hospital.name).calling_soon.deliver_later
         @third_health_interview.update(notification: true)
       end
     end
+
     if health_interview_params[:price].present?
       if @health_interview.update(health_interview_params)
-        # NotificationMailer.bill_mail(@health_interview, @email).deliver
-        # @health_interview.number.destroy if status.status == noshow || status.status == complete
-        redirect_to health_interview_path(@hospital, @health_interview), notice: t('notice.updated') # , json: { registration: 'OK!' }, status: 200
+        @email = @health_interview.patient.email
+        NotificationMailer.with(to: @email, health_interview: @health_interview).bill_check.deliver_later
+        redirect_to health_interview_path(@hospital, @health_interview), notice: t('notice.updated')
       else
-        render 'edit' # , json: { registration: 'ERROR!!!' }, status: 500
+        render 'edit'
       end
     end
   end

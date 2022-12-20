@@ -376,5 +376,7 @@ ja:
   mailer:
     subject:
       calling_soon: 直前通知
+      bill_check: 診療費通知
     message:
       calling_soon: 間もなく順番となります。お近くでお待ちください。
+      bill_check: マイページにてお会計金額をご確認ください。
