@@ -17,18 +17,17 @@
         <%= render "layouts/global_navi" %>
       </nav>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <div class="container">
+    <section>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </section>
+    <section class="container">
       <%= yield %>
-    </div>
+    </section>
     <footer>
-      <nav align="center">
-        <div>
-          <p>DIVE INTO CODE WEF2103</p>
-        </div>
-      </nav>
+      <div align="center">
+        <p>DIVE INTO CODE WEF2103</p>
+      </div>
     </footer>
   </body>
 </html>
