@@ -18,6 +18,7 @@
   <%= tag.div id: "list-set", data: { hospital_id: @hospital.id }.to_json %><%# date属性の秘匿性要検討 %>
 </div>
 
+<a href="#inline-block"><%= t('view.rising') %></a>
 <%= link_to t('view.hospital') + t('view.show'), hospital_path(@hospital), class: "button_06", role: "button" %>
 
 <%= javascript_pack_tag 'health_interviews_index' %>
