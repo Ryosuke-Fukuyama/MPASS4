@@ -6,7 +6,7 @@
     @last_status == "calling" ||
     @last_status == "pending"
   %>
-    <h1><%= t('view.your_number_is') + @last_interview.guide_status.id.to_s %></h1>
+    <p class="xx-large_font"><%= t('view.your_number_is') + @last_interview.guide_status.id.to_s %></p>
     <%= link_to @hospital.name + " " + t('view.waiting'), health_interviews_path(@hospital) %>
 
     <div class="message_area">
