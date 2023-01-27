@@ -8,7 +8,7 @@ class HealthInterviewsController < ApplicationController
   def index
     @health_interviews = HealthInterview.search_today.where(hospital_id: @hospital)
     if @health_interviews.present?
-      @health_interviews = @health_interviews.eager_load(:guide_status).order(created_at: :asc)
+      @health_interviews = @health_interviews.eager_load(:guide_status).order(:created_at)
       @health_interviews_0 = @health_interviews.search_waiting if @health_interviews.search_waiting.any?
       @health_interviews_1 = @health_interviews.search_calling if @health_interviews.search_calling.any?
       @health_interviews_2 = @health_interviews.search_pending if @health_interviews.search_pending.any?
@@ -24,7 +24,7 @@ class HealthInterviewsController < ApplicationController
     @health_interviews = HealthInterview.search_today
                                         .where(hospital_id: @hospital)
                                         .eager_load(:guide_status)
-                                        .order(updated_at: :asc)
+                                        .order(:updated_at)
     @health_interviews_3 = @health_interviews.search_noshow if @health_interviews.search_noshow.any?
     @health_interviews_4 = @health_interviews.search_payment if @health_interviews.search_payment.any?
   end
@@ -71,11 +71,11 @@ class HealthInterviewsController < ApplicationController
                                             .search_waiting
                                             .order(created_at: :asc)
       @third_health_interview = @health_interviews_0[3 - 1]
-      unless @third_health_interview.notification?
-        @email = @third_health_interview.patient.email
-        NotificationMailer.with(to: @email, hospital_name: @hospital.name).calling_soon.deliver_later
-        @third_health_interview.update(notification: true)
-      end
+      # unless @third_health_interview.notification?
+      #   @email = @third_health_interview.patient.email
+      #   NotificationMailer.with(to: @email, hospital_name: @hospital.name).calling_soon.deliver_later
+      #   @third_health_interview.update(notification: true)
+      # end
     end
 
     if health_interview_params[:price].present?
@@ -116,7 +116,7 @@ class HealthInterviewsController < ApplicationController
       :comment,
       :price,
       :hospital_id,
-      # :notification,
+      :notification,
       guide_status_attributes: %i[
         id
         status
